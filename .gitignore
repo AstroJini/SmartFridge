@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 application-prod.yml
+src/main/java/com/be16_2nd/SmartFridge/common/service/InitialDataLoader.java
 
 ### STS ###
 .apt_generated
