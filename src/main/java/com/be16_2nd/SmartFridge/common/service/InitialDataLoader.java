@@ -22,7 +22,7 @@ public class InitialDataLoader implements CommandLineRunner {
                 .name("admin")
                 .email("admin@naver.com")
                 .role(Role.ADMIN)
-                .password(passwordEncoder.encode("sfadminsejin"))
+                .password(passwordEncoder.encode("sfadmin1234"))
                 .build();
         memberRepository.save(member);
     }
