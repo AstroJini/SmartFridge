@@ -4,7 +4,9 @@ import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.member.dto.LoginReqDto;
 import com.be16_2nd.SmartFridge.member.dto.MemberCreateDto;
 import com.be16_2nd.SmartFridge.member.repository.MemberRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,5 +42,11 @@ public class MemberService {
             throw new IllegalArgumentException("id, email또는 비밀번호가 일치하지 않습니다.");
         }
         return optionalMember.get();
+    }
+
+    public void delete(){
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Member member = memberRepository.findByEmail(email).orElseThrow(()->new EntityNotFoundException("존재하지 않는 회원입니다."));
+        member.delete(member);
     }
 }

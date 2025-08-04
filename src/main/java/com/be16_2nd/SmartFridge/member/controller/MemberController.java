@@ -12,10 +12,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -50,6 +47,18 @@ public class MemberController {
                         .result(loginResDto)
                         .status_code(HttpStatus.OK.value())
                         .status_message("로그인 성공")
+                        .build(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> delete(){
+        memberService.delete();
+        return new ResponseEntity<>(
+                CommonDto.builder()
+                        .result("OK")
+                        .status_code(HttpStatus.OK.value())
+                        .status_message("회원탈퇴가 성공적으로 되었습니다. \n" +
+                                "그동안 저희 Smart Fridge를 이용해주셔서 감사합니다.")
                         .build(), HttpStatus.OK);
     }
 }
