@@ -1,8 +1,11 @@
 package com.be16_2nd.SmartFridge.member.domain;
 
+import com.be16_2nd.SmartFridge.common.domain.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
+
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -11,7 +14,8 @@ import org.hibernate.annotations.Where;
 @Builder
 @ToString
 @Where(clause = "del_yn='N'")
-public class Member {
+@Setter
+public class Member extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,11 +23,28 @@ public class Member {
     private String name;
     @Column(length = 50, unique = true, nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
+
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private Role role = Role.USER;
+
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    private Provider provider = Provider.LOCAL;
+
     @Builder.Default
     private String delYn = "N";
 
+    @Builder.Default
+    private LocalDateTime withdrawalDate = null;
+
+    private String profileImage;
+
+
+    public void delete(Member member){
+        this.delYn = "Y";
+        this.setWithdrawalDate(LocalDateTime.now());
+    }
 }
