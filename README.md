@@ -42,14 +42,18 @@
 
 
 [🗓️ 프로젝트 기획서 상세 보기](https://docs.google.com/document/d/1RzAFkdnAkZgXv8ZNlyAT-e_z8F1Sof-F/edit?rtpof=true&tab=t.0)
-
+<br/>
 
 ## 🗓️ figma
 
 
 [🗓️ figma 상세 보기](https://www.figma.com/design/wU7s6yvtkBz0H1dKfz3wwH/SmartFridge?node-id=95-96&p=f&t=si8Msm4lkbOdoM8i-0)
+<br/>
 
+## 🗓️ API 명세서
+[🗓️ API 명세서 상세 보기](https://docs.google.com/spreadsheets/d/1nH7eOviqjvMAsm5lpgn3xR_aUZIRZFVX/edit?gid=2135429763#gid=2135429763)
 
+<br/>
 ## 🗓️ Work Breakdown Structure
 
 
@@ -61,7 +65,7 @@
 ## 📝 요구사항정의서
 
 
-[📝 요구사항 명세서 상세보기](https://docs.google.com/spreadsheets/d/1MdMci2yeFGn26Q4miN4VBFLd0V3hfnp7/edit?gid=1981675247#gid=1981675247)
+[📝 요구사항 명세서 상세보기](https://docs.google.com/spreadsheets/d/1VasDKfhetE3DzFZJidi0ld-xMtJ5dCzDggyUzre7fkc/edit?gid=0#gid=0)
 
 <br/>
 
