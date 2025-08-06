@@ -56,17 +56,9 @@
 
 ## 📋 ERD
 
-![findboard추가ERD (1)](https://www.erdcloud.com/d/4cqnAiypKc5zAzM6R)
+![smartFridge](https://www.erdcloud.com/d/4cqnAiypKc5zAzM6R)
 
 <br/>
 
 <div align=left>	
 
-
-
-        
-  ![마이페이지찜목록](https://github.com/user-attachments/assets/748c9573-343e-470e-a69f-5ea850cdbfe9)
-      </li>
-    </ul>
-  </div>
-</details>
