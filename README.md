@@ -38,6 +38,17 @@
 
 <br/>
 
+## 🗓️ 프로젝트 기획서
+
+
+[🗓️ 프로젝트 기획서 상세 보기](https://docs.google.com/document/d/1RzAFkdnAkZgXv8ZNlyAT-e_z8F1Sof-F/edit?rtpof=true&tab=t.0)
+
+
+## 🗓️ figma
+
+
+[🗓️ figma 상세 보기](https://www.figma.com/design/wU7s6yvtkBz0H1dKfz3wwH/SmartFridge?node-id=95-96&p=f&t=si8Msm4lkbOdoM8i-0)
+
 
 ## 🗓️ Work Breakdown Structure
 
