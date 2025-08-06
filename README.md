@@ -56,7 +56,7 @@
 
 ## 📋 ERD
 
-![smartFridge](https://www.erdcloud.com/d/4cqnAiypKc5zAzM6R)
+<img width="5330" height="2492" alt="SmartFridge" src="https://github.com/user-attachments/assets/8ccf37fb-154c-4865-b3f2-44fc2f67ba57" />
 
 <br/>
 
