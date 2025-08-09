@@ -1,0 +1,19 @@
+package com.be16_2nd.SmartFridge.notification.domain;
+
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
+public enum NotificationType {
+
+    NEW_FOOD("새로운 식품이 등록되었습니다."),
+    NEW_MEMBER("새로운 멤버가 참여했습니다."),
+    EXPIRATION_IMMINENT("유통기한 임박 알림"),
+    NEW_NOTICE("새로운 공지사항이 등록되었습니다."),
+    NEW_COMMENT("내 게시글에 새로운 댓글이 달렸습니다."),
+    ADMIN_CHAT("관리자로부터 새로운 메시지가 도착했습니다."),
+    GROUP_CHAT("그룹 채팅에 새로운 메시지가 도착했습니다.");
+
+    private final String description;
+}
