@@ -1,5 +1,6 @@
 package com.be16_2nd.SmartFridge.notification.service;
 
+import com.be16_2nd.SmartFridge.common.service.NotificationPublisher;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.notification.domain.Notification;
@@ -14,15 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class NotificationService {
 
     private final NotificationRepository notificationRepository;
+    private final NotificationPublisher notificationPublisher;
 
-    public void create(Member sender, Member receiver, Fridge fridge,  String content) {
-        Notification notification = Notification.builder()
-                .sender(sender)
-                .receiver(receiver)
-                .fridge(fridge)
-                .content(content)
-                .isRead(false)
-                .build();
+    public void create(Notification notification) {
+        notificationPublisher.publish(
+                notification.getSender().getEmail()
+                , notification.getReceiver().getEmail()
+                , notification.getContent()
+                ,notification.getNotificationType().name()
+        );
 
         notificationRepository.save(notification);
     }
