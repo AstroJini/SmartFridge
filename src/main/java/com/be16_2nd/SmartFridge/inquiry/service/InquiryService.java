@@ -1,10 +1,8 @@
 package com.be16_2nd.SmartFridge.inquiry.service;
 
-import com.be16_2nd.SmartFridge.common.service.NotificationPublisher;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeRepository;
-import com.be16_2nd.SmartFridge.fridge.service.FridgeService;
-import com.be16_2nd.SmartFridge.inquiry.InquiryCreateDto;
+import com.be16_2nd.SmartFridge.inquiry.dto.InquiryCreateDto;
 import com.be16_2nd.SmartFridge.inquiry.domain.Inquiry;
 import com.be16_2nd.SmartFridge.inquiry.repository.InquiryRepository;
 import com.be16_2nd.SmartFridge.member.domain.Member;
@@ -24,7 +22,6 @@ public class InquiryService {
 
     private final InquiryRepository inquiryRepository;
     private final MemberRepository memberRepository;
-    private final NotificationPublisher notificationPublisher;
     private final NotificationService notificationService;
     private final FridgeRepository fridgeRepository;
 

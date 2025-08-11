@@ -1,7 +1,7 @@
 package com.be16_2nd.SmartFridge.inquiry.controller;
 
 import com.be16_2nd.SmartFridge.common.dto.CommonDto;
-import com.be16_2nd.SmartFridge.inquiry.InquiryCreateDto;
+import com.be16_2nd.SmartFridge.inquiry.dto.InquiryCreateDto;
 import com.be16_2nd.SmartFridge.inquiry.service.InquiryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
