@@ -24,10 +24,10 @@ public class NotificationSubscriber implements MessageListener {
         try {
             // Redis에서 받은 byte 데이터를 DTO로 변환
             SseMessageDTO sseMessageDTO = objectMapper.readValue(message.getBody(), SseMessageDTO.class);
-            log.info("Redis 구독 메시지 수신. 수신자: {}", sseMessageDTO.getReceiver());
+            log.info("Redis 구독 메시지 수신. 수신자: {}", sseMessageDTO.getReceiverEmail());
 
             // 현재 서버에 접속한 Emitter가 있는지 확인
-            SseEmitter sseEmitter = sseEmitterRegistry.getEmitter(sseMessageDTO.getReceiver());
+            SseEmitter sseEmitter = sseEmitterRegistry.getEmitter(sseMessageDTO.getReceiverEmail());
 
             if (sseEmitter != null) {
                 try {
@@ -35,14 +35,14 @@ public class NotificationSubscriber implements MessageListener {
                     sseEmitter.send(SseEmitter.event()
                             .name(sseMessageDTO.getType())
                             .data(sseMessageDTO));
-                    log.info("실시간 알림 전송 완료: {}", sseMessageDTO.getReceiver());
+                    log.info("실시간 알림 전송 완료: {}", sseMessageDTO.getReceiverEmail());
                 } catch (IOException e) {
                     // 전송 중 오류 발생 시 Emitter 제거
-                    log.error("SSE 전송 오류. Emitter 제거. 수신자: {}", sseMessageDTO.getReceiver(), e);
-                    sseEmitterRegistry.removeEmitter(sseMessageDTO.getReceiver());
+                    log.error("SSE 전송 오류. Emitter 제거. 수신자: {}", sseMessageDTO.getReceiverEmail(), e);
+                    sseEmitterRegistry.removeEmitter(sseMessageDTO.getReceiverEmail());
                 }
             } else {
-                log.info("수신자 {}가 현재 서버에 접속중이 아님.", sseMessageDTO.getReceiver());
+                log.info("수신자 {}가 현재 서버에 접속중이 아님.", sseMessageDTO.getReceiverEmail());
             }
 
         } catch (IOException e) {

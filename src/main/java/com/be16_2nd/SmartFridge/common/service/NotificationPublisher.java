@@ -14,15 +14,15 @@ public class NotificationPublisher {
 
     private final RedisTemplate<String, Object> redisTemplate;
 
-    public void publish(String sender, String receiver, String contents, String type) {
+    public void publish(String senderEmail, String receiverEmail, String contents, String type) {
         SseMessageDTO sseMessageDTO = SseMessageDTO.builder()
                 .type(type)
-                .sender(sender)
-                .receiver(receiver)
+                .senderEmail(senderEmail)
+                .receiverEmail(receiverEmail)
                 .contents(contents)
                 .build();
 
-        log.info("Redis 채널로 알림 발행. 수신자: {}", receiver);
+        log.info("Redis 채널로 알림 발행. 수신자: {}", receiverEmail);
         redisTemplate.convertAndSend("notification-channel", sseMessageDTO);
     }
 }

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SseMessageDTO {
     private String type;
-    private String sender;
-    private String receiver;
+    private String senderEmail;
+    private String receiverEmail;
     private String contents;
 }
