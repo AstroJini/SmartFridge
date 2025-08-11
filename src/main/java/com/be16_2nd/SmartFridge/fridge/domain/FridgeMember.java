@@ -26,5 +26,6 @@ public class FridgeMember extends BaseTimeEntity {
     private Fridge fridge;
 
     @Builder.Default
+    @Enumerated(EnumType.STRING)
     private Type type = Type.COMMON;
 }
