@@ -17,7 +17,7 @@ public class NotificationSetting {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private SettingType type;
+    private NotificationSettingType type;
 
     private boolean isActive;
 
