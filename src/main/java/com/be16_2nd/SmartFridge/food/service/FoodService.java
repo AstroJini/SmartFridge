@@ -44,10 +44,14 @@ public class FoodService {
     private final FridgeMemberRepository fridgeMemberRepository;
 
     public Food registerFood(FoodCreateDto foodCreateDto) {
+        // 더미 데이터 (수정 필요)
+        Long fridgeId = 1L;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email  = authentication.getName();
         Member member = memberRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("없는사용자 입니다"));
-        Food food = foodCreateDto.toEntity(member);
+        Fridge fridge = fridgeRepository.findById(fridgeId).orElseThrow(() -> new EntityNotFoundException("없는 냉장고 입니다."));
+
+        Food food = foodCreateDto.toEntity(member, fridge);
         return foodRepository.save(food);
     }
 

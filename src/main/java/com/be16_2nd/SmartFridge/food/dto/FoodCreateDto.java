@@ -3,6 +3,7 @@ package com.be16_2nd.SmartFridge.food.dto;
 import com.be16_2nd.SmartFridge.food.domain.Category;
 import com.be16_2nd.SmartFridge.food.domain.Food;
 import com.be16_2nd.SmartFridge.food.domain.StorageType;
+import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +30,7 @@ public class FoodCreateDto {
     private String memo;
     private Boolean shareable;
 
-    public Food toEntity(Member member) {
+    public Food toEntity(Member member, Fridge fridge) {
         if (expirationDate == null) {
             throw new IllegalArgumentException("유통기한 날짜는 필수입니다.");
         }
@@ -54,6 +55,7 @@ public class FoodCreateDto {
                 .memo(memo)
                 .isShared(shareable)
                 .member(member)
+                .fridge(fridge)
                 .build();
     }
 }
