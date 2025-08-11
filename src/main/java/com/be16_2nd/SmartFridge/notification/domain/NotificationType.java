@@ -10,7 +10,7 @@ public enum NotificationType {
     NEW_FOOD("새로운 식품이 등록되었습니다."),
     NEW_MEMBER("새로운 멤버가 참여했습니다."),
     EXPIRATION_IMMINENT("유통기한 임박 알림"),
-    NEW_NOTICE("새로운 공지사항이 등록되었습니다."),
+    NEW_ANNOUNCEMENT("새로운 공지사항이 등록되었습니다."),
     NEW_COMMENT("내 게시글에 새로운 댓글이 달렸습니다."),
     NEW_INQUIRY("새로운 문의가 등록되었습니다."),
     ADMIN_REPLY("문의하신 글에 관리자 답변이 달렸습니다."),
