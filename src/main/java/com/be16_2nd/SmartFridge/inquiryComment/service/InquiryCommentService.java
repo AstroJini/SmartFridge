@@ -38,7 +38,6 @@ public class InquiryCommentService {
         InquiryComment inquiryComment = inquiryCommentRepository.save(inquiryCommentCreateDto.toEntity(inquiryCommentCreateDto, inquiry));
         Notification notification = Notification.fromInquiryComment(sender, receiver, inquiryComment);
         notificationService.create(notification);
-        notificationPublisher.publish("admin@naver.com", email, inquiryComment.getCommentContents(), "inquiredComment");
         return new InquiryCommentResDto(inquiryComment);
     }
 }
