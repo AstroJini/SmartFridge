@@ -93,4 +93,17 @@ public class FoodController {
                 , HttpStatus.OK);
     }
 
+    @PostMapping("/{fridgeId}/register")
+    public ResponseEntity<?> registerNewFood(@RequestBody FoodCreateDto foodCreateDto,
+                                             @PathVariable Long fridgeId) {
+        Long id = foodService.registerNewFood(foodCreateDto, fridgeId);
+        return new  ResponseEntity<>(
+                CommonDto.builder()
+                        .result(id)
+                        .status_code(HttpStatus.OK.value())
+                        .status_message("식품 등록 완료")
+                        .build()
+                , HttpStatus.OK);
+    }
+
 }
