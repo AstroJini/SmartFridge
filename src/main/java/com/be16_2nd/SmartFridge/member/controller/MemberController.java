@@ -41,10 +41,11 @@ public class MemberController {
     public ResponseEntity<?> doLogin(@RequestBody LoginReqDto loginReqDto){
         Member member = memberService.doLogin(loginReqDto);
         String accessToken = jwtTokenProvider.createAtToken(member);
+        String refreshToken = jwtTokenProvider.createRtToken(member);
 
         LoginResDto loginResDto = LoginResDto.builder()
                 .accessToken(accessToken)
-                .refreshToken(null)
+                .refreshToken(refreshToken)
                 .build();
 
         return new ResponseEntity<>(
