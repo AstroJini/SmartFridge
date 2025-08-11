@@ -19,7 +19,7 @@ public class SseController {
 
     private final SseEmitterRegistry sseEmitterRegistry;
 
-    @GetMapping("/connect")
+    @GetMapping("/connect/notification")
     public SseEmitter subscribe() {
         SseEmitter sseEmitter = new SseEmitter(14400 * 60 * 1000L);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -34,7 +34,7 @@ public class SseController {
     }
 
 
-    @GetMapping("/disconnect")
+    @GetMapping("/disconnect/notification")
     public void unSubscribe() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         sseEmitterRegistry.removeEmitter(email);
