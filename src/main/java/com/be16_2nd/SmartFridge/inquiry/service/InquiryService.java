@@ -39,7 +39,6 @@ public class InquiryService {
 
         Notification notification = Notification.fromInquiry(sender, receiver, inquiry);
         notificationService.create(notification);
-        notificationPublisher.publish(email,"admin@naver.com", inquiry.getContents(), "inquiry");
         return inquiry.getInquiryId();
     }
 }
