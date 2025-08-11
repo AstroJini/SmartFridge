@@ -6,8 +6,15 @@ import com.be16_2nd.SmartFridge.food.dto.FoodResDto;
 import com.be16_2nd.SmartFridge.food.dto.FoodSearchDto;
 import com.be16_2nd.SmartFridge.food.dto.FoodUpdateDto;
 import com.be16_2nd.SmartFridge.food.repository.FoodRepository;
+import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
+import com.be16_2nd.SmartFridge.fridge.domain.FridgeMember;
+import com.be16_2nd.SmartFridge.fridge.domain.Type;
+import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
+import com.be16_2nd.SmartFridge.fridge.repository.FridgeRepository;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.member.repository.MemberRepository;
+import com.be16_2nd.SmartFridge.notification.domain.Notification;
+import com.be16_2nd.SmartFridge.notification.service.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -32,6 +39,10 @@ import java.util.NoSuchElementException;
 public class FoodService {
     public final MemberRepository memberRepository;
     private final FoodRepository foodRepository;
+    private final FridgeRepository fridgeRepository;
+    private final NotificationService notificationService;
+    private final FridgeMemberRepository fridgeMemberRepository;
+
     public Food registerFood(FoodCreateDto foodCreateDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email  = authentication.getName();
@@ -120,6 +131,26 @@ public class FoodService {
     public Food updateFood(FoodUpdateDto foodUpdateDto, Long id) {
         Food food =  foodRepository.findById(id).orElseThrow(()->new NoSuchElementException("없는 식품입니다"));
         return food.updateFood(foodUpdateDto);
+    }
+
+    public Long registerNewFood(FoodCreateDto foodCreateDto, Long fridgeId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email  = authentication.getName();
+        Member member = memberRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("없는사용자 입니다"));
+        Fridge fridge = fridgeRepository.findById(fridgeId).orElseThrow(() -> new EntityNotFoundException("없는 냉장고 입니다."));
+
+        Food food = foodCreateDto.toEntity(member, fridge);
+        Food newFood = foodRepository.save(food);
+
+        FridgeMember fridgeMember = fridgeMemberRepository.findByFridgeAndType(fridge, Type.MANAGER)
+                .orElseThrow(() -> new EntityNotFoundException("냉장고 관리자가 존재하지 않습니다."));
+
+        if (fridgeMember != null) {
+            Member receiver = fridgeMember.getMember();
+            Notification notification = Notification.fromFood(member, receiver, newFood);
+            notificationService.create(notification);
+        }
+        return newFood.getId();
     }
 
 }
