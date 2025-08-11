@@ -1,5 +1,6 @@
 package com.be16_2nd.SmartFridge.inquiry.domain;
 
+import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,5 +23,9 @@ public class Inquiry {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fridge_id")
+    private Fridge fridge;
 
 }

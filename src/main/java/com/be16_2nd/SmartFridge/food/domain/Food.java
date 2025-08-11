@@ -1,6 +1,7 @@
 package com.be16_2nd.SmartFridge.food.domain;
 
 import com.be16_2nd.SmartFridge.food.dto.FoodUpdateDto;
+import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -50,4 +51,8 @@ public class Food {
         this.isShared = foodUpdateDto.getShareable();
         return this;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fridge_id")
+    private Fridge fridge;
 }
