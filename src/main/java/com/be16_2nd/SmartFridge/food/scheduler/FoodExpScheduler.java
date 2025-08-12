@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +24,8 @@ public class FoodExpScheduler  {
     private final NotificationService notificationService;
 
     // 매일 오전 9시에 실행
-    @Scheduled(cron = "0 0 9 * * *")
+    @Transactional
+    @Scheduled(cron = "0 0 10 * * *")
     public void notificationForExpFood() {
 
         // 유통기한 당일
@@ -42,12 +44,15 @@ public class FoodExpScheduler  {
             
             // 식자재 등록한 회원
             Member receiver = food.getMember();
+
             // 유통기한 임박 기간에 따른 메세지 조합
             String daysLeftMessage = getDaysLeftMessage(food.getExpirationDateTime().toLocalDate(), today);
-            // 알림 객체 생성
+            // 알림 객체 생성 후 메세지 발송
             Notification notification = Notification.fromExpiration(receiver, food, daysLeftMessage);
+            // 알림 db에 저장
             notificationService.create(notification);
         }
+
     }
 
     private String getDaysLeftMessage(LocalDate expiryDate, LocalDate today) {
