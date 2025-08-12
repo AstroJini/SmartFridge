@@ -27,8 +27,8 @@ public class ManagerChatRoom {
     private Fridge fridge;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manager_id", nullable = false)
-    private Member manager;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     private LocalDateTime lastMessageAt;
 }
