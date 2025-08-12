@@ -1,6 +1,6 @@
 package com.be16_2nd.SmartFridge.common.config;
 
-import com.be16_2nd.SmartFridge.common.service.NotificationSubscriber;
+import com.be16_2nd.SmartFridge.notification.service.NotificationSubscriber;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -1,8 +1,5 @@
 package com.be16_2nd.SmartFridge.notification.service;
 
-import com.be16_2nd.SmartFridge.common.service.NotificationPublisher;
-import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
-import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.notification.domain.Notification;
 import com.be16_2nd.SmartFridge.notification.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
