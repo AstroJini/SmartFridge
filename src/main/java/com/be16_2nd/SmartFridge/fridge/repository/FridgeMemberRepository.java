@@ -13,6 +13,8 @@ import java.util.Optional;
 @Repository
 public interface FridgeMemberRepository extends JpaRepository<FridgeMember, Long> {
     boolean existsByFridgeAndMember(Fridge fridge, Member member);
+
+    List<FridgeMember> findAllByMember(Member member);
     FridgeMember findByFridgeAndMember(Fridge fridge, Member member);
     List<FridgeMember> findByFridge(Fridge fridge);
     Optional<FridgeMember> findByFridgeAndType(Fridge fridge, Type type);

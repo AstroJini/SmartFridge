@@ -22,7 +22,7 @@ public class FridgeMemberResDto {
 
     public static FridgeMemberResDto fromEntity(FridgeMember fridgeMember){
         return FridgeMemberResDto.builder()
-                .fridgeId(fridgeMember.getFridge().getFridgeId())
+                .fridgeId(fridgeMember.getFridge().getId())
                 .memberEmail(fridgeMember.getMember().getEmail())
                 .memberName(fridgeMember.getMember().getName())
                 .type(fridgeMember.getType())

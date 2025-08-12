@@ -5,6 +5,7 @@ import com.be16_2nd.SmartFridge.fridge.domain.FridgeMember;
 import com.be16_2nd.SmartFridge.fridge.domain.Type;
 import com.be16_2nd.SmartFridge.fridge.dto.FridgeCreateDto;
 import com.be16_2nd.SmartFridge.fridge.dto.FridgeCreateResDto;
+import com.be16_2nd.SmartFridge.fridge.dto.FridgeListDto;
 import com.be16_2nd.SmartFridge.fridge.dto.FridgeMemberResDto;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeRepository;
@@ -44,7 +45,7 @@ public class FridgeService {
         String inviteLink = "https://smart_fridge.com/fridge/join?code=" + fridge.getInviteCode();
         fridgeRepository.save(fridge);
         FridgeCreateResDto dto = FridgeCreateResDto.builder()
-                .fridgeId(fridge.getFridgeId())
+                .fridgeId(fridge.getId())
                 .inviteLink(inviteLink)
                 .build();
 
@@ -53,14 +54,24 @@ public class FridgeService {
 
     public List<FridgeMemberResDto> findByFridgeId(Long fridgeId){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        Member member = memberRepository.findByEmail(email)
-                .orElseThrow(()->new EntityNotFoundException("member is not found"));
 
         Fridge fridge = fridgeRepository.findById(fridgeId)
                 .orElseThrow(()->new EntityNotFoundException("fridge is not found"));
 
         return fridge.getFridgeMemberList().stream()
                 .map(fridgeMember -> FridgeMemberResDto.fromEntity(fridgeMember))
+                .collect(Collectors.toList());
+    }
+
+    public List<FridgeListDto> findMyFridges() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("member is not found"));
+
+        List<FridgeMember> fridgeMembers = fridgeMemberRepository.findAllByMember(member);
+
+        return fridgeMembers.stream()
+                .map(fridgeMember -> FridgeListDto.from(fridgeMember))
                 .collect(Collectors.toList());
     }
 
@@ -80,6 +91,6 @@ public class FridgeService {
                 .fridge(fridge)
                 .member(member)
                 .build());
-        return fridge.getFridgeId();
+        return fridge.getId();
     }
 }
