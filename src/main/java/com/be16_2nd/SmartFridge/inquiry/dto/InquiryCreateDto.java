@@ -1,4 +1,4 @@
-package com.be16_2nd.SmartFridge.inquiry;
+package com.be16_2nd.SmartFridge.inquiry.dto;
 
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.inquiry.domain.Inquiry;
