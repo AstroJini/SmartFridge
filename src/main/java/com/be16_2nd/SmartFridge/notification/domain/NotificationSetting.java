@@ -3,6 +3,7 @@ package com.be16_2nd.SmartFridge.notification.domain;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class NotificationSetting {
 
     @Id
