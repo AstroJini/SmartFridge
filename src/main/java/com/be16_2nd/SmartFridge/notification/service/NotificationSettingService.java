@@ -66,7 +66,6 @@ public class NotificationSettingService {
             }
 
         }
-        return notificationSetting.getId();
     }
 
 }
