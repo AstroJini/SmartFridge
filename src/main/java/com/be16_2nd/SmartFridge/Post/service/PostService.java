@@ -22,6 +22,7 @@ import com.be16_2nd.SmartFridge.notification.service.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -85,7 +86,8 @@ public class PostService {
         Member member = memberRepository.findByEmail(email).orElseThrow(()-> new EntityNotFoundException("없는 사용자입니다."));
         Fridge fridge = fridgeRepository.findById(fridgeId).orElseThrow(() -> new EntityNotFoundException("없는 냉장고 입니다."));
 
-        FridgeMember fridgeMember = fridgeMemberRepository.findByFridgeAndMember(fridge, member);
+        FridgeMember fridgeMember = fridgeMemberRepository.findByFridgeAndMember(fridge, member)
+                .orElseThrow(() -> new AccessDeniedException("이 냉장고에 대한 접근 권한이 없습니다."));
         if (fridgeMember.getType() != Type.MANAGER) {
             throw new SecurityException("공지사항을 작성할 권한이 없습니다.");
         }
