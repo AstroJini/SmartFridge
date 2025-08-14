@@ -51,6 +51,12 @@ public class FridgeService {
                 .fridgeId(fridge.getId())
                 .inviteLink(inviteLink)
                 .build();
+        //        채팅방 생성 (임시)
+        ManagerChatRoom newChatRoom = ManagerChatRoom.builder()
+                .fridge(fridge)
+                .member(member)
+                .build();
+        managerChatRoomRepository.save(newChatRoom);
 
         return dto;
     }

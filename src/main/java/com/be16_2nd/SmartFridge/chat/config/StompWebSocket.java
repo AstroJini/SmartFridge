@@ -30,8 +30,8 @@ public class StompWebSocket implements WebSocketMessageBrokerConfigurer {
     // 송수신 패턴
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.setApplicationDestinationPrefixes("/publish");
-        registry.enableSimpleBroker("/chat");
+        registry.setApplicationDestinationPrefixes("/publish/chat");
+        registry.enableSimpleBroker("/topic/chat");
     }
 
     // stomp 인터셉터

@@ -40,7 +40,10 @@ public class SecurityConfig {
                         e.authenticationEntryPoint(jwtAuthenticationHandler) // 401의 경우
                                 .accessDeniedHandler(jwtAuthorizationHandler) // 403의 경우
                 )
-                .authorizeHttpRequests(a->a.requestMatchers("/member/create", "member/doLogin").permitAll().anyRequest().authenticated())
+                .authorizeHttpRequests(a->a.requestMatchers(
+                        "/member/create",
+                        "member/doLogin",
+                        "connect/chat/**").permitAll().anyRequest().authenticated())
                 .build();
     }
     private CorsConfigurationSource corsConfiguration(){
