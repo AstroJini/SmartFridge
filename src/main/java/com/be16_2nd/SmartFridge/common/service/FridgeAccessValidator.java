@@ -31,10 +31,8 @@ public class FridgeAccessValidator {
         FridgeMember fridgeMember = fridgeMemberRepository.findByFridgeAndMember(fridge, member)
                 .orElseThrow(() -> new AccessDeniedException("이 냉장고에 대한 접근 권한이 없습니다."));
 
-        // fridgeMember에서 역할을 가져와 Type으로 반환합니다.
-        return new FridgeContext(fridge, member, fridgeMember.getType()); // .getRole() -> .getType()
+        return new FridgeContext(fridge, member, fridgeMember.getType());
     }
 
-    // record를 수정하여 Type을 포함시킵니다.
     public record FridgeContext(Fridge fridge, Member member, Type type) {}
 }
