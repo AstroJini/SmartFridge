@@ -39,6 +39,7 @@ public class ChatMessage {
 
     private boolean isDeleted;
 
+    @Enumerated(EnumType.STRING)
     private ChatRoomType chatRoomType;
 
     @Builder.Default
