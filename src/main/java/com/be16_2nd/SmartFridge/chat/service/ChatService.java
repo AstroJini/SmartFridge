@@ -130,6 +130,13 @@ public class ChatService {
     public List<ChatMessageDto> getManagerChatHistory(Long roomId) {
         // 채팅방 찾기
         ManagerChatRoom managerChatRoom = managerChatRoomRepository.findById(roomId).orElseThrow(()->new EntityNotFoundException("room cannot find"));
+        
+        // 채팅방에 속해 있는 지 확인
+        Member member = memberRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow(() -> new EntityNotFoundException("member not found"));
+        if(!isManagerRoomParticipant(member.getEmail(), roomId)){
+            throw new IllegalArgumentException("본인이 속하지 않은 채팅방입니다.");
+        }
+
         // 메시지 조회
         List<ChatMessage>chatMessages = chatMessageRepository.findByManagerChatRoomOrderByCreatedTimeAsc(managerChatRoom);
         List<ChatMessageDto> chatMessageDtos = new ArrayList<>();
@@ -152,9 +159,22 @@ public class ChatService {
             List<IsRead> isReads = isReadRepository.findAllByRoomIdAndMember(roomId, member);
 
             for(IsRead isRead : isReads){
-                System.out.println(isRead.getId());
                 isRead.updateIsRead(true);
             }
         }
+    }
+
+    // 냉장고 관리자 채팅방 참여자 확인
+    public boolean isManagerRoomParticipant(String email, Long roomId){
+        ManagerChatRoom managerChatRoom = managerChatRoomRepository.findById(roomId).orElseThrow(() -> new EntityNotFoundException("room cannot find"));
+        Member member = memberRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("member not found"));
+        Fridge fridge = managerChatRoom.getFridge();
+
+        // 해당 냉장고 관리자이거나 채팅방 참여자인지
+        if(fridgeMemberRepository.findByFridgeAndMember(fridge, member).orElseThrow(()->new EntityNotFoundException("냉장고 참여자가 아닙니다."))
+                .getType().equals(Type.MANAGER) || managerChatRoom.getMember().equals(member)){
+            return true;
+        }
+        return false;
     }
 }
