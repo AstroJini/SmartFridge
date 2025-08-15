@@ -8,10 +8,7 @@ import com.be16_2nd.SmartFridge.common.dto.CommonDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -45,6 +42,17 @@ public class ChatController {
                 .result(chatMessageDtos)
                 .status_code(HttpStatus.OK.value())
                 .status_message("채팅내역 조회 성공")
+                .build(), HttpStatus.OK);
+    }
+
+    //    관리자 채팅메시지 읽음처리
+    @PostMapping("/manager/room/{roomId}/read")
+    public ResponseEntity<?> readChatRoom(@PathVariable Long roomId) {
+        chatService.messageRead(roomId, ChatRoomType.MANAGER);
+        return new ResponseEntity<>(CommonDto.builder()
+                .result("채팅내역 조회 성공")
+                .status_code(HttpStatus.OK.value())
+                .status_message("ok")
                 .build(), HttpStatus.OK);
     }
 }
