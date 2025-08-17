@@ -78,7 +78,7 @@ public class ChatService {
                         .roomId(roomId)
                         .member(unreadMember)
                         .chatMessage(chatMessage)
-                        .isRead(false)
+                        .isRead(ChatRoomLifecycle.ManagerRoomParticipants.get(roomId).contains(unreadMember.getEmail()))
                         .build());
         // 그룹 채팅일 경우
         }else{

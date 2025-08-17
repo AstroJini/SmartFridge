@@ -1,5 +1,6 @@
 package com.be16_2nd.SmartFridge.chat.config;
 
+import com.be16_2nd.SmartFridge.chat.service.ChatRoomLifecycle;
 import com.be16_2nd.SmartFridge.chat.service.ChatService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -12,7 +13,12 @@ import org.springframework.messaging.simp.stomp.StompCommand;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Objects;
 
 /*
 * Stomp 인터셉터
@@ -57,13 +63,20 @@ public class StompHandler implements ChannelInterceptor {
                     .getBody();
             String email = claims.getSubject();
             String roomType = accessor.getDestination().split("/")[3];
-            String roomId = accessor.getDestination().split("/")[4];
+            Long roomId = Long.parseLong(accessor.getDestination().split("/")[4]);
+            accessor.getSessionAttributes().put("email", email);
 
             // 1대1 채팅방
             if(roomType.equals("MANAGER")){
-                if(!chatService.isManagerRoomParticipant(email, Long.parseLong(roomId))){
+                // 채팅방 참여자 확인
+                if(!chatService.isManagerRoomParticipant(email, roomId)){
                     throw new AccessDeniedException("UNAUTHORIZED");
-                }else{
+                }
+                // 현재 채팅방 참여자에 추가
+                else{
+                    ChatRoomLifecycle.ManagerRoomParticipants
+                            .computeIfAbsent(roomId, k -> new HashSet<>())
+                            .add(email);
                 }
 
             // 공동 구매 채팅방
@@ -75,7 +88,15 @@ public class StompHandler implements ChannelInterceptor {
 
         // 구독 끊을 경우 현재 접속 중인 사용자 제거
         if(StompCommand.UNSUBSCRIBE == accessor.getCommand()){
-            System.out.println(accessor.getNativeHeader("id"));
+            log.info("subscribe해제");
+
+            String email = (String) accessor.getSessionAttributes().get("email");
+            String roomType = Objects.requireNonNull(accessor.getNativeHeader("id")).get(0).split("/")[3];
+            Long roomId = Long.parseLong(Objects.requireNonNull(accessor.getNativeHeader("id")).get(0).split("/")[4]);
+//             1대1채팅일 시
+            if(roomType.equals("MANAGER")){
+                ChatRoomLifecycle.ManagerRoomParticipants.get(roomId).remove(email);
+            }
         }
         return message;
     }

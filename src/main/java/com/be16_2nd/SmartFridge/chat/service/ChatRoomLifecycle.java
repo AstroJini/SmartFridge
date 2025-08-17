@@ -8,10 +8,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 @Component
 @Transactional
 @RequiredArgsConstructor
 public class ChatRoomLifecycle {
+
+    // 현재 채팅방 참여자 담기 <채팅방ID, 회원이메일>
+    public static Map<Long, Set<String>> ManagerRoomParticipants = new ConcurrentHashMap<>();
+    public static Map<Long, Set<String>> PurchaseRoomParticipants = new ConcurrentHashMap<>();
+
 
     private final ManagerChatRoomRepository managerChatRoomRepository;
 
