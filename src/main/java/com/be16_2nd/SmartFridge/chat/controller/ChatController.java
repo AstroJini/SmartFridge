@@ -59,8 +59,18 @@ public class ChatController {
 
     //    관리자 채팅메시지 읽음처리
     @PostMapping("/manager/room/{roomId}/read")
-    public ResponseEntity<?> readChatRoom(@PathVariable Long roomId) {
+    public ResponseEntity<?> readManagerChatRoom(@PathVariable Long roomId) {
         chatService.messageRead(roomId, ChatRoomType.MANAGER);
+        return new ResponseEntity<>(CommonDto.builder()
+                .result("ok")
+                .status_code(HttpStatus.OK.value())
+                .status_message("채팅내역 읽음 처리 성공")
+                .build(), HttpStatus.OK);
+    }
+    //    공동구매 채팅메시지 읽음처리
+    @PostMapping("/purchase/room/{roomId}/read")
+    public ResponseEntity<?> readPurchaseChatRoom(@PathVariable Long roomId) {
+        chatService.messageRead(roomId, ChatRoomType.PURCHASE);
         return new ResponseEntity<>(CommonDto.builder()
                 .result("ok")
                 .status_code(HttpStatus.OK.value())

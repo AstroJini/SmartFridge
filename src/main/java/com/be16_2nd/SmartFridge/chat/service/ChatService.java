@@ -74,6 +74,7 @@ public class ChatService {
                         .roomId(roomId)
                         .member(sender)
                         .chatMessage(chatMessage)
+                        .chatRoomType(ChatRoomType.MANAGER)
                         .isRead(true)
                         .build());
 
@@ -82,6 +83,7 @@ public class ChatService {
                     IsRead.builder()
                         .roomId(roomId)
                         .member(unreadMember)
+                        .chatRoomType(ChatRoomType.MANAGER)
                         .chatMessage(chatMessage)
                         .isRead(ManagerChatRoomLifecycle.ManagerRoomParticipants.get(roomId).contains(unreadMember.getEmail()))
                         .build());
@@ -185,13 +187,17 @@ public class ChatService {
     
     // 메시지 읽음 처리
     public void messageRead(Long roomId, ChatRoomType chatRoomType){
-        if(chatRoomType.equals(ChatRoomType.MANAGER)){
-            Member member = memberRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow(() -> new EntityNotFoundException("member not found"));
-            List<IsRead> isReads = isReadRepository.findAllByRoomIdAndMember(roomId, member);
+        Member member = memberRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow(() -> new EntityNotFoundException("member not found"));
 
-            for(IsRead isRead : isReads){
-                isRead.updateIsRead(true);
-            }
+        List<IsRead> isReads = new ArrayList<>();
+        if(chatRoomType.equals(ChatRoomType.MANAGER)){
+            isReads = isReadRepository.findAllByRoomIdAndMemberAndChatRoomType(roomId, member, ChatRoomType.MANAGER);
+        }
+        else if(chatRoomType.equals(ChatRoomType.PURCHASE)){
+            isReads = isReadRepository.findAllByRoomIdAndMemberAndChatRoomType(roomId, member, ChatRoomType.PURCHASE);
+        }
+        for(IsRead isRead : isReads){
+            isRead.updateIsRead(true);
         }
     }
 

@@ -29,6 +29,10 @@ public class IsRead {
     @Column(nullable = false)
     private Long roomId;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ChatRoomType chatRoomType;
+
     private boolean isRead;
 
     public void updateIsRead(boolean isRead) {
