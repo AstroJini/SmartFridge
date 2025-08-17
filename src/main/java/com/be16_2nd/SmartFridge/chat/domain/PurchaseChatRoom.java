@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -53,4 +55,9 @@ public class PurchaseChatRoom {
     private LocalDateTime createdTime;
 
     private LocalDateTime lastMessageAt;
+    
+    // 양방향매핑
+    @OneToMany(mappedBy = "purchaseChatRoom", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<ChatParticipant> participants = new ArrayList<>();
 }

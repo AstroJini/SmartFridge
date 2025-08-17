@@ -5,10 +5,7 @@ import com.be16_2nd.SmartFridge.chat.dto.ChatMessageDto;
 import com.be16_2nd.SmartFridge.chat.dto.ChatRoomCreateDto;
 import com.be16_2nd.SmartFridge.chat.dto.MyChatListResDto;
 import com.be16_2nd.SmartFridge.chat.dto.PurchaseChatRoomListResDto;
-import com.be16_2nd.SmartFridge.chat.repository.ChatMessageRepository;
-import com.be16_2nd.SmartFridge.chat.repository.IsReadRepository;
-import com.be16_2nd.SmartFridge.chat.repository.ManagerChatRoomRepository;
-import com.be16_2nd.SmartFridge.chat.repository.PurchaseChatRoomRepository;
+import com.be16_2nd.SmartFridge.chat.repository.*;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.fridge.domain.Type;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
@@ -43,6 +40,7 @@ public class ChatService {
     private final IsReadRepository isReadRepository;
     private final FridgeMemberRepository fridgeMemberRepository;
     private final PurchaseChatRoomRepository purchaseChatRoomRepository;
+    private final ChatParticipantRepository chatParticipantRepository;
 
     public ChatMessage saveMessage(Long roomId, ChatMessageDto chatMessageDto) {
 
@@ -187,12 +185,21 @@ public class ChatService {
         Fridge fridge = fridgeRepository.findById(chatRoomCreateDto.getFridgeId()).orElseThrow(() -> new EntityNotFoundException("fridge not found"));
 
         // 해당 냉장고 참여자인지 확인
-        if(fridgeMemberRepository.findByFridgeAndMember(fridge, member).isPresent()){
+        if(!fridgeMemberRepository.findByFridgeAndMember(fridge, member).isPresent()){
             throw new EntityNotFoundException("해당 냉장고 참여자가 아닙니다.");
         }
 
         PurchaseChatRoom purchaseChatRoom = chatRoomCreateDto.toPurchaseChatRoom(member, fridge);
-        return purchaseChatRoomRepository.save(purchaseChatRoom).getId();
+        purchaseChatRoomRepository.save(purchaseChatRoom);
+        
+        // 개설자를 채팅 참여자로 추가
+        ChatParticipant chatParticipant = ChatParticipant.builder()
+                .purchaseChatRoom(purchaseChatRoom)
+                .member(member)
+                .build();
+        purchaseChatRoom.getParticipants().add(chatParticipant);
+
+        return purchaseChatRoom.getId();
     }
 
     // 공동 구매 채팅방 목록 조회
@@ -202,7 +209,7 @@ public class ChatService {
         Fridge fridge = fridgeRepository.findById(fridgeID).orElseThrow(() -> new EntityNotFoundException("fridge not found"));
 
         // 해당 냉장고 참여자인지 확인
-        if(fridgeMemberRepository.findByFridgeAndMember(fridge, member).isPresent()){
+        if(!fridgeMemberRepository.findByFridgeAndMember(fridge, member).isPresent()){
             throw new EntityNotFoundException("해당 냉장고 참여자가 아닙니다.");
         }
 
