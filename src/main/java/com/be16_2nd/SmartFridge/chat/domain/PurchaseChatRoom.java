@@ -46,7 +46,7 @@ public class PurchaseChatRoom {
 
     @Column(nullable = false)
     @Builder.Default
-    private Boolean isActived = true;
+    private Boolean isActive = true;
 
     @CreationTimestamp
     @Column(nullable = false)

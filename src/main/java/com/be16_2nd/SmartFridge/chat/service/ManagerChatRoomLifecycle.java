@@ -1,6 +1,7 @@
 package com.be16_2nd.SmartFridge.chat.service;
 
 import com.be16_2nd.SmartFridge.chat.domain.ManagerChatRoom;
+import com.be16_2nd.SmartFridge.chat.dto.ChatRoomCreateDto;
 import com.be16_2nd.SmartFridge.chat.repository.ManagerChatRoomRepository;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.member.domain.Member;
@@ -8,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 @Transactional
 @RequiredArgsConstructor
-public class ChatRoomLifecycle {
+public class ManagerChatRoomLifecycle {
 
     // 현재 채팅방 참여자 담기 <채팅방ID, 회원이메일>
     public static Map<Long, Set<String>> ManagerRoomParticipants = new ConcurrentHashMap<>();
@@ -26,8 +25,8 @@ public class ChatRoomLifecycle {
 
     private final ManagerChatRoomRepository managerChatRoomRepository;
 
-    //        채팅방 생성
-    public void generateManagerChatRoom(Member member, Fridge fridge){
+    // 1대1 채팅방 생성
+    public void createManagerChatRoom(Member member, Fridge fridge){
         ManagerChatRoom newChatRoom = ManagerChatRoom.builder()
                 .fridge(fridge)
                 .member(member)

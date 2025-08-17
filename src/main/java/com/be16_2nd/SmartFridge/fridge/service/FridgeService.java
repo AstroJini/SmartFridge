@@ -1,8 +1,7 @@
 package com.be16_2nd.SmartFridge.fridge.service;
 
-import com.be16_2nd.SmartFridge.chat.domain.ManagerChatRoom;
 import com.be16_2nd.SmartFridge.chat.repository.ManagerChatRoomRepository;
-import com.be16_2nd.SmartFridge.chat.service.ChatRoomLifecycle;
+import com.be16_2nd.SmartFridge.chat.service.ManagerChatRoomLifecycle;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.fridge.domain.FridgeMember;
 import com.be16_2nd.SmartFridge.fridge.domain.Type;
@@ -31,7 +30,7 @@ public class FridgeService {
     private final MemberRepository memberRepository;
     private final FridgeMemberRepository fridgeMemberRepository;
     private final ManagerChatRoomRepository managerChatRoomRepository;
-    private final ChatRoomLifecycle chatRoomLifecycle;
+    private final ManagerChatRoomLifecycle managerChatRoomLifecycle;
 
 
     public FridgeCreateResDto create(FridgeCreateDto fridgeCreateDto){
@@ -54,7 +53,7 @@ public class FridgeService {
                 .inviteLink(inviteLink)
                 .build();
 
-        chatRoomLifecycle.generateManagerChatRoom(member, fridge);
+        managerChatRoomLifecycle.createManagerChatRoom(member, fridge);
 
         return dto;
     }
@@ -99,7 +98,7 @@ public class FridgeService {
                 .member(member)
                 .build());
 
-        chatRoomLifecycle.generateManagerChatRoom(member, fridge);
+        managerChatRoomLifecycle.createManagerChatRoom(member, fridge);
 
         return fridge.getId();
     }

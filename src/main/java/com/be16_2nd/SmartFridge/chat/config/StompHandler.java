@@ -1,6 +1,6 @@
 package com.be16_2nd.SmartFridge.chat.config;
 
-import com.be16_2nd.SmartFridge.chat.service.ChatRoomLifecycle;
+import com.be16_2nd.SmartFridge.chat.service.ManagerChatRoomLifecycle;
 import com.be16_2nd.SmartFridge.chat.service.ChatService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -13,10 +13,8 @@ import org.springframework.messaging.simp.stomp.StompCommand;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 
@@ -74,7 +72,7 @@ public class StompHandler implements ChannelInterceptor {
                 }
                 // 현재 채팅방 참여자에 추가
                 else{
-                    ChatRoomLifecycle.ManagerRoomParticipants
+                    ManagerChatRoomLifecycle.ManagerRoomParticipants
                             .computeIfAbsent(roomId, k -> new HashSet<>())
                             .add(email);
                 }
@@ -95,7 +93,7 @@ public class StompHandler implements ChannelInterceptor {
             Long roomId = Long.parseLong(Objects.requireNonNull(accessor.getNativeHeader("id")).get(0).split("/")[4]);
 //             1대1채팅일 시
             if(roomType.equals("MANAGER")){
-                ChatRoomLifecycle.ManagerRoomParticipants.get(roomId).remove(email);
+                ManagerChatRoomLifecycle.ManagerRoomParticipants.get(roomId).remove(email);
             }
         }
         return message;
