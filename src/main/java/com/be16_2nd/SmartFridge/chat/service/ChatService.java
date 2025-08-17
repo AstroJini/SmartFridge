@@ -220,6 +220,16 @@ public class ChatService {
         return false;
     }
 
+    // 공동 구매 채팅방 참여자 여부 확인
+    public boolean isPurchaseRoomParticipant(String email, Long roomId){
+        PurchaseChatRoom purchaseChatRoom = purchaseChatRoomRepository.findById(roomId).orElseThrow(() -> new EntityNotFoundException("room cannot find"));
+        Member member = memberRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("member not found"));
+        Fridge fridge = purchaseChatRoom.getFridge();
+
+        // 해당 채팅방 참여자인지
+        return chatParticipantRepository.findByPurchaseChatRoomAndMember(purchaseChatRoom, member).isPresent();
+    }
+
     // 공동 구매 채팅방 생성
     public Long createPurchaseChatRoom(ChatRoomCreateDto chatRoomCreateDto){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();

@@ -79,9 +79,17 @@ public class StompHandler implements ChannelInterceptor {
 
             // 공동 구매 채팅방
             }else{
-
+                // 채팅방 참여자 확인
+                if(!chatService.isPurchaseRoomParticipant(email, roomId)){
+                    throw new AccessDeniedException("UNAUTHORIZED");
+                }
+                // 현재 채팅방 참여자에 추가
+                else{
+                    ManagerChatRoomLifecycle.PurchaseRoomParticipants
+                            .computeIfAbsent(roomId, k -> new HashSet<>())
+                            .add(email);
+                }
             }
-
         }
 
         // 구독 끊을 경우 현재 접속 중인 사용자 제거
@@ -91,9 +99,11 @@ public class StompHandler implements ChannelInterceptor {
             String email = (String) accessor.getSessionAttributes().get("email");
             String roomType = Objects.requireNonNull(accessor.getNativeHeader("id")).get(0).split("/")[3];
             Long roomId = Long.parseLong(Objects.requireNonNull(accessor.getNativeHeader("id")).get(0).split("/")[4]);
-//             1대1채팅일 시
+//             현재 채팅방 참여자 목록에서 제거
             if(roomType.equals("MANAGER")){
                 ManagerChatRoomLifecycle.ManagerRoomParticipants.get(roomId).remove(email);
+            }else if(roomType.equals("PURCHASE")){
+                ManagerChatRoomLifecycle.PurchaseRoomParticipants.get(roomId).remove(email);
             }
         }
         return message;
