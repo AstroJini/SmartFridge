@@ -21,8 +21,6 @@ public class ChatController {
 
     private final ChatService chatService;
 
-    // 냉장고 관리자 채팅은 fridge 서비스에서 구현
-
     // 내 채팅 목록
     @GetMapping("/my/rooms")
     public ResponseEntity<?> getMyChatRooms() {

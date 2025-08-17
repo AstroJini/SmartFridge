@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class MyChatListResDto {
     private Long roomId;
     private String roomName;
+    private Long unReadCount;
 }
