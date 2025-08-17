@@ -32,7 +32,7 @@ public class NotificationSettingService {
         // 기존 설정 조회
         Map<NotificationSettingType, NotificationSetting> notificationSettingMap =
                 notificationSettingRepository.findAllByMember(member).stream()
-                        .collect(Collectors.toMap(NotificationSetting::getNotificationType
+                        .collect(Collectors.toMap(NotificationSetting::getNotificationSettingType
                                 , setting -> setting));
 
         
@@ -47,7 +47,6 @@ public class NotificationSettingService {
 
                 // 사용자의 기존 알림 수신 설정 확인
                 NotificationSetting notificationSetting = notificationSettingMap.get(notificationSettingType);
-                
 
                 if (notificationSetting != null) {
                     // 기존 설정이 있으면 isActive 만 변경
@@ -56,7 +55,7 @@ public class NotificationSettingService {
                     // 기존 설정 없으면 알림 수신 설정 객체 생성 후 저장
                     notificationSetting = NotificationSetting.builder()
                             .member(member)
-                            .notificationType(notificationSettingType)
+                            .notificationSettingType(notificationSettingType)
                             .isActive(isActive)
                             .build();
                     notificationSettingRepository.save(notificationSetting);
@@ -66,6 +65,16 @@ public class NotificationSettingService {
             }
 
         }
+    }
+
+
+    public boolean isNotificationActive(Member member, NotificationSettingType type) {
+        // db에 사용자가 설정한 알림 설정이 있으면 해당 값을, 없으면 기본값인 true 반환
+        boolean isActive = notificationSettingRepository.findByMemberAndNotificationSettingType(member, type)
+                .map(NotificationSetting::isActive)
+                .orElse(true);
+
+        return isActive;
     }
 
 }
