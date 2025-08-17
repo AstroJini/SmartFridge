@@ -63,6 +63,7 @@ public class ChatService {
                     .isDeleted(false)
                     .build();
             chatMessageRepository.save(chatMessage);
+            chatRoom.updateLastMessageAt(chatMessage.getCreatedTime());
 
             chatMessage.getIsReads().add(
                     IsRead.builder()

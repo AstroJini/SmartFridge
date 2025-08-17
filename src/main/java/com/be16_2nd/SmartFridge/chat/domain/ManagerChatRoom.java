@@ -29,4 +29,8 @@ public class ManagerChatRoom {
     private Member member;
 
     private LocalDateTime lastMessageAt;
+
+    public void updateLastMessageAt(LocalDateTime lastMessageAt) {
+        this.lastMessageAt = lastMessageAt;
+    }
 }
