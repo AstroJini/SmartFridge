@@ -15,13 +15,18 @@ import com.be16_2nd.SmartFridge.member.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /*
 * 채팅 서비스
@@ -122,11 +127,11 @@ public class ChatService {
             chatListResDtos.add(myChatListResDto);
         }
 
-        // 공유 채팅방
+        // 공동 구매 채팅방
         return chatListResDtos;
     }
     
-    // 채팅 내역 조회
+    // 관리자 채팅 내역 조회
     public List<ChatMessageDto> getManagerChatHistory(Long roomId) {
         // 채팅방 찾기
         ManagerChatRoom managerChatRoom = managerChatRoomRepository.findById(roomId).orElseThrow(()->new EntityNotFoundException("room cannot find"));
@@ -139,6 +144,32 @@ public class ChatService {
 
         // 메시지 조회
         List<ChatMessage>chatMessages = chatMessageRepository.findByManagerChatRoomOrderByCreatedTimeAsc(managerChatRoom);
+        List<ChatMessageDto> chatMessageDtos = new ArrayList<>();
+        for(ChatMessage chatMessage : chatMessages){
+            ChatMessageDto chatMessageDto = ChatMessageDto.builder()
+                    .chatRoomType(chatMessage.getChatRoomType().toString())
+                    .message(chatMessage.getContents())
+                    .senderEmail(chatMessage.getSender().getEmail())
+                    .timestamp(chatMessage.getCreatedTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH시 mm분")))
+                    .build();
+            chatMessageDtos.add(chatMessageDto);
+        }
+        return chatMessageDtos;
+    }
+
+    // 공동구매 채팅 내역 조회
+    public List<ChatMessageDto> getPurchaseChatHistory(Long roomId) {
+        // 채팅방 찾기
+        PurchaseChatRoom purchaseChatRoom = purchaseChatRoomRepository.findById(roomId).orElseThrow(()->new EntityNotFoundException("room cannot find"));
+        Member member = memberRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow(() -> new EntityNotFoundException("member not found"));
+
+        // 채팅방에 속해 있는 지 확인
+        if(chatParticipantRepository.findByMemberAndPurchaseChatRoom(member, purchaseChatRoom).isEmpty()){
+            throw new AuthorizationDeniedException("채팅방에 접근권한이 없습니다.");
+        }
+
+        // 메시지 조회
+        List<ChatMessage>chatMessages = chatMessageRepository.findByPurchaseChatRoomOrderByCreatedTimeAsc(purchaseChatRoom);
         List<ChatMessageDto> chatMessageDtos = new ArrayList<>();
         for(ChatMessage chatMessage : chatMessages){
             ChatMessageDto chatMessageDto = ChatMessageDto.builder()
@@ -223,5 +254,26 @@ public class ChatService {
             purchaseChatRoomListResDtos.add(purchaseChatRoomListResDto);
         }
         return purchaseChatRoomListResDtos;
+    }
+
+    public void addParticipantToPurchaseChat(Long roomId){
+        PurchaseChatRoom chatRoom = purchaseChatRoomRepository.findById(roomId).orElseThrow(()->new EntityNotFoundException("room cannot find"));
+        Member member = memberRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow(()->new EntityNotFoundException("member not found"));
+
+        //        이미 참여자인지 검증
+        Long result;
+        Optional<ChatParticipant> participant = chatParticipantRepository.findByPurchaseChatRoomAndMember(chatRoom, member);
+        if(!participant.isPresent()){
+            addParticipantToRoom(chatRoom, member);
+        }
+    }
+
+    //        ChatParticipant 객체 생성 후 저장
+    public void addParticipantToRoom(PurchaseChatRoom chatRoom, Member member){
+        ChatParticipant chatParticipant = ChatParticipant.builder()
+                .purchaseChatRoom(chatRoom)
+                .member(member)
+                .build();
+        chatRoom.getParticipants().add(chatParticipant);
     }
 }

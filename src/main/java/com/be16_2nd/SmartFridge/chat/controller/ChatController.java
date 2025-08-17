@@ -35,11 +35,21 @@ public class ChatController {
                 .build(), HttpStatus.OK);
     }
 
-    //    관리자 이전 메시지 조회
+    //    관리자 채팅방 이전 메시지 조회
     // 냉장고 id param으로 받음
     @GetMapping("/history/manager/{roomId}")
     public ResponseEntity<?> getManagerChatHistory(@PathVariable Long roomId) {
         List<ChatMessageDto> chatMessageDtos = chatService.getManagerChatHistory(roomId);
+        return new ResponseEntity<>(CommonDto.builder()
+                .result(chatMessageDtos)
+                .status_code(HttpStatus.OK.value())
+                .status_message("채팅내역 조회 성공")
+                .build(), HttpStatus.OK);
+    }
+    // 공동 구매 채팅방 이전 메시지 조회
+    @GetMapping("/history/purchase/{roomId}")
+    public ResponseEntity<?> getPurchaseChatHistory(@PathVariable Long roomId) {
+        List<ChatMessageDto> chatMessageDtos = chatService.getPurchaseChatHistory(roomId);
         return new ResponseEntity<>(CommonDto.builder()
                 .result(chatMessageDtos)
                 .status_code(HttpStatus.OK.value())
@@ -75,6 +85,17 @@ public class ChatController {
                 .result(chatService.getPurchaseChatRooms(fridgeId))
                 .status_code(HttpStatus.OK.value())
                 .status_message("공동구매 채팅방 목록 조회 성공")
+                .build(), HttpStatus.OK);
+    }
+
+    //    공동구매채팅방참여
+    @PostMapping("/purchase/room/{roomId}/join")
+    public ResponseEntity<?> joinPurchaseChatRoom(@PathVariable Long roomId){
+        chatService.addParticipantToPurchaseChat(roomId);
+        return new ResponseEntity<>(CommonDto.builder()
+                .result("ok")
+                .status_code(HttpStatus.OK.value())
+                .status_message("공동구매 채팅방 참여 성공")
                 .build(), HttpStatus.OK);
     }
 }
