@@ -60,4 +60,18 @@ public class PurchaseChatRoom {
     @OneToMany(mappedBy = "purchaseChatRoom", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<ChatParticipant> participants = new ArrayList<>();
+
+    // 입장 가능 수 변경
+    public void updateLimitedNum(Integer limitedNum) {
+        this.limitedNum = limitedNum;
+    }
+
+    // 구매 모집 상태 변경
+    public void updateJoinStatus(JoinStatus joinStatus) {
+        this.joinStatus = joinStatus;
+    }
+
+    public void updateIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
 }

@@ -108,4 +108,15 @@ public class ChatController {
                 .status_message("공동구매 채팅방 참여 성공")
                 .build(), HttpStatus.OK);
     }
+
+    // 공동 구매 채팅방 나가기
+    @DeleteMapping("/purchase/room/{roomId}/leave")
+    public ResponseEntity<?> leavePurchaseChatRoom(@PathVariable Long roomId) {
+        chatService.leavePurchaseChatRoom(roomId);
+        return new ResponseEntity<>(CommonDto.builder()
+                .result("ok")
+                .status_code(HttpStatus.OK.value())
+                .status_message("공동구매 채팅방 나가기 성공")
+                .build(), HttpStatus.OK);
+    }
 }
