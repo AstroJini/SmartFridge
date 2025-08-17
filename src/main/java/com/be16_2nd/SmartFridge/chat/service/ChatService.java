@@ -128,7 +128,7 @@ public class ChatService {
         // 관리자 채팅 방
         ManagerChatRoom managerChatRoom = managerChatRoomRepository.findByFridgeAndMember(fridge, member).orElseThrow(()->new EntityNotFoundException("manager chat room not found"));
         if(managerChatRoom != null){
-            Long count = isReadRepository.countByMemberAndRoomIdAndChatRoomType(member, managerChatRoom.getId(), ChatRoomType.MANAGER);
+            Long count = isReadRepository.countByMemberAndRoomIdAndChatRoomTypeAndIsReadFalse(member, managerChatRoom.getId(), ChatRoomType.MANAGER);
             MyChatListResDto myChatListResDto = MyChatListResDto.builder()
                     .roomId(managerChatRoom.getId())
                     .roomName("관리자와의 채팅")
@@ -138,12 +138,12 @@ public class ChatService {
         }
 
         // 공동 구매 채팅방
-        List<PurchaseChatRoom> purchaseChatRooms = purchaseChatRoomRepository.findAllByFridgeAndCreator(fridge, member);
-        for(PurchaseChatRoom purchaseChatRoom : purchaseChatRooms){
-            Long count = isReadRepository.countByMemberAndRoomIdAndChatRoomType(member, purchaseChatRoom.getId(), ChatRoomType.PURCHASE);
+        List<ChatParticipant> chatParticipants = chatParticipantRepository.findAllByMember(member);
+        for(ChatParticipant chatParticipant : chatParticipants){
+            Long count = isReadRepository.countByMemberAndRoomIdAndChatRoomTypeAndIsReadFalse(member, chatParticipant.getPurchaseChatRoom().getId(), ChatRoomType.PURCHASE);
             MyChatListResDto myChatListResDto = MyChatListResDto.builder()
-                    .roomId(purchaseChatRoom.getId())
-                    .roomName(purchaseChatRoom.getTitle())
+                    .roomId(chatParticipant.getPurchaseChatRoom().getId())
+                    .roomName(chatParticipant.getPurchaseChatRoom().getTitle())
                     .unReadCount(count)
                     .build();
             chatListResDtos.add(myChatListResDto);

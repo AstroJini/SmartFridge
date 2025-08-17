@@ -12,5 +12,4 @@ import java.util.List;
 @Repository
 public interface PurchaseChatRoomRepository extends JpaRepository<PurchaseChatRoom, Long> {
     List<PurchaseChatRoom> findByFridgeAndJoinStatusAndIsActive(Fridge fridge, JoinStatus joinStatus, Boolean isActive);
-    List<PurchaseChatRoom> findAllByFridgeAndCreator(Fridge fridge, Member member);
 }

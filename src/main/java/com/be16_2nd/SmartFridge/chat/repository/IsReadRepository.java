@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface IsReadRepository extends JpaRepository<IsRead, Long> {
     List<IsRead> findAllByRoomIdAndMemberAndChatRoomType(Long roomId, Member member, ChatRoomType chatRoomType);
-    Long countByMemberAndRoomIdAndChatRoomType(Member member, Long roomId, ChatRoomType chatRoomType);
+    Long countByMemberAndRoomIdAndChatRoomTypeAndIsReadFalse(Member member, Long roomId, ChatRoomType chatRoomType);
 }
