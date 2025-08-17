@@ -1,6 +1,17 @@
 package com.be16_2nd.SmartFridge.notification.service;
 
+import com.be16_2nd.SmartFridge.Post.domain.Post;
+import com.be16_2nd.SmartFridge.Post.domain.PostComment;
+import com.be16_2nd.SmartFridge.food.domain.Food;
+import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
+import com.be16_2nd.SmartFridge.inquiry.domain.Inquiry;
+import com.be16_2nd.SmartFridge.inquiryComment.domain.InquiryComment;
+import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.notification.domain.Notification;
+import com.be16_2nd.SmartFridge.notification.domain.NotificationSettingType;
+import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
+import com.be16_2nd.SmartFridge.notification.domain.TargetType;
+import com.be16_2nd.SmartFridge.notification.dto.NotificationResDto;
 import com.be16_2nd.SmartFridge.notification.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,27 +24,122 @@ public class NotificationService {
 
     private final NotificationRepository notificationRepository;
     private final NotificationPublisher notificationPublisher;
+    private final NotificationSettingService notificationSettingService;
 
-    public void create(Notification notification) {
-        
-        // 유통기한 알림인 경우 발신자가 시스템이기 때문에 sender가 null -> 분기 처리 필요
-        String senderEmail;
-        if (notification.getSender() == null) {
-            senderEmail = null;
-        } else {
-            senderEmail = notification.getSender().getEmail();
+    public void create(Member sender, Member receiver,
+                              NotificationType notificationType, Object entity) {
+
+        String content;
+        TargetType targetType;
+        Long targetId;
+        Fridge fridge = null;
+
+
+        // 알림 종류에 따른 알림 객체 조립
+        switch (notificationType) {
+            case NEW_MEMBER:
+                fridge = (Fridge) entity;
+                content = fridge.getFridgeName() + "에 새로운 멤버 " +
+                        sender.getName() + "님이 참여하였습니다.";
+                targetType = TargetType.FRIDGE;
+                targetId = fridge.getId();
+                break;
+
+            case NEW_FOOD:
+                Food food = (Food) entity;
+                content = sender.getName() + "님이 새로운 식품 '" + food.getName() + "'을(를) 등록했습니다.";
+                targetType = TargetType.FOOD;
+                targetId = food.getId();
+                fridge = food.getFridge();
+                break;
+
+            case NEW_ANNOUNCEMENT:
+                Post post = (Post) entity;
+                content = post.getFridge().getFridgeName() + "에 " +
+                        notificationType.getDescription();
+                targetType = TargetType.POST;
+                targetId = post.getId();
+                fridge = post.getFridge();
+                break;
+
+            case NEW_COMMENT:
+                PostComment postComment = (PostComment) entity;
+                content = sender.getName() + "님이 회원님의 게시글에 새로운 댓글을 남겼습니다.";
+                targetType = TargetType.POST;
+                targetId = postComment.getPost().getId();
+                fridge = postComment.getPost().getFridge();
+                break;
+
+            case NEW_INQUIRY:
+                Inquiry inquiry = (Inquiry) entity;
+                content = sender.getName() + "님이 새로운 문의를 등록했습니다.";
+                targetType = TargetType.INQUIRY;
+                targetId = inquiry.getInquiryId();
+                break;
+
+            case ADMIN_REPLY:
+                InquiryComment inquiryComment = (InquiryComment) entity;
+                content = notificationType.getDescription();
+                targetType = TargetType.INQUIRY;
+                targetId = inquiryComment.getInquiry().getInquiryId();
+                break;
+
+            default:
+                throw new IllegalArgumentException("지원하지 않는 알림 타입입니다. : " + notificationType);
         }
-        
-        // 알림 발송
-        notificationPublisher.publish(
-                senderEmail
-                , notification.getReceiver().getEmail()
-                , notification.getContent()
-                , notification.getNotificationType().name()
-        );
 
-        // 알림 db에 저장
-        notificationRepository.save(notification);
+        // 알림 객체 build
+        Notification notification = Notification.builder()
+                .sender(sender)
+                .receiver(receiver)
+                .notificationType(notificationType)
+                .content(content)
+                .targetType(targetType)
+                .targetId(targetId)
+                .fridge(fridge)
+                .build();
+
+        createAndSend(notification);
     }
 
+    // 유통기한 알림
+    public void createAndSendForExpiration(Member receiver, Food food, String daysLeftMessage) {
+
+        String content = "'" + food.getFridge().getFridgeName() + "'의 '" + food.getName() +
+                "' 유통기한이 " + daysLeftMessage;
+
+        Notification notification = Notification.builder()
+                .sender(null)
+                .receiver(receiver)
+                .content(content)
+                .notificationType(NotificationType.EXPIRATION_IMMINENT)
+                .targetType(TargetType.FOOD)
+                .targetId(food.getId())
+                .fridge(food.getFridge())
+                .build();
+
+        createAndSend(notification);
+    }
+
+    private void createAndSend(Notification notification) {
+        // db 저장
+        notificationRepository.save(notification);
+
+        Member sender = notification.getSender();
+        Member receiver = notification.getReceiver();
+        NotificationSettingType notificationSettingType = notification.getNotificationType().getSettingType();
+        boolean isActive = notificationSettingService.isNotificationActive(receiver, notificationSettingType);
+
+        // 알림 수신 여부 설정에 따른 발송
+        if (isActive) {
+            String senderEmail = (sender != null) ? sender.getEmail() : null;
+
+            notificationPublisher.publish(senderEmail , receiver.getEmail()
+                    , notification.getContent(), notification.getNotificationType().name());
+        }
+    }
+
+    public NotificationResDto findNotificationList() {
+        return null;
+    }
 }
