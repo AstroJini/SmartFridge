@@ -20,9 +20,14 @@ public class Post extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private String content;
+    @Column(nullable = false)
     private int viewCount = 0;
+    @Column(nullable = false)
     private int commentCount = 0;
 
     @ManyToOne(fetch = FetchType.LAZY)
