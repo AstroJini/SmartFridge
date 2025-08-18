@@ -1,16 +1,37 @@
 package com.be16_2nd.SmartFridge.notification.dto;
 
+import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.notification.domain.Notification;
+import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotificationResDto {
-    private List<Notification> notificationList = new ArrayList<>();
+    private Long id;
+    private String content;
+    private boolean isRead;
+    private NotificationType type;
+    private String senderName;
+    private LocalDateTime createdAt;
+
+    public static NotificationResDto fromEntity(Notification notification) {
+        return NotificationResDto.builder()
+                .id(notification.getId())
+                .content(notification.getContent())
+                .isRead(notification.isRead())
+                .type(notification.getNotificationType())
+                .senderName(notification.getSender().getName())
+                .createdAt(notification.getCreatedTime())
+                .build();
+    }
 }

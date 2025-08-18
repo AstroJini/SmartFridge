@@ -2,6 +2,7 @@ package com.be16_2nd.SmartFridge.notification.service;
 
 import com.be16_2nd.SmartFridge.Post.domain.Post;
 import com.be16_2nd.SmartFridge.Post.domain.PostComment;
+import com.be16_2nd.SmartFridge.common.service.FridgeAccessValidator;
 import com.be16_2nd.SmartFridge.food.domain.Food;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.inquiry.domain.Inquiry;
@@ -14,8 +15,14 @@ import com.be16_2nd.SmartFridge.notification.domain.TargetType;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationResDto;
 import com.be16_2nd.SmartFridge.notification.repository.NotificationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -25,6 +32,7 @@ public class NotificationService {
     private final NotificationRepository notificationRepository;
     private final NotificationPublisher notificationPublisher;
     private final NotificationSettingService notificationSettingService;
+    private final FridgeAccessValidator fridgeAccessValidator;
 
     public void create(Member sender, Member receiver,
                               NotificationType notificationType, Object entity) {
@@ -139,7 +147,12 @@ public class NotificationService {
         }
     }
 
-    public NotificationResDto findNotificationList() {
-        return null;
+    public Page<NotificationResDto> findNotificationList(Long fridgeId, Pageable pageable) {
+        FridgeAccessValidator.FridgeContext context = fridgeAccessValidator.validate(fridgeId);
+        Member member = context.member();
+        Fridge fridge = context.fridge();
+        Page<Notification> notificationPage = notificationRepository.findByFridgeAndMember(fridge, member);
+
+        return notificationPage.map(NotificationResDto::fromEntity);
     }
 }
