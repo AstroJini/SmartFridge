@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MyChatListResDto {
+public class PurchaseChatRoomListResDto {
     private Long roomId;
     private String roomName;
-    private Long unReadCount;
 }

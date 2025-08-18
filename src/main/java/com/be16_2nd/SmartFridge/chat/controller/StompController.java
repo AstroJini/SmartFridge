@@ -23,16 +23,17 @@ public class StompController {
         chatMessageReqDto.setChatRoomType("MANAGER");
         chatMessageReqDto.setRoomId(roomId);
         ChatMessage chatMessage = chatService.saveMessage(roomId, chatMessageReqDto);
-        ChatMessageDto chatMessageDto = ChatMessageDto.fromEntityChatManager(chatMessage);
+        ChatMessageDto chatMessageDto = ChatMessageDto.fromEntityManagerChat(chatMessage);
         ObjectMapper objectMapper = new ObjectMapper();
         String message = objectMapper.writeValueAsString(chatMessageDto);
         chatRedisPubSubService.publish("chat-channel", message);
     }
     @MessageMapping("purchase/{roomId}")
-    public void sendMessageToGroup(@DestinationVariable Long roomId, ChatMessageDto chatMessageDto) throws JsonProcessingException {
-        chatService.saveMessage(roomId, chatMessageDto);
-        chatMessageDto.setChatRoomType("PURCHASE");
-        chatMessageDto.setRoomId(roomId);
+    public void sendMessageToGroup(@DestinationVariable Long roomId, ChatMessageDto chatMessageReqDto) throws JsonProcessingException {
+        chatMessageReqDto.setChatRoomType("PURCHASE");
+        chatMessageReqDto.setRoomId(roomId);
+        ChatMessage chatMessage = chatService.saveMessage(roomId, chatMessageReqDto);
+        ChatMessageDto chatMessageDto = ChatMessageDto.fromEntityPurchaseChat(chatMessage);
         ObjectMapper objectMapper = new ObjectMapper();
         String message = objectMapper.writeValueAsString(chatMessageDto);
         chatRedisPubSubService.publish("chat-channel", message);
