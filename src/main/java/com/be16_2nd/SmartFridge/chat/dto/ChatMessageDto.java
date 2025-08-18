@@ -21,9 +21,19 @@ public class ChatMessageDto {
 
     private String timestamp;
 
-    public static ChatMessageDto fromEntityChatManager(ChatMessage chatMessage){
+    public static ChatMessageDto fromEntityManagerChat(ChatMessage chatMessage){
         return ChatMessageDto.builder()
                 .roomId(chatMessage.getManagerChatRoom().getId())
+                .chatRoomType(chatMessage.getChatRoomType().toString())
+                .timestamp(chatMessage.getCreatedTime().toString())
+                .message(chatMessage.getContents())
+                .senderEmail(chatMessage.getSender().getEmail())
+                .build();
+    }
+
+    public static ChatMessageDto fromEntityPurchaseChat(ChatMessage chatMessage){
+        return ChatMessageDto.builder()
+                .roomId(chatMessage.getPurchaseChatRoom().getId())
                 .chatRoomType(chatMessage.getChatRoomType().toString())
                 .timestamp(chatMessage.getCreatedTime().toString())
                 .message(chatMessage.getContents())
