@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,10 +22,14 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "manager_chat_id")
     private ManagerChatRoom managerChatRoom;
+
+    @Enumerated(EnumType.STRING)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "purchase_chat_id")
+    private PurchaseChatRoom purchaseChatRoom;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id", nullable = false)
@@ -37,5 +43,10 @@ public class ChatMessage {
 
     private boolean isDeleted;
 
+    @Enumerated(EnumType.STRING)
     private ChatRoomType chatRoomType;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "chatMessage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<IsRead> isReads = new ArrayList<>();
 }

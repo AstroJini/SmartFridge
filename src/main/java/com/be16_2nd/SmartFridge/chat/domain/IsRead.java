@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,5 +26,16 @@ public class IsRead {
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
+    @Column(nullable = false)
+    private Long roomId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ChatRoomType chatRoomType;
+
     private boolean isRead;
+
+    public void updateIsRead(boolean isRead) {
+        this.isRead = isRead;
+    }
 }
