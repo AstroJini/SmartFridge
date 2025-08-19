@@ -20,10 +20,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Transactional
 @Service
 @RequiredArgsConstructor
@@ -151,7 +147,7 @@ public class NotificationService {
         FridgeAccessValidator.FridgeContext context = fridgeAccessValidator.validate(fridgeId);
         Member member = context.member();
         Fridge fridge = context.fridge();
-        Page<Notification> notificationPage = notificationRepository.findByFridgeAndMember(fridge, member);
+        Page<Notification> notificationPage = notificationRepository.findByFridgeAndReceiver(fridge, member, pageable);
 
         return notificationPage.map(NotificationResDto::fromEntity);
     }

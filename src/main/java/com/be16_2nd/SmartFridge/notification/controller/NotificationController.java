@@ -2,7 +2,6 @@ package com.be16_2nd.SmartFridge.notification.controller;
 
 import com.be16_2nd.SmartFridge.common.dto.CommonDto;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationResDto;
-import com.be16_2nd.SmartFridge.notification.repository.NotificationRepository;
 import com.be16_2nd.SmartFridge.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("fridge/{fridgeId}/notification")
@@ -28,8 +25,7 @@ public class NotificationController {
     // 사용자 별 알림 목록 조회
     @GetMapping("/list")
     public ResponseEntity<?> notificationList(@PathVariable Long fridgeId,
-                                              @PageableDefault(size = 10, sort = "createdTime"
-                                                      , direction = Sort.Direction.DESC) Pageable pageable) {
+                                              @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<NotificationResDto> notificationResDtoPage = notificationService.findNotificationList(fridgeId, pageable);
         return new ResponseEntity<>(CommonDto.builder()
                 .result(notificationResDtoPage)

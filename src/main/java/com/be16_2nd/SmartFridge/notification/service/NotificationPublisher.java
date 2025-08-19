@@ -32,7 +32,5 @@ public class NotificationPublisher {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }
