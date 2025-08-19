@@ -81,7 +81,7 @@ public class PostService {
         if (postCategory.getCategory().equals("공지사항")) {
             // 공지사항 등록 알림 (냉장고 관리자 -> 냉장고 참여자)
             List<FridgeMember> fridgeMemberList = fridgeMemberRepository
-                    .findByFridgeAndType(fridge, Type.COMMON);
+                    .findAllByFridgeAndType(fridge, Type.COMMON);
 
             for (FridgeMember fridgeMember : fridgeMemberList) {
                 notificationService.create(member, fridgeMember.getMember(),
