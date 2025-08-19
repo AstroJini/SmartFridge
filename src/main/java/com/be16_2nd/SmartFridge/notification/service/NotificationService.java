@@ -14,11 +14,19 @@ import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
 import com.be16_2nd.SmartFridge.notification.domain.TargetType;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationResDto;
 import com.be16_2nd.SmartFridge.notification.repository.NotificationRepository;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Transactional
 @Service
@@ -125,6 +133,7 @@ public class NotificationService {
         createAndSend(notification);
     }
 
+    // db 저장 알림 발송
     private void createAndSend(Notification notification) {
         // db 저장
         notificationRepository.save(notification);
@@ -143,12 +152,39 @@ public class NotificationService {
         }
     }
 
-    public Page<NotificationResDto> findNotificationList(Long fridgeId, Pageable pageable) {
+    // 알림 목록 조회
+    public Page<NotificationResDto> findNotificationList(Long fridgeId, NotificationType notificationType, Pageable pageable) {
         FridgeAccessValidator.FridgeContext context = fridgeAccessValidator.validate(fridgeId);
         Member member = context.member();
         Fridge fridge = context.fridge();
-        Page<Notification> notificationPage = notificationRepository.findByFridgeAndReceiver(fridge, member, pageable);
 
-        return notificationPage.map(NotificationResDto::fromEntity);
+        Specification<Notification> specification = new Specification<Notification>() {
+            @Override
+            public Predicate toPredicate(Root<Notification> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicateList = new ArrayList<>();
+
+                // fridge 조건
+                predicateList.add(criteriaBuilder.equal(root.get("fridge"), fridge));
+
+                // receiver 조건
+                predicateList.add(criteriaBuilder.equal(root.get("receiver"), member));
+
+
+                if (notificationType != null) {
+                    predicateList.add(root.get("notificationType").in(notificationType));
+                }
+
+                // Predicate 배열로 변환 후 AND 조건
+                Predicate[] predicateArr = new Predicate[predicateList.size()];
+                for (int i = 0; i < predicateList.size(); i++) {
+                    predicateArr[i] = predicateList.get(i);
+                }
+
+                return criteriaBuilder.and(predicateArr);
+            }
+        };
+
+        return notificationRepository.findAll(specification, pageable)
+                .map(NotificationResDto::fromEntity);
     }
 }
