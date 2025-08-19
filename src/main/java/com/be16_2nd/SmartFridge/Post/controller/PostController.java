@@ -66,6 +66,28 @@ public class PostController {
                 HttpStatus.OK);
     }
 
+    @PostMapping("/{postId}/like")
+    public ResponseEntity<?> postLike(@PathVariable("fridgeId") Long fridgeId,@PathVariable("postId") Long postId){
+        postService.addLike(fridgeId, postId);
+        return new ResponseEntity<>(
+                CommonDto.builder()
+                        .status_code(HttpStatus.OK.value())
+                        .status_message("좋아요 처리가 완료되었습니다.")
+                        .build(),
+                HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{postId}/like")
+    public ResponseEntity<?> removeLike(@PathVariable("fridgeId") Long fridgeId,@PathVariable("postId") Long postId){
+        postService.removeLike(fridgeId, postId);
+        return new ResponseEntity<>(
+                CommonDto.builder()
+                        .status_code(HttpStatus.OK.value())
+                        .status_message("좋아요 취소가 완료되었습니다.")
+                        .build(),
+                HttpStatus.OK);
+    }
+
     @GetMapping("/list")
     public ResponseEntity<?> postList(@PathVariable("fridgeId") Long fridgeId, Pageable pageable,
                                          @ModelAttribute PostSearchDto searchDto, @RequestParam(required = false, defaultValue = "전체") String categoryName) {

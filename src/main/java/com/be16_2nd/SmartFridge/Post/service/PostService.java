@@ -9,6 +9,8 @@ import com.be16_2nd.SmartFridge.Post.dto.*;
 import com.be16_2nd.SmartFridge.Post.repository.PostCategoryRepository;
 import com.be16_2nd.SmartFridge.Post.repository.PostImageRepository;
 import com.be16_2nd.SmartFridge.Post.repository.PostRepository;
+import com.be16_2nd.SmartFridge.common.service.PostStatsService;
+import com.be16_2nd.SmartFridge.common.service.RabbitMqService;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.fridge.domain.Type;
 import com.be16_2nd.SmartFridge.member.domain.Member;
@@ -27,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,6 +43,8 @@ public class PostService {
     private final PostCategoryRepository postCategoryRepository;
     private final PostImageRepository postImageRepository;
     private final PostImageService postImageService;
+    private final PostStatsService postStatsService;
+    private final RabbitMqService  rabbitMqService;
 
     public Long createPost(Long fridgeId, PostCreateDto createDto) {
         FridgeContext context = fridgeAccessValidator.validate(fridgeId);
@@ -83,8 +88,8 @@ public class PostService {
             throw new AccessDeniedException("해당 냉장고에 속한 게시글이 아닙니다.");
         }
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Member member = memberRepository.findByEmail(authentication.getName()).orElseThrow(() -> new EntityNotFoundException("없는 사용자 입니다."));
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Member member = memberRepository.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("없는 사용자 입니다."));
 
         if (!post.getMember().getId().equals(member.getId())) {
             throw new AccessDeniedException("수정 권한이 없습니다.");
@@ -133,10 +138,10 @@ public class PostService {
         postRepository.delete(post);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public PostDetailDto findById(Long fridgeId, Long postId) {
-        fridgeAccessValidator.validate(fridgeId);
-
+        FridgeContext context = fridgeAccessValidator.validate(fridgeId);
+        Member member = context.member();
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new EntityNotFoundException("게시글 없음."));
 
@@ -144,7 +149,16 @@ public class PostService {
             throw new AccessDeniedException("해당 냉장고의 게시글이 아닙니다.");
         }
 
-        return PostDetailDto.fromEntity(post);
+        postStatsService.incrementViewCount(post.getId());
+
+        Long viewCount = postStatsService.getViewCount(post.getId());
+        Long likeCount = postStatsService.getLikeCount(post.getId());
+
+        Boolean likedByUser = postStatsService.isLiked(post.getId(),member.getId());
+
+        rabbitMqService.publishViewUpdate(post.getId());
+
+        return PostDetailDto.fromEntity(post,viewCount,likeCount, likedByUser);
     }
 
     @Transactional(readOnly = true)
@@ -171,5 +185,31 @@ public class PostService {
 
         Page<Post> postList = postRepository.findAll(finalSpec, pageable);
         return postList.map(PostResDto::fromEntity);
+    }
+
+    public void addLike(Long fridgeId, Long postId) {
+        FridgeContext context = fridgeAccessValidator.validate(fridgeId);
+        Member member = context.member();
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new EntityNotFoundException("게시글 없음."));
+
+        if (!post.getFridge().getId().equals(fridgeId)) {
+            throw new AccessDeniedException("해당 냉장고의 게시글이 아닙니다.");
+        }
+        postStatsService.addLike(post.getId(), member.getId());
+        rabbitMqService.publishLikeUpdate(post.getId(),member.getId());
+    }
+
+    public void removeLike(Long fridgeId,Long postId) {
+        FridgeContext context = fridgeAccessValidator.validate(fridgeId);
+        Member member = context.member();
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new EntityNotFoundException("게시글 없음."));
+
+        if (!post.getFridge().getId().equals(fridgeId)) {
+            throw new AccessDeniedException("해당 냉장고의 게시글이 아닙니다.");
+        }
+        postStatsService.removeLike(post.getId(), member.getId());
+        rabbitMqService.publishUnLikeUpdate(post.getId(),member.getId());
     }
 }
