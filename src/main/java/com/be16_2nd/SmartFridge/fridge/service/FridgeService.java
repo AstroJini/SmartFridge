@@ -105,7 +105,7 @@ public class FridgeService {
         managerChatRoomLifecycle.createManagerChatRoom(member, fridge);
 
         Member receiver = fridgeMemberRepository.findByFridgeAndType(fridge, Type.MANAGER)
-                .get(0).getMember();
+                .orElseThrow(() -> new EntityNotFoundException("")).getMember();
 
         // 알림 발송 + db 저장
         notificationService.create(member, receiver, NotificationType.NEW_MEMBER, fridge);

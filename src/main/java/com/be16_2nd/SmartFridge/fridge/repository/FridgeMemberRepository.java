@@ -16,5 +16,7 @@ public interface FridgeMemberRepository extends JpaRepository<FridgeMember, Long
 
     List<FridgeMember> findAllByMember(Member member);
     Optional<FridgeMember> findByFridgeAndMember(Fridge fridge, Member member);   //Optional 로바꿈 -찬진
-    List<FridgeMember> findByFridgeAndType(Fridge fridge, Type type);
+    List<FridgeMember> findByFridge(Fridge fridge);
+    Optional<FridgeMember> findByFridgeAndType(Fridge fridge, Type type);
+    List<FridgeMember> findAllByFridgeAndType(Fridge fridge, Type type);
 }

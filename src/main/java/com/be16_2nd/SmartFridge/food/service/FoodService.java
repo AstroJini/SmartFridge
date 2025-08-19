@@ -8,7 +8,6 @@ import com.be16_2nd.SmartFridge.food.dto.*;
 import com.be16_2nd.SmartFridge.food.repository.FoodRepository;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
 import com.be16_2nd.SmartFridge.member.domain.Member;
-import com.be16_2nd.SmartFridge.notification.domain.Notification;
 import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
 import com.be16_2nd.SmartFridge.notification.service.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
@@ -45,7 +44,7 @@ public class FoodService {
 
         Fridge fridge = context.fridge();
         Member receiver = fridgeMemberRepository.findByFridgeAndType(fridge, Type.MANAGER)
-                .get(0).getMember();
+                .orElseThrow(() -> new EntityNotFoundException("")).getMember();
         Member sender = context.member();
 
         // 식자재 등록 알림 (사용자 -> 냉장고 관리자)
