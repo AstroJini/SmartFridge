@@ -49,4 +49,8 @@ public class ChatMessage {
     @Builder.Default
     @OneToMany(mappedBy = "chatMessage", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IsRead> isReads = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "chatMessage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ChatMessageImage> chatMessageImages = new ArrayList<>();
 }
