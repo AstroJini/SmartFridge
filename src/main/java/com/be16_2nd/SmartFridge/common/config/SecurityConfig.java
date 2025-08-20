@@ -43,7 +43,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(a->a.requestMatchers(
                         "/member/create",
                         "member/doLogin",
-                        "connect/chat/**").permitAll().anyRequest().authenticated())
+                        "connect/chat/**",
+                        "/api/enums").permitAll().anyRequest().authenticated())
                 .build();
     }
     private CorsConfigurationSource corsConfiguration(){

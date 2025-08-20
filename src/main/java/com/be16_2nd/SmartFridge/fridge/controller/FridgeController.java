@@ -63,5 +63,27 @@ public class FridgeController {
                         .build(),HttpStatus.OK);
     }
 
+    @DeleteMapping("/{fridgeId}")
+    public ResponseEntity<?> deleteFridge(@PathVariable Long fridgeId){
+        Long DeleteFridgeId = fridgeService.deleteFridge(fridgeId);
+        return new ResponseEntity<>(
+                CommonDto.builder()
+                        .result(DeleteFridgeId)
+                        .status_code(HttpStatus.OK.value())
+                        .status_message("냉장고 삭제완료")
+                        .build(),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{fridgeId}/leave")
+    public ResponseEntity<?> leaveFridge(@PathVariable Long fridgeId){
+        Long LeaveFridgeId = fridgeService.leaveFridge(fridgeId);
+        return new ResponseEntity<>(
+                CommonDto.builder()
+                        .result(LeaveFridgeId)
+                        .status_code(HttpStatus.OK.value())
+                        .status_message("냉장고 나가기 완료")
+                        .build(),HttpStatus.OK);
+    }
+
 
 }

@@ -1,6 +1,8 @@
 package com.be16_2nd.SmartFridge.food.repository;
 
 import com.be16_2nd.SmartFridge.food.domain.Food;
+import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
+import com.be16_2nd.SmartFridge.member.domain.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -15,7 +17,7 @@ import java.util.List;
 @Repository
 public interface FoodRepository extends JpaRepository<Food, Long> {
     Page<Food> findAll(Specification<Food> specification, Pageable pageable);
-
+    void deleteAllByFridgeAndMember(Fridge fridge, Member member);
     @Query("SELECT f FROM Food f WHERE FUNCTION('DATE', f.expirationDateTime) IN :dates")
     List<Food> findAllByExpirationDateIn(@Param("dates") List<LocalDate> dates);
 
