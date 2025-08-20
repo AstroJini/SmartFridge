@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -116,5 +117,25 @@ public class ChatController {
                 .status_code(HttpStatus.OK.value())
                 .status_message("공동구매 채팅방 나가기 성공")
                 .build(), HttpStatus.OK);
+    }
+
+    // 1대1 채팅 이미지 업로드
+    @PostMapping("/manager/room/{roomId}/images")
+    public ResponseEntity<?> uploadFilesToManager(@PathVariable Long roomId, @RequestParam List<MultipartFile> images) {
+        return new ResponseEntity<>(CommonDto.builder()
+                .result(chatService.uploadImages(roomId, ChatRoomType.MANAGER, images))
+                .status_code(HttpStatus.CREATED.value())
+                .status_message("1대1채팅 이미지 업로드 성공")
+                .build(), HttpStatus.CREATED);
+    }
+    
+    // 관리자 채팅 이미지 업로드
+    @PostMapping("/purchase/room/images/{roomId}")
+    public ResponseEntity<?> uploadFilesToPurchase(@PathVariable Long roomId, @RequestParam List<MultipartFile> images) {
+        return new ResponseEntity<>(CommonDto.builder()
+                .result(chatService.uploadImages(roomId, ChatRoomType.PURCHASE, images))
+                .status_code(HttpStatus.CREATED.value())
+                .status_message("공동구매채팅 이미지 업로드 성공")
+                .build(), HttpStatus.CREATED);
     }
 }
