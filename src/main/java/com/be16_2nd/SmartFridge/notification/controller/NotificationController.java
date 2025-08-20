@@ -36,4 +36,18 @@ public class NotificationController {
                 .build()
                 , HttpStatus.OK);
     }
+
+    // 알림 삭제
+    @DeleteMapping("/delete/{notificationId}")
+    public ResponseEntity<?> deleteNotification(@PathVariable Long notificationId) {
+        notificationService.deleteNotification(notificationId);
+        return new ResponseEntity<>(CommonDto.builder()
+                .result(null)
+                .status_code(HttpStatus.OK.value())
+                .status_message("알림 삭제 성공")
+                .build()
+                , HttpStatus.OK);
+    }
+    
+    // 알림 읽음 처리
 }

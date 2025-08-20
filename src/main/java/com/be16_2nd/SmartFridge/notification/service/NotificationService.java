@@ -14,6 +14,7 @@ import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
 import com.be16_2nd.SmartFridge.notification.domain.TargetType;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationResDto;
 import com.be16_2nd.SmartFridge.notification.repository.NotificationRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -186,5 +187,12 @@ public class NotificationService {
 
         return notificationRepository.findAll(specification, pageable)
                 .map(NotificationResDto::fromEntity);
+    }
+    
+    // 알림 삭제
+    public void deleteNotification(Long notificationId) {
+        Notification notification = notificationRepository.findById(notificationId)
+                .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 알림입니다."));
+        notificationRepository.delete(notification);
     }
 }
