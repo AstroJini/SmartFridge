@@ -14,6 +14,7 @@ import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeRepository;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.member.repository.MemberRepository;
+import com.be16_2nd.SmartFridge.notification.service.NotificationPublisher;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /*
 * 채팅 서비스
@@ -48,6 +50,7 @@ public class ChatService {
     private final ChatImageService chatImageService;
     private final ChatRoomParticipantValidator chatRoomParticipantValidator;
     private final FridgeAccessValidator fridgeAccessValidator;
+    private final NotificationPublisher notificationPublisher;
 
     public ChatMessage saveMessage(Long roomId, ChatMessageDto chatMessageDto) {
 
@@ -294,6 +297,26 @@ public class ChatService {
                 .build();
         chatRoom.updateLimitedNum(chatRoom.getLimitedNum()-1);
         chatRoom.getParticipants().add(chatParticipant);
+
+        // 남은 인원 수 0인 경우 확인
+        if(chatRoom.getLimitedNum() == 0){
+            // 공동 구매 채팅 참여자에게 발송
+            List<Member> receivers = chatRoom.getParticipants().stream()
+                    .map(ChatParticipant::getMember).toList();
+
+            // 공동 구매 채팅방 개설자에게만 발송하는 경우
+//            Member receiver = chatRoom.getCreator();
+
+            // 발신자는 여기서 의미 없으므로 null 또는 시스템 알림 계정
+            for(Member receiver : receivers){
+                notificationPublisher.publish(
+                        null, // 발신자 표시 (예: 시스템)
+                        receiver.getEmail(),
+                        "공동 구매 채팅방이 가득 찼습니다",
+                        "ROOM_FULL"
+                );
+            }
+        }
     }
 
     // 공동 구매 채팅방 나가기
