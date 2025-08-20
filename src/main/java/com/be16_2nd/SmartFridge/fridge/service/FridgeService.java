@@ -1,8 +1,11 @@
 package com.be16_2nd.SmartFridge.fridge.service;
 
+import com.be16_2nd.SmartFridge.Post.repository.PostRepository;
 import com.be16_2nd.SmartFridge.chat.repository.ManagerChatRoomRepository;
 import com.be16_2nd.SmartFridge.common.service.FridgeAccessValidator;
 import com.be16_2nd.SmartFridge.chat.service.ManagerChatRoomLifecycle;
+import com.be16_2nd.SmartFridge.common.service.FridgeAccessValidator;
+import com.be16_2nd.SmartFridge.food.repository.FoodRepository;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
 import com.be16_2nd.SmartFridge.fridge.domain.FridgeMember;
 import com.be16_2nd.SmartFridge.fridge.domain.Type;
@@ -18,8 +21,10 @@ import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
 import com.be16_2nd.SmartFridge.notification.service.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -36,6 +41,9 @@ public class FridgeService {
     private final ManagerChatRoomLifecycle managerChatRoomLifecycle;
     private final NotificationService notificationService;
 
+    private final FridgeAccessValidator fridgeAccessValidator;
+    private final FoodRepository foodRepository;
+    private final PostRepository postRepository;
 
     public FridgeCreateResDto create(FridgeCreateDto fridgeCreateDto){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -111,5 +119,29 @@ public class FridgeService {
         notificationService.create(member, receiver, NotificationType.NEW_MEMBER, fridge);
 
         return fridge.getId();
+    }
+
+    @Transactional
+    public Long deleteFridge(Long fridgeId) {
+        FridgeAccessValidator.FridgeContext context = fridgeAccessValidator.validate(fridgeId);
+        if(!context.type().equals(Type.MANAGER)){
+            throw new AccessDeniedException("MANAGER만 삭제할 수 있습니다");
+        } else {
+            fridgeRepository.deleteById(context.fridge().getId());
+        }
+        return context.fridge().getId();
+    }
+
+    @Transactional
+    public Long leaveFridge(Long fridgeId){
+        FridgeAccessValidator.FridgeContext context = fridgeAccessValidator.validate(fridgeId);
+        if(!context.type().equals(Type.COMMON)){
+            throw new AccessDeniedException("COMMON만 나갈수 있습니다");
+        } else {
+            fridgeMemberRepository.deleteByFridgeAndMember(context.fridge(), context.member());
+            foodRepository.deleteAllByFridgeAndMember(context.fridge(), context.member());
+            postRepository.deleteAllByFridgeAndMember(context.fridge(), context.member());
+        }
+        return context.fridge().getId();
     }
 }
