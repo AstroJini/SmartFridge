@@ -2,9 +2,11 @@ package com.be16_2nd.SmartFridge.notification.controller;
 
 import com.be16_2nd.SmartFridge.common.dto.CommonDto;
 import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
+import com.be16_2nd.SmartFridge.notification.dto.NotificationReadReqDto;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationResDto;
 import com.be16_2nd.SmartFridge.notification.service.NotificationService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,6 +20,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("fridge/{fridgeId}/notification")
+@Slf4j
 public class NotificationController {
 
     private final NotificationService notificationService;
@@ -50,4 +53,15 @@ public class NotificationController {
     }
     
     // 알림 읽음 처리
+    @PatchMapping("/isRead")
+    public ResponseEntity<?> readNotification(@RequestBody List<NotificationReadReqDto> notificationReadReqDtoList) {
+        log.error("######### 알림 읽음 처리 목록 : {}", notificationReadReqDtoList);
+        notificationService.readNotification(notificationReadReqDtoList);
+        return new ResponseEntity<>(CommonDto.builder()
+                .result(null)
+                .status_code(HttpStatus.OK.value())
+                .status_message("알림 읽음 처리 성공")
+                .build()
+                , HttpStatus.OK);
+    }
 }

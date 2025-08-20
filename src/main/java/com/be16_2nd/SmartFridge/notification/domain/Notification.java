@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Getter
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Notification extends BaseTimeEntity {

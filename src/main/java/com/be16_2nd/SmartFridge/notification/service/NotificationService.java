@@ -12,6 +12,7 @@ import com.be16_2nd.SmartFridge.notification.domain.Notification;
 import com.be16_2nd.SmartFridge.notification.domain.NotificationSettingType;
 import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
 import com.be16_2nd.SmartFridge.notification.domain.TargetType;
+import com.be16_2nd.SmartFridge.notification.dto.NotificationReadReqDto;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationResDto;
 import com.be16_2nd.SmartFridge.notification.repository.NotificationRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -194,5 +195,21 @@ public class NotificationService {
         Notification notification = notificationRepository.findById(notificationId)
                 .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 알림입니다."));
         notificationRepository.delete(notification);
+    }
+
+    // 알림 읽음
+    public void readNotification(List<NotificationReadReqDto> notificationReadReqDtoList) {
+
+        if (!notificationReadReqDtoList.isEmpty()) {
+
+            for (NotificationReadReqDto dto : notificationReadReqDtoList) {
+                Notification notification = notificationRepository.findById(dto.notificationId)
+                                        .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 알림입니다."));
+
+
+                // 읽음 처리 (isRead : false -> true)
+                notification.setRead(true);
+            }
+        }
     }
 }
