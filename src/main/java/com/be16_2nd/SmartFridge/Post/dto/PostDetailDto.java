@@ -24,8 +24,11 @@ public class PostDetailDto {
     private LocalDateTime createdDate;
     private List<String> imageUrls;
     private int commentCount;
+    private Long viewCount;
+    private Long likeCount;
+    private Boolean isLiked;
 
-    public static PostDetailDto fromEntity(Post post) {
+    public static PostDetailDto fromEntity(Post post, Long viewCount, Long likeCount, Boolean isLiked ) {
         return PostDetailDto.builder()
                 .id(post.getId())
                 .title(post.getTitle())
@@ -37,6 +40,9 @@ public class PostDetailDto {
                         .map(PostImage::getImageUrl)
                         .collect(Collectors.toList()))
                 .commentCount(post.getCommentCount())
+                .viewCount(viewCount)
+                .likeCount(likeCount)
+                .isLiked(isLiked)
                 .build();
     }
 }
