@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface FridgeMemberRepository extends JpaRepository<FridgeMember, Long> {
     boolean existsByFridgeAndMember(Fridge fridge, Member member);
-
+    void deleteByFridgeAndMember(Fridge fridge, Member member);
     List<FridgeMember> findAllByMember(Member member);
     Optional<FridgeMember> findByFridgeAndMember(Fridge fridge, Member member);   //Optional 로바꿈 -찬진
     List<FridgeMember> findByFridge(Fridge fridge);

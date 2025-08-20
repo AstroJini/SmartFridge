@@ -6,6 +6,7 @@ import com.be16_2nd.SmartFridge.fridge.domain.Type;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeRepository;
 import com.be16_2nd.SmartFridge.member.domain.Member;
+import com.be16_2nd.SmartFridge.member.domain.Role;
 import com.be16_2nd.SmartFridge.member.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,12 @@ public class FridgeAccessValidator {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Member member = memberRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("없는 사용자입니다."));
+
+        if (member.getRole() == Role.ADMIN) {
+            Fridge fridge = fridgeRepository.findById(fridgeId)
+                    .orElseThrow(() -> new EntityNotFoundException("냉장고를 찾을 수 없습니다."));
+            return new FridgeContext(fridge, member, Type.MANAGER);
+        }
 
         Fridge fridge = fridgeRepository.findById(fridgeId)
                 .orElseThrow(() -> new EntityNotFoundException("없는 냉장고입니다."));
