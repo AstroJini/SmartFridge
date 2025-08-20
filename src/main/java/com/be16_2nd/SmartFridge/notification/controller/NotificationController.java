@@ -55,7 +55,6 @@ public class NotificationController {
     // 알림 읽음 처리
     @PatchMapping("/isRead")
     public ResponseEntity<?> readNotification(@RequestBody List<NotificationReadReqDto> notificationReadReqDtoList) {
-        log.error("######### 알림 읽음 처리 목록 : {}", notificationReadReqDtoList);
         notificationService.readNotification(notificationReadReqDtoList);
         return new ResponseEntity<>(CommonDto.builder()
                 .result(null)

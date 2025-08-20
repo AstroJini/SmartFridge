@@ -206,7 +206,6 @@ public class NotificationService {
                 Notification notification = notificationRepository.findById(dto.notificationId)
                                         .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 알림입니다."));
 
-
                 // 읽음 처리 (isRead : false -> true)
                 notification.setRead(true);
             }
