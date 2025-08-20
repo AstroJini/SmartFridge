@@ -9,10 +9,16 @@ import com.be16_2nd.SmartFridge.Post.dto.*;
 import com.be16_2nd.SmartFridge.Post.repository.PostCategoryRepository;
 import com.be16_2nd.SmartFridge.Post.repository.PostImageRepository;
 import com.be16_2nd.SmartFridge.Post.repository.PostRepository;
+import com.be16_2nd.SmartFridge.common.service.PostStatsService;
+import com.be16_2nd.SmartFridge.common.service.RabbitMqService;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
+import com.be16_2nd.SmartFridge.fridge.domain.FridgeMember;
 import com.be16_2nd.SmartFridge.fridge.domain.Type;
+import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.member.repository.MemberRepository;
+import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
+import com.be16_2nd.SmartFridge.notification.service.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.criteria.Predicate;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +50,7 @@ public class PostService {
     private final NotificationService notificationService;
     private final FridgeMemberRepository fridgeMemberRepository;
     private final PostStatsService postStatsService;
-    private final RabbitMqService  rabbitMqService;
+    private final RabbitMqService rabbitMqService;
 
     public Long createPost(Long fridgeId, PostCreateDto createDto) {
         FridgeContext context = fridgeAccessValidator.validate(fridgeId);
