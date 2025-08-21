@@ -5,6 +5,9 @@ import com.be16_2nd.SmartFridge.Post.domain.PostComment;
 import com.be16_2nd.SmartFridge.common.service.FridgeAccessValidator;
 import com.be16_2nd.SmartFridge.food.domain.Food;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
+import com.be16_2nd.SmartFridge.fridge.domain.FridgeMember;
+import com.be16_2nd.SmartFridge.fridge.domain.Type;
+import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
 import com.be16_2nd.SmartFridge.inquiry.domain.Inquiry;
 import com.be16_2nd.SmartFridge.inquiryComment.domain.InquiryComment;
 import com.be16_2nd.SmartFridge.member.domain.Member;
@@ -39,6 +42,7 @@ public class NotificationService {
     private final NotificationPublisher notificationPublisher;
     private final NotificationSettingService notificationSettingService;
     private final FridgeAccessValidator fridgeAccessValidator;
+    private final FridgeMemberRepository fridgeMemberRepository;
 
     public void create(Member sender, Member receiver,
                               NotificationType notificationType, Object entity) {
@@ -160,6 +164,13 @@ public class NotificationService {
         Member member = context.member();
         Fridge fridge = context.fridge();
 
+        Type fridgeMemberType;
+        if (fridgeMemberRepository.findByFridgeAndMember(fridge, member).isPresent()) {
+            fridgeMemberType = fridgeMemberRepository.findByFridgeAndMember(fridge, member).get().getType();
+        } else {
+            fridgeMemberType = null;
+        }
+
         Specification<Notification> specification = new Specification<Notification>() {
             @Override
             public Predicate toPredicate(Root<Notification> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
@@ -186,8 +197,7 @@ public class NotificationService {
             }
         };
 
-        return notificationRepository.findAll(specification, pageable)
-                .map(NotificationResDto::fromEntity);
+        return notificationRepository.findAll(specification, pageable).map(notification -> NotificationResDto.fromEntity(notification, fridgeMemberType));
     }
     
     // 알림 삭제

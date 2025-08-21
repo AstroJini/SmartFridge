@@ -1,14 +1,12 @@
 package com.be16_2nd.SmartFridge.chat.service;
 
 import com.be16_2nd.SmartFridge.chat.domain.*;
-import com.be16_2nd.SmartFridge.chat.dto.ChatMessageDto;
-import com.be16_2nd.SmartFridge.chat.dto.ChatRoomCreateDto;
-import com.be16_2nd.SmartFridge.chat.dto.MyChatListResDto;
-import com.be16_2nd.SmartFridge.chat.dto.PurchaseChatRoomListResDto;
+import com.be16_2nd.SmartFridge.chat.dto.*;
 import com.be16_2nd.SmartFridge.chat.repository.*;
 import com.be16_2nd.SmartFridge.chat.service.Validator.ChatRoomParticipantValidator;
 import com.be16_2nd.SmartFridge.common.service.FridgeAccessValidator;
 import com.be16_2nd.SmartFridge.fridge.domain.Fridge;
+import com.be16_2nd.SmartFridge.fridge.domain.FridgeMember;
 import com.be16_2nd.SmartFridge.fridge.domain.Type;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
 import com.be16_2nd.SmartFridge.fridge.repository.FridgeRepository;
@@ -72,6 +70,7 @@ public class ChatService {
                     .isDeleted(false)
                     .build();
             chatMessageRepository.save(chatMessage);
+
             // 이미지 저장
             if(!chatMessageDto.getImageUrls().isEmpty()){
                 for (String imageUrl : chatMessageDto.getImageUrls()){
@@ -130,6 +129,42 @@ public class ChatService {
             }
         }
         return chatMessage;
+    }
+
+    public ChatMessageEmailDto saveMessageWithEmails(Long roomId, ChatMessageDto chatMessageReqDto) {
+        ChatMessage chatMessage = saveMessage(roomId, chatMessageReqDto);
+
+        String senderEmail = chatMessage.getSender().getEmail();
+        List<String> receiverEmails;
+
+        if (chatMessage.getChatRoomType().equals(ChatRoomType.MANAGER.toString())) {
+            // 1:1 관리자 채팅
+            Fridge fridge = chatMessage.getManagerChatRoom().getFridge();
+            FridgeMember managerFridgeMember = fridgeMemberRepository
+                    .findByFridgeAndType(fridge, Type.MANAGER)
+                    .orElseThrow(() -> new RuntimeException("관리자가 존재하지 않습니다."));
+
+            String receiverEmail = managerFridgeMember.getMember().getEmail();
+
+            // 발신자가 냉장고 관리자면 수신자는 냉장고 참여자
+            if (senderEmail.equals(receiverEmail)) {
+                receiverEmail = chatMessage.getManagerChatRoom().getMember().getEmail();
+            }
+
+            receiverEmails = List.of(receiverEmail);
+
+        } else if (chatMessage.getChatRoomType().equals(ChatRoomType.PURCHASE.toString())) {
+            // 공동구매 채팅
+            receiverEmails = chatMessage.getPurchaseChatRoom().getParticipants().stream()
+                    .map(ChatParticipant::getMember)
+                    .map(Member::getEmail)   // Lazy-safe
+                    .filter(email -> !email.equals(senderEmail))
+                    .toList();
+        } else {
+            throw new IllegalArgumentException("존재하지 않는 채팅 타입입니다.");
+        }
+
+        return new ChatMessageEmailDto(chatMessage, senderEmail, receiverEmails);
     }
 
     // 내 채팅방 목록 조회
