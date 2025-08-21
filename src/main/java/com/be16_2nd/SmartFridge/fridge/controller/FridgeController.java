@@ -3,6 +3,7 @@ package com.be16_2nd.SmartFridge.fridge.controller;
 import com.be16_2nd.SmartFridge.common.dto.CommonDto;
 import com.be16_2nd.SmartFridge.fridge.dto.FridgeCreateDto;
 import com.be16_2nd.SmartFridge.fridge.dto.FridgeListDto;
+import com.be16_2nd.SmartFridge.fridge.dto.FridgeUpdateDto;
 import com.be16_2nd.SmartFridge.fridge.service.FridgeService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +30,20 @@ public class FridgeController {
                         .status_code(HttpStatus.CREATED.value())
                         .status_message(fridgeCreateDto.getFridgeName() + "냉장고가 생성되었습니다!")
                         .build(), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{fridgeId}/update")
+    public ResponseEntity<?> update(@PathVariable Long fridgeId,
+                                    @Valid @RequestBody FridgeUpdateDto fridgeUpdateDto) {
+        Long id = fridgeService.update(fridgeId, fridgeUpdateDto);
+        return new ResponseEntity<>(
+                CommonDto.builder()
+                        .result(id)
+                        .status_code(HttpStatus.OK.value())
+                        .status_message(fridgeUpdateDto.getFridgeName() + " 냉장고가 수정되었습니다!")
+                        .build(),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/{fridgeId}")

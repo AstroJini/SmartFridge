@@ -19,6 +19,7 @@ public class FridgeListDto {
     private String fridgeName;
     private String description;
     private Type type;
+    private String inviteLink;
     private LocalDateTime createdTime;
 
     public static FridgeListDto from(FridgeMember fridgeMember) {
@@ -28,6 +29,7 @@ public class FridgeListDto {
                 .fridgeName(fridge.getFridgeName())
                 .description(fridge.getDescription())
                 .type(fridgeMember.getType())
+                .inviteLink(fridge.getInviteCode())
                 .createdTime(fridge.getCreatedTime())
                 .build();
     }
