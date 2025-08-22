@@ -24,6 +24,7 @@ public class SseController {
 
     @GetMapping("/connect/notification")
     public SseEmitter subscribe() {
+        log.info("현재 registry 상태: {}", sseEmitterRegistry.getAllKeys());
         // SSE 연결 시간: 4시간
         SseEmitter sseEmitter = new SseEmitter(14400 * 60 * 1000L);
 
@@ -31,42 +32,32 @@ public class SseController {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         log.info("SSE 연결 시도됨. 사용자 email: {}", email);
 
-        // 레지스트리에 추가
-        sseEmitterRegistry.addSseEmitter(email, sseEmitter);
-
-        // 연결 종료 처리: 클라이언트 끊기, 타임아웃, 에러 발생 시
-        sseEmitter.onCompletion(() -> {
-            log.info("SSE 연결 완료, 레지스트리에서 제거: {}", email);
-            sseEmitterRegistry.removeEmitter(email);
-        });
-        sseEmitter.onTimeout(() -> {
-            log.info("SSE 연결 타임아웃, 레지스트리에서 제거: {}", email);
-            sseEmitterRegistry.removeEmitter(email);
-            sseEmitter.complete();
-        });
-        sseEmitter.onError(e -> {
-            log.warn("SSE 연결 중 오류 발생, 레지스트리에서 제거: {}", email, e);
-            sseEmitterRegistry.removeEmitter(email);
-            sseEmitter.complete();
-        });
+//        // 레지스트리에 추가
+//        sseEmitterRegistry.addSseEmitter(email, sseEmitter);
+        log.info("현재 registry 상태: {}", sseEmitterRegistry.getAllKeys());
+//
+//        // 연결 종료 처리: 클라이언트 끊기, 타임아웃, 에러 발생 시
+//        sseEmitter.onCompletion(() -> {
+//            log.info("SSE 연결 완료, 레지스트리에서 제거: {}", email);
+//            sseEmitterRegistry.removeEmitter(email);
+//        });
+//        sseEmitter.onTimeout(() -> {
+//            log.info("SSE 연결 타임아웃, 레지스트리에서 제거: {}", email);
+//            sseEmitterRegistry.removeEmitter(email);
+//            sseEmitter.complete();
+//        });
+//        sseEmitter.onError(e -> {
+//            log.warn("SSE 연결 중 오류 발생, 레지스트리에서 제거: {}", email, e);
+//            sseEmitterRegistry.removeEmitter(email);
+//            sseEmitter.complete();
+//        });
 
         try {
             // 최초 연결 이벤트 전송
             sseEmitter.send(SseEmitter.event()
                     .name("connect")
                     .data("연결 완료"));
-
-            // heartbeat: 30초마다 ping 이벤트 전송
-            ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-            scheduler.scheduleAtFixedRate(() -> {
-                try {
-                    sseEmitter.send(SseEmitter.event().name("ping").data("heartbeat"));
-                } catch (IOException e) {
-                    log.warn("SSE ping 전송 실패, 연결 종료: {}", email, e);
-                    sseEmitter.complete();
-                    scheduler.shutdown();
-                }
-            }, 30, 30, TimeUnit.SECONDS);
+            log.info("현재 registry 상태: {}", sseEmitterRegistry.getAllKeys());
 
         } catch (IOException e) {
             // 최초 연결 시 전송 실패
