@@ -33,4 +33,14 @@ public class FridgeListDto {
                 .createdTime(fridge.getCreatedTime())
                 .build();
     }
+
+    public static FridgeListDto fromEntity(Fridge fridge,Type type) {
+        return FridgeListDto.builder()
+                .fridgeId(fridge.getId())
+                .fridgeName(fridge.getFridgeName())
+                .description(fridge.getDescription())
+                .type(type)
+                .createdTime(fridge.getCreatedTime())
+                .build();
+    }
 }

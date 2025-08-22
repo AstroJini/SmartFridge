@@ -57,6 +57,17 @@ public class FridgeController {
                         .build(), HttpStatus.OK);
     }
 
+    @GetMapping("/{fridgeId}/detail")
+    public ResponseEntity<?> fridgeDetailInfo(@PathVariable Long fridgeId){
+        return new ResponseEntity<>(
+                CommonDto
+                        .builder()
+                        .result(fridgeService.fridgeDetail(fridgeId))
+                        .status_code(HttpStatus.OK.value())
+                        .status_message("냉장고 정보조회완료")
+                        .build(), HttpStatus.OK);
+    }
+
     @GetMapping("/list")
     public ResponseEntity<?> MyFridges() {
         List<FridgeListDto> myFridges = fridgeService.findMyFridges();

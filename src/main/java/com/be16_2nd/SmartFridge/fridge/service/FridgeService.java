@@ -93,6 +93,11 @@ public class FridgeService {
                 .collect(Collectors.toList());
     }
 
+    public FridgeListDto fridgeDetail(Long fridgeId) {
+        FridgeAccessValidator.FridgeContext context =  fridgeAccessValidator.validate(fridgeId);
+        return FridgeListDto.fromEntity(context.fridge(),context.type());
+    }
+
     public List<FridgeListDto> findMyFridges() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Member member = memberRepository.findByEmail(email)
