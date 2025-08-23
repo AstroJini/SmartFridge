@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
@@ -25,4 +26,9 @@ public class SseEmitterRegistry {
     public SseEmitter getEmitter(String email) {
         return emitterMap.get(email);
     }
+
+    public Set<String> getAllKeys() {
+        return emitterMap.keySet();
+    }
+
 }
