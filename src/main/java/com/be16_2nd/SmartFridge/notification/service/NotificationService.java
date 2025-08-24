@@ -19,10 +19,7 @@ import com.be16_2nd.SmartFridge.notification.dto.NotificationReadReqDto;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationResDto;
 import com.be16_2nd.SmartFridge.notification.repository.NotificationRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -144,6 +141,7 @@ public class NotificationService {
         // db 저장
         notificationRepository.save(notification);
 
+
         Member sender = notification.getSender();
         Member receiver = notification.getReceiver();
         NotificationSettingType notificationSettingType = notification.getNotificationType().getSettingType();
@@ -153,7 +151,9 @@ public class NotificationService {
         if (isActive) {
             String senderEmail = (sender != null) ? sender.getEmail() : null;
 
-            notificationPublisher.publish(senderEmail , receiver.getEmail()
+            Long fridgeId = (notification.getFridge() != null) ? notification.getFridge().getId() : null;
+
+            notificationPublisher.publish(fridgeId, senderEmail , receiver.getEmail()
                     , notification.getContent(), notification.getNotificationType().name());
         }
     }
@@ -164,40 +164,35 @@ public class NotificationService {
         Member member = context.member();
         Fridge fridge = context.fridge();
 
-        Type fridgeMemberType;
-        if (fridgeMemberRepository.findByFridgeAndMember(fridge, member).isPresent()) {
-            fridgeMemberType = fridgeMemberRepository.findByFridgeAndMember(fridge, member).get().getType();
-        } else {
-            fridgeMemberType = null;
-        }
+        Type fridgeMemberType = fridgeMemberRepository.findByFridgeAndMember(fridge, member)
+                .map(FridgeMember::getType)
+                .orElse(null);
 
-        Specification<Notification> specification = new Specification<Notification>() {
-            @Override
-            public Predicate toPredicate(Root<Notification> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> predicateList = new ArrayList<>();
-
-                // fridge 조건
-                predicateList.add(criteriaBuilder.equal(root.get("fridge"), fridge));
-
-                // receiver 조건
-                predicateList.add(criteriaBuilder.equal(root.get("receiver"), member));
-
-
-                if (notificationType != null) {
-                    predicateList.add(root.get("notificationType").in(notificationType));
-                }
-
-                // Predicate 배열로 변환 후 AND 조건
-                Predicate[] predicateArr = new Predicate[predicateList.size()];
-                for (int i = 0; i < predicateList.size(); i++) {
-                    predicateArr[i] = predicateList.get(i);
-                }
-
-                return criteriaBuilder.and(predicateArr);
-            }
+        Specification<Notification> specification = (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            predicates.add(criteriaBuilder.equal(root.get("fridge"), fridge));
+            predicates.add(criteriaBuilder.equal(root.get("receiver"), member));
+            predicates.add(root.get("notificationType")
+                    .in(NotificationType.visibleInNotificationList())); // 문의/채팅 제외
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
 
-        return notificationRepository.findAll(specification, pageable).map(notification -> NotificationResDto.fromEntity(notification, fridgeMemberType));
+        return notificationRepository.findAll(specification, pageable)
+                .map(notification -> NotificationResDto.fromEntity(notification, fridgeMemberType));
+    }
+
+    // 문의 알림 count
+    public long countUnreadInquiries(Member member) {
+        return notificationRepository.countByReceiverAndNotificationTypeInAndIsReadFalse(
+                member, NotificationType.inquiryTypes()
+        );
+    }
+
+    // 채팅 알림 count
+    public long countUnreadChats(Member member) {
+        return notificationRepository.countByReceiverAndNotificationTypeInAndIsReadFalse(
+                member, NotificationType.chatTypes()
+        );
     }
     
     // 알림 삭제

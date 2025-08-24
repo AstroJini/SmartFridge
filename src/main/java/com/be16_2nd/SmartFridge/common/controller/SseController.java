@@ -33,7 +33,7 @@ public class SseController {
         log.info("SSE 연결 시도됨. 사용자 email: {}", email);
 
 //        // 레지스트리에 추가
-//        sseEmitterRegistry.addSseEmitter(email, sseEmitter);
+        sseEmitterRegistry.addSseEmitter(email, sseEmitter);
         log.info("현재 registry 상태: {}", sseEmitterRegistry.getAllKeys());
 //
 //        // 연결 종료 처리: 클라이언트 끊기, 타임아웃, 에러 발생 시

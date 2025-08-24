@@ -16,6 +16,7 @@ public class SseEmitterRegistry {
 
     public void addSseEmitter(String email, SseEmitter sseEmitter) {
         emitterMap.put(email, sseEmitter);
+        log.info("emitter 등록됨: {}", emitterMap);
         log.info("emitter 등록됨: {}", email);
     }
 

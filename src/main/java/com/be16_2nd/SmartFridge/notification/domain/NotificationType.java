@@ -3,6 +3,8 @@ package com.be16_2nd.SmartFridge.notification.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 @Getter
 @RequiredArgsConstructor
 public enum NotificationType {
@@ -20,4 +22,24 @@ public enum NotificationType {
     private final String description;
     private final NotificationSettingType settingType;
 
+    // 알림 목록에 표시할 타입 (문의/채팅 제외)
+    public static List<NotificationType> visibleInNotificationList() {
+        return List.of(
+                NEW_FOOD,
+                NEW_MEMBER,
+                EXPIRATION_IMMINENT,
+                NEW_ANNOUNCEMENT,
+                NEW_COMMENT
+        );
+    }
+
+    // 문의 관련 타입
+    public static List<NotificationType> inquiryTypes() {
+        return List.of(NEW_INQUIRY, ADMIN_REPLY);
+    }
+
+    // 채팅 관련 타입
+    public static List<NotificationType> chatTypes() {
+        return List.of(ADMIN_CHAT, GROUP_CHAT);
+    }
 }

@@ -1,6 +1,9 @@
 package com.be16_2nd.SmartFridge.notification.controller;
 
 import com.be16_2nd.SmartFridge.common.dto.CommonDto;
+import com.be16_2nd.SmartFridge.common.service.FridgeAccessValidator;
+import com.be16_2nd.SmartFridge.member.domain.Member;
+import com.be16_2nd.SmartFridge.member.service.MemberService;
 import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationReadReqDto;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationResDto;
@@ -13,9 +16,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +29,8 @@ import java.util.List;
 public class NotificationController {
 
     private final NotificationService notificationService;
-    
+    private final MemberService memberService;
+
     // 사용자 별 알림 목록 조회
     @GetMapping("/list")
     public ResponseEntity<?> notificationList(@PathVariable Long fridgeId,
@@ -38,6 +44,20 @@ public class NotificationController {
                 .status_message("알림 목록 조회 성공")
                 .build()
                 , HttpStatus.OK);
+    }
+
+    @GetMapping("/badge/inquiry")
+    public ResponseEntity<?> getInquiryBadge() {
+        Member member = memberService.getCurrentMember();
+        long unreadCount = notificationService.countUnreadInquiries(member);
+        return ResponseEntity.ok(Map.of("unreadCount", unreadCount));
+    }
+
+    @GetMapping("/badge/chat")
+    public ResponseEntity<?> getChatBadge() {
+        Member member = memberService.getCurrentMember();
+        long unreadCount = notificationService.countUnreadChats(member);
+        return ResponseEntity.ok(Map.of("unreadCount", unreadCount));
     }
 
     // 알림 삭제
