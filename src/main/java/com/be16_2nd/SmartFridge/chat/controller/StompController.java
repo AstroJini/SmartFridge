@@ -38,6 +38,7 @@ public class StompController {
         ChatMessageEmailDto result = chatService.saveMessageWithEmails(roomId, chatMessageReqDto);
 
         notificationPublisher.publish(
+                0L,
                 result.senderEmail(),
                 result.receiverEmailList().get(0),
                 "새 메시지가 도착했습니다",
@@ -57,7 +58,8 @@ public class StompController {
 
         for (String receiverEmail : result.receiverEmailList()) {
             notificationPublisher.publish(
-                    result.senderEmail()
+                    0L
+                    , result.senderEmail()
                     , receiverEmail
                     , "공동 구매 채팅방에 새로운 메세지가 도착했습니다."
                     , NotificationType.GROUP_CHAT.name()
