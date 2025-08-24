@@ -352,10 +352,11 @@ public class ChatService {
             // 발신자는 여기서 의미 없으므로 null 또는 시스템 알림 계정
             for(Member receiver : receivers){
                 notificationPublisher.publish(
-                        null, // 발신자 표시 (예: 시스템)
-                        receiver.getEmail(),
-                        "공동 구매 채팅방이 가득 찼습니다",
-                        "ROOM_FULL"
+                        0L
+                        , null  // 발신자 표시 (예: 시스템)
+                        , receiver.getEmail()
+                        , "공동 구매 채팅방이 가득 찼습니다"
+                        , "ROOM_FULL"
                 );
             }
         }
