@@ -131,13 +131,11 @@ public class ChatService {
         return chatMessage;
     }
 
-    public ChatMessageEmailDto saveMessageWithEmails(Long roomId, ChatMessageDto chatMessageReqDto) {
-        ChatMessage chatMessage = saveMessage(roomId, chatMessageReqDto);
-
+    public ChatMessageEmailDto saveMessageWithEmails(ChatMessage chatMessage) {
         String senderEmail = chatMessage.getSender().getEmail();
         List<String> receiverEmails;
 
-        if (chatMessage.getChatRoomType().equals(ChatRoomType.MANAGER.toString())) {
+        if (chatMessage.getChatRoomType().equals(ChatRoomType.MANAGER)) {
             // 1:1 관리자 채팅
             Fridge fridge = chatMessage.getManagerChatRoom().getFridge();
             FridgeMember managerFridgeMember = fridgeMemberRepository
@@ -153,7 +151,7 @@ public class ChatService {
 
             receiverEmails = List.of(receiverEmail);
 
-        } else if (chatMessage.getChatRoomType().equals(ChatRoomType.PURCHASE.toString())) {
+        } else if (chatMessage.getChatRoomType().equals(ChatRoomType.PURCHASE)) {
             // 공동구매 채팅
             receiverEmails = chatMessage.getPurchaseChatRoom().getParticipants().stream()
                     .map(ChatParticipant::getMember)
