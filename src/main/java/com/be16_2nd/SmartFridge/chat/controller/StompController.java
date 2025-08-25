@@ -35,7 +35,7 @@ public class StompController {
         String message = objectMapper.writeValueAsString(chatMessageDto);
         chatRedisPubSubService.publish("chat-channel", message);
 
-        ChatMessageEmailDto result = chatService.saveMessageWithEmails(roomId, chatMessageReqDto);
+        ChatMessageEmailDto result = chatService.saveMessageWithEmails(chatMessage);
 
         notificationPublisher.publish(
                 0L,
@@ -54,7 +54,7 @@ public class StompController {
         ObjectMapper objectMapper = new ObjectMapper();
         String message = objectMapper.writeValueAsString(chatMessageDto);
         chatRedisPubSubService.publish("chat-channel", message);
-        ChatMessageEmailDto result = chatService.saveMessageWithEmails(roomId, chatMessageReqDto);
+        ChatMessageEmailDto result = chatService.saveMessageWithEmails(chatMessage);
 
         for (String receiverEmail : result.receiverEmailList()) {
             notificationPublisher.publish(

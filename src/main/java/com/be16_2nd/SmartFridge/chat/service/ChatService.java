@@ -143,13 +143,11 @@ public class ChatService {
         return chatMessage;
     }
 
-    public ChatMessageEmailDto saveMessageWithEmails(Long roomId, ChatMessageDto chatMessageDto) {
-        ChatMessage chatMessage = saveMessage(roomId, chatMessageDto);
-
+    public ChatMessageEmailDto saveMessageWithEmails(ChatMessage chatMessage) {
         String senderEmail = chatMessage.getSender().getEmail();
         List<String> receiverEmails;
 
-        if (chatMessage.getChatRoomType().equals(ChatRoomType.MANAGER.toString())) {
+        if (chatMessage.getChatRoomType().equals(ChatRoomType.MANAGER)) {
             // 1:1 관리자 채팅
             Fridge fridge = chatMessage.getManagerChatRoom().getFridge();
             FridgeMember managerFridgeMember = fridgeMemberRepository
@@ -265,7 +263,6 @@ public class ChatService {
                     .message(chatMessage.getContents())
                     .imageUrls(imageUrls)
                     .senderEmail(chatMessage.getSender().getEmail())
-                    .senderName(chatMessage.getSender().getName())
                     .timestamp(chatMessage.getCreatedTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH시 mm분")))
                     .build();
             chatMessageDtos.add(chatMessageDto);
@@ -418,7 +415,7 @@ public class ChatService {
         else{
 //            채팅방참여자 검증
             chatRoomParticipantValidator.validatePurchaseRoomParticipant(member.getEmail(), roomId);
-            String pattern = "purchase/chat/"+roomId+"/";
+            String pattern = "manager/chat/"+roomId+"/";
             return chatImageService.uploadImages(files, pattern);
         }
     }
