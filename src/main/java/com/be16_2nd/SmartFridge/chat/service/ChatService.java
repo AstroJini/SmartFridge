@@ -25,7 +25,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /*
 * 채팅 서비스
@@ -114,6 +113,19 @@ public class ChatService {
                     .isDeleted(false)
                     .build();
             chatMessageRepository.save(chatMessage);
+
+            // 이미지 저장
+            if(!chatMessageDto.getImageUrls().isEmpty()){
+                for (String imageUrl : chatMessageDto.getImageUrls()){
+                    chatMessage.getChatMessageImages().add(
+                            ChatMessageImage.builder()
+                                    .chatMessage(chatMessage)
+                                    .imageUrl(imageUrl)
+                                    .build()
+                    );
+                }
+            }
+            chatRoom.updateLastMessageAt(chatMessage.getCreatedTime());
 
             // 사용자별로 읽음여부 저장
             List<ChatParticipant> chatParticipants = chatParticipantRepository.findByPurchaseChatRoom(chatRoom);
