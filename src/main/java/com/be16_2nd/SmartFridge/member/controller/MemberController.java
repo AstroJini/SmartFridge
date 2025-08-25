@@ -197,7 +197,6 @@ public class MemberController {
 
     @GetMapping("/myinfo")
     public ResponseEntity<?> myinfo(){
-
         return new ResponseEntity<>(
                 CommonDto.builder()
                         .result(memberService.myInfo())
