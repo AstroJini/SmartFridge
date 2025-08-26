@@ -200,17 +200,100 @@
 
 </details>
 
+
 <details>
-  <summary>세진</summary>
+  <summary>회원가입 테스트</summary>
 
-  ### ⚠️ 테스트 3: 비밀번호 재설정
-  - 입력: 이메일
-  - 기대 결과: 이메일로 재설정 링크 발송
-  - 실제 결과: ⚠️ 링크 발송 실패 (SMTP 설정 확인 필요)
+### 회원가입 실행 전
+<img width="1440" height="900" alt="회원가입 실행전" src="https://github.com/user-attachments/assets/ac7c2c5e-ddba-4075-b999-8f268e1afab6" />
 
-  ### ✅ 테스트 4: 로그아웃 기능
-  - 입력: 로그아웃 버튼 클릭
-  - 기대 결과: 로그아웃 성공
-  - 실제 결과: ✅ 성공
+### 이메일로 인증코드 발급
+<img width="1440" height="900" alt="회원가입 성공 및 이메일 인증 실행 전" src="https://github.com/user-attachments/assets/d2717090-b9b8-4be7-8c62-0e3e9c15cb8d" />
+
+### 이메일 인증코드 발급 사진
+<img width="1440" height="900" alt="인증코드 이메일 발송 결과" src="https://github.com/user-attachments/assets/9ea0b99f-a803-432d-9042-948d78493003" />
+
+### 이메일 검증 전
+<img width="1440" height="900" alt="이메일 인증 검증 전" src="https://github.com/user-attachments/assets/9bb1edc7-9680-4f67-a52f-dfa56f5ea365" />
+
+### 이메일 검증 완료
+<img width="1440" height="900" alt="이메일 인증 검증 완료" src="https://github.com/user-attachments/assets/c30bb937-4d71-4771-b390-08ad4e9f4bc0" />
+
+</details>
+
+<details>
+  <summary>로그인 테스트</summary>
+
+  ### 로그인 실행 전
+<img width="1440" height="900" alt="로그인 실행 전" src="https://github.com/user-attachments/assets/4019ee07-2849-41ec-87c6-332a3700fc6b" />
+
+  ### 로그인 실행 결과
+<img width="1440" height="900" alt="로그인 결과" src="https://github.com/user-attachments/assets/93eb1c1a-4c1a-43b0-b28c-c899bf597f39" />
+
+</details>
+
+<details>
+  <summary>마이 페이지</summary>
+
+### 마이페이지 화면
+<img width="1440" height="900" alt="마이페이지 실행전" src="https://github.com/user-attachments/assets/b2500217-4f2d-4066-be20-e6b801bc9f2b" />
+
+### 마이페이지 알림 설정 실행 전
+<img width="1440" height="900" alt="마이페이지 알림 설정 실행전" src="https://github.com/user-attachments/assets/b7d9152d-d192-49f1-9868-21ab3ad19ef1" />
+
+### 마이페이지 알림 설정 결과
+<img width="1440" height="900" alt="마이페이지 알림설정 결과" src="https://github.com/user-attachments/assets/6cdbd3f0-186e-4a22-ba38-62e0be0a59e2" />
+
+</details>
+
+<details>
+  <summary>구글 로그인</summary>
+
+### 구글 로그인 실행 전
+<img width="1440" height="900" alt="구글 로그인 실행 전" src="https://github.com/user-attachments/assets/03adf926-481b-4247-b92b-a84a4a1945b9" />
+
+### 구글 로그인
+<img width="1440" height="900" alt="구글 로그인" src="https://github.com/user-attachments/assets/d7763fd0-e508-4864-9157-28488cf35a79" />
+
+### 구글 로그인 권한요청
+<img width="1440" height="900" alt="구글 로그인 권한요청" src="https://github.com/user-attachments/assets/8be37dbe-a52e-4f80-8d09-54bda9d81c20" />
+
+### 구글 로그인 성공
+<img width="1440" height="900" alt="구글 로그인 성공" src="https://github.com/user-attachments/assets/66af5c9c-9d79-4119-afa4-12158210579a" />
+
+</details>
+
+<details>
+  <summary>카카오 로그인</summary>
+
+### 카카오 로그인 실행 전
+<img width="1440" height="900" alt="카카오톡 로그인 실행 전" src="https://github.com/user-attachments/assets/fc25a073-e15b-48ed-ac73-e88bb98715ce" />
+
+### 카카오 로그인
+<img width="1440" height="900" alt="카카오 로그인" src="https://github.com/user-attachments/assets/98c35f73-63f5-4154-af31-6dc5b45520d3" />
+
+### 카카오 로그인 권한요청
+<img width="1440" height="900" alt="카카오 로그인 권한요청" src="https://github.com/user-attachments/assets/c3888e3c-fe59-4e97-83a9-b9a502582da6" />
+
+### 카카오 권한동의 후 로그인 실행 전
+<img width="1440" height="900" alt="동의 후 로그인 실행전" src="https://github.com/user-attachments/assets/bf961002-7edf-4494-8ee3-fb9c672834d3" />
+
+### 카카오 로그인 성공
+<img width="1440" height="900" alt="카카오 로그인 성공" src="https://github.com/user-attachments/assets/666ae738-3347-42bb-8c8b-3499be78481e" />
+
+</details>
+
+<details>
+  <summary>네이버 로그인</summary>
+
+### 네이버 로그인 실행 전
+<img width="1440" height="900" alt="네이버 로그인 실행 전" src="https://github.com/user-attachments/assets/78280e1b-3fdc-4f6c-b876-39ddda7a98fe" />
+
+### 네이버 로그인
+<img width="1440" height="900" alt="네이버 로그인" src="https://github.com/user-attachments/assets/e522d2e7-39ff-4e02-b2f8-bded27100ef6" />
+
+### 네이버 로그인 성공
+<img width="1440" height="900" alt="네이버 로그인 성공" src="https://github.com/user-attachments/assets/c23046ba-9ede-4fd0-ae9e-57738d07b6fa" />
+
 
 </details>
