@@ -1,6 +1,6 @@
 # 스마트 냉장고: 공용 냉장고 관리 웹 서비스
 
-<div align="center">
+<div align="left">
   <img src="https://cdn.discordapp.com/attachments/1386519346293112972/1409777259983667230/image.png?ex=68ae9ce3&is=68ad4b63&hm=dd69c7da78d11a8ad7f81a7af192bb618700e1b8ee175619885ee15d05ba4b8c&" alt="Smart Fridge Project Banner" width="800"/>
 </div>
 
