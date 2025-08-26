@@ -248,36 +248,93 @@
   <img width="100%" alt="문의 등록" src="https://github.com/user-attachments/assets/6b85de17-9b70-41f9-bb1f-7eee0e827032" />
 </details>
 
+## 🧊 냉장고 기능
 
 <details>
-  <summary>냉장고</summary>
+<summary><strong>📌 냉장고 생성</strong></summary>
+<br>
 
- ### 냉장고 생성
-<img width="1917" height="1015" alt="냉장고생성1" src="https://github.com/user-attachments/assets/cc1f5af3-0b8f-4300-9047-c087449b345b" />
-<img width="1898" height="1015" alt="냉장고생성2" src="https://github.com/user-attachments/assets/6fc53353-abaf-4eef-9e2a-9ef1e7332fb7" />
-
-### 냉장고 수정
-<img width="1917" height="1020" alt="냉장고수정1" src="https://github.com/user-attachments/assets/42be1304-bf03-45d7-8c97-628c35820fe8" />
-<img width="1915" height="1015" alt="냉장고수정2" src="https://github.com/user-attachments/assets/fd34d7c9-78d1-4c21-ba59-286bce1f1687" />
-
-### 냉장고 삭제
-<img width="1918" height="1015" alt="냉장고삭제1" src="https://github.com/user-attachments/assets/dd31f5e6-905b-43a0-9d5d-4015969fd011" />
-<img width="1893" height="1015" alt="냉장고삭제2" src="https://github.com/user-attachments/assets/0ec11178-55a1-4c0c-91cc-00877f9f9e96" />
-
-### 냉장고 참여
-<img width="1918" height="1015" alt="냉장고참여1" src="https://github.com/user-attachments/assets/8846fb91-5082-4474-8b99-762e5fad327d" />
-<img width="1919" height="1015" alt="냉장고참여2" src="https://github.com/user-attachments/assets/9a3a3bd9-a079-46ac-9c14-bec2da216ebd" />
-
-### 냉장고 나가기
-<img width="1918" height="1014" alt="냉장고나가기1" src="https://github.com/user-attachments/assets/0d352088-53f3-4632-8d0a-8f4a50b5232a" />
-<img width="1916" height="1013" alt="냉장고나가기2" src="https://github.com/user-attachments/assets/065d36c0-ecb9-47ba-ab30-6f5697b8a7a7" />
-
-### 냉장고 입장
-<img width="1911" height="1014" alt="냉장고 대시보드" src="https://github.com/user-attachments/assets/2998b3ba-d011-4d42-9bbe-cafb667f47aa" />
+<img width="1917" alt="냉장고생성1" src="https://github.com/user-attachments/assets/cc1f5af3-0b8f-4300-9047-c087449b345b" />
+<img width="1898" alt="냉장고생성2" src="https://github.com/user-attachments/assets/6fc53353-abaf-4eef-9e2a-9ef1e7332fb7" />
 
 </details>
 
+---
 
+<details>
+<summary><strong>✏️ 냉장고 수정</strong></summary>
+<br>
+
+<img width="1917" alt="냉장고수정1" src="https://github.com/user-attachments/assets/42be1304-bf03-45d7-8c97-628c35820fe8" />
+<img width="1915" alt="냉장고수정2" src="https://github.com/user-attachments/assets/fd34d7c9-78d1-4c21-ba59-286bce1f1687" />
+
+</details>
+
+---
+
+<details>
+<summary><strong>🗑️ 냉장고 삭제</strong></summary>
+<br>
+
+<img width="1918" alt="냉장고삭제1" src="https://github.com/user-attachments/assets/dd31f5e6-905b-43a0-9d5d-4015969fd011" />
+<img width="1893" alt="냉장고삭제2" src="https://github.com/user-attachments/assets/0ec11178-55a1-4c0c-91cc-00877f9f9e96" />
+
+</details>
+
+---
+
+<details>
+<summary><strong>👥 냉장고 참여</strong></summary>
+<br>
+
+<img width="1918" alt="냉장고참여1" src="https://github.com/user-attachments/assets/8846fb91-5082-4474-8b99-762e5fad327d" />
+<img width="1919" alt="냉장고참여2" src="https://github.com/user-attachments/assets/9a3a3bd9-a079-46ac-9c14-bec2da216ebd" />
+
+</details>
+
+---
+
+<details>
+<summary><strong>🚪 냉장고 나가기</strong></summary>
+<br>
+
+<img width="1918" alt="냉장고나가기1" src="https://github.com/user-attachments/assets/0d352088-53f3-4632-8d0a-8f4a50b5232a" />
+<img width="1916" alt="냉장고나가기2" src="https://github.com/user-attachments/assets/065d36c0-ecb9-47ba-ab30-6f5697b8a7a7" />
+
+</details>
+
+---
+
+<details>
+<summary><strong>📊 냉장고 입장 (대시보드)</strong></summary>
+<br>
+
+<img width="1911" alt="냉장고 대시보드" src="https://github.com/user-attachments/assets/2998b3ba-d011-4d42-9bbe-cafb667f47aa" />
+
+</details>
+
+<details>
+  <summary>식품</summary>
+
+### 식품등록
+<img width="1917" height="1015" alt="스크린샷 2025-08-26 165259" src="https://github.com/user-attachments/assets/d9ca7291-cc8c-40d1-b293-516ad0fd24ca" />
+<img width="1919" height="1015" alt="식품등록2" src="https://github.com/user-attachments/assets/048c9637-99dc-459b-bddd-90f8e7ccfd18" />
+<img width="1919" height="1018" alt="식품등록3" src="https://github.com/user-attachments/assets/d04dd39c-626a-463b-b7ac-61cfd49b27e2" />
+
+### 심품수정
+<img width="1919" height="1017" alt="스크린샷 2025-08-26 165450" src="https://github.com/user-attachments/assets/d9908272-7581-4e44-baa1-4be70e572ba9" />
+<img width="1919" height="1014" alt="스크린샷 2025-08-26 165437" src="https://github.com/user-attachments/assets/f8e5fed7-3e82-44a1-818a-b20bd941b665" />
+<img width="1919" height="1018" alt="식품수정3" src="https://github.com/user-attachments/assets/1d14ce54-26cd-4377-be80-efbbf4b58051" />
+
+### 식품삭제
+<img width="1919" height="1013" alt="식품삭제1" src="https://github.com/user-attachments/assets/85f4185b-5611-4075-abdb-d5b685de4d45" />
+<img width="1919" height="1018" alt="식품삭제2" src="https://github.com/user-attachments/assets/10019246-0af1-4198-865d-6a4db9ce1659" />
+
+</details>
+
+<details>
+<summary><strong>회원</strong></summary>
+<br>
 <details>
   <summary>회원가입 테스트</summary>
 
@@ -372,5 +429,5 @@
 ### 네이버 로그인 성공
 <img width="1440" height="900" alt="네이버 로그인 성공" src="https://github.com/user-attachments/assets/c23046ba-9ede-4fd0-ae9e-57738d07b6fa" />
 
-
+</details>
 </details>
