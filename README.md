@@ -403,6 +403,26 @@
 </details>
 
 <details>
+<summary><strong>게시글</strong></summary>
+<br>
+
+<details>
+<summary><strong>게시글 등록</strong></summary>
+<br>
+
+<img width="1919" height="1017" alt="스크린샷 2025-08-26 172218" src="https://github.com/user-attachments/assets/e1a4856d-2404-4e0d-a0d4-ce4007155cea" />
+<img width="1919" height="1017" alt="스크린샷 2025-08-26 172248" src="https://github.com/user-attachments/assets/22a91b73-4ac2-4aa0-9c95-4a0b8cc802fe" />
+<img width="1916" height="1016" alt="스크린샷 2025-08-26 172303" src="https://github.com/user-attachments/assets/387a4c17-40a2-479b-8231-7ca83f307807" />
+<img width="1919" height="1019" alt="스크린샷 2025-08-26 173319" src="https://github.com/user-attachments/assets/de07a804-8fab-4fc8-b4e5-ba5ec9920867" />
+<img width="1919" height="1020" alt="스크린샷 2025-08-26 173407" src="https://github.com/user-attachments/assets/cf7cf218-74e9-4a22-9e2a-131263829a58" />
+<img width="1918" height="1017" alt="스크린샷 2025-08-26 173416" src="https://github.com/user-attachments/assets/94822f13-85dd-482c-953b-c583eb98a268" />
+
+</details>
+
+</details>
+
+
+<details>
 <summary><strong>👤 회원</strong></summary>
 <br>
 
