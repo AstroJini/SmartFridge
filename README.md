@@ -148,4 +148,4 @@
 <br/>
 
 ## 💾 ERD
-<img width="100%" alt="SmartFridge ERD" src="https://github.com/user-attachments/assets/a4fc4864-3a89-4fc0-9ba4-3b04de4a79b7" />
+<img width="100%" alt="SmartFridge ERD" src="https://github.com/user-attachments/assets/e36c9e41-28f6-4ea1-8cc4-a41287fa6f27" />
