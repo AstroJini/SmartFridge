@@ -1,6 +1,8 @@
 # 스마트 냉장고: 공용 냉장고 관리 웹 서비스
 
-공용 냉장고의 청결과 사용자 간의 소통을 돕는 음식 등록 및 관리 웹 서비스입니다.
+<div align="center">
+  <img src="https://cdn.discordapp.com/attachments/1386519346293112972/1409777259983667230/image.png?ex=68ae9ce3&is=68ad4b63&hm=dd69c7da78d11a8ad7f81a7af192bb618700e1b8ee175619885ee15d05ba4b8c&" alt="Smart Fridge Project Banner" width="800"/>
+</div>
 
 <br/>
 
@@ -20,7 +22,7 @@
 공용 냉장고 청결과 사용자 소통을 돕는 음식 등록·관리 웹 서비스
 
 <details>
-<summary><strong>주제 선정 배경 (클릭하여 펼치기)</strong></summary>
+<summary><strong>주제 선정 배경</strong></summary>
 <br>
 <ul>
     <li>
@@ -54,7 +56,7 @@
 </details>
 
 <details>
-<summary><strong>기대 효과 (클릭하여 펼치기)</strong></summary>
+<summary><strong>기대 효과</strong></summary>
 <br>
 <ul>
     <li>
