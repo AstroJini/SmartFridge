@@ -275,6 +275,24 @@
 
 </details>
 
+<details>
+  <summary>식품</summary>
+
+### 식품등록
+<img width="1917" height="1015" alt="스크린샷 2025-08-26 165259" src="https://github.com/user-attachments/assets/d9ca7291-cc8c-40d1-b293-516ad0fd24ca" />
+<img width="1919" height="1015" alt="식품등록2" src="https://github.com/user-attachments/assets/048c9637-99dc-459b-bddd-90f8e7ccfd18" />
+<img width="1919" height="1018" alt="식품등록3" src="https://github.com/user-attachments/assets/d04dd39c-626a-463b-b7ac-61cfd49b27e2" />
+
+### 심품수정
+<img width="1919" height="1017" alt="스크린샷 2025-08-26 165450" src="https://github.com/user-attachments/assets/d9908272-7581-4e44-baa1-4be70e572ba9" />
+<img width="1919" height="1014" alt="스크린샷 2025-08-26 165437" src="https://github.com/user-attachments/assets/f8e5fed7-3e82-44a1-818a-b20bd941b665" />
+<img width="1919" height="1018" alt="식품수정3" src="https://github.com/user-attachments/assets/1d14ce54-26cd-4377-be80-efbbf4b58051" />
+
+### 식품삭제
+<img width="1919" height="1013" alt="식품삭제1" src="https://github.com/user-attachments/assets/85f4185b-5611-4075-abdb-d5b685de4d45" />
+<img width="1919" height="1018" alt="식품삭제2" src="https://github.com/user-attachments/assets/10019246-0af1-4198-865d-6a4db9ce1659" />
+
+</details>
 
 <details>
   <summary>회원가입 테스트</summary>
