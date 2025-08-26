@@ -176,12 +176,37 @@
   - 입력: 냉장고 ID
   - 기대 결과: 카테고리 별 알림 목록 조회
   - 실제 결과: ✅ 성공
-  <img width="100%" alt="알림 목록(전체)" src="https://github.com/user-attachments/assets/f6e0ac80-c8f1-4eff-8c5f-ddf417aac565" /> 
-### 💬 문의하기
-  - 입력: 로그아웃 버튼 클릭
-  - 기대 결과: 로그아웃 성공
-  - 실제 결과: ✅ 성공
 
+    <알림 목록 - 전체>
+    <img width="100%" alt="알림 목록(전체)" src="https://github.com/user-attachments/assets/f6e0ac80-c8f1-4eff-8c5f-ddf417aac565" /> 
+
+    <알림 목록 - 식품 등록>
+    <img width="100%" alt="알림 목록(식품 등록)" src="https://github.com/user-attachments/assets/e29efa8a-2055-41b1-bb56-bb364df5fb21" />
+
+    <알림 목록 - 댓글>
+    <img width="100%" alt="알림 목록(댓글)" src="https://github.com/user-attachments/assets/3cdb92d8-df79-4ba9-841f-a1c3ce4b139c" />
+
+    <알림 목록 - 멤버 참여>
+    <img width="100%" alt="알림 목록(멤버참여)" src="https://github.com/user-attachments/assets/a33de027-31e2-4424-9c6d-6241b5c64087" />
+
+### 💬 문의 화면
+- 입력: X
+- 기대 결과: 기존 문의 목록이 없는 경우 첫 문의 등록 화면 표시
+- 실제 결과: ✅ 성공
+  <img width="100%" alt="문의하기 화면" src="https://github.com/user-attachments/assets/6d42055c-e78c-495b-9cf4-8c97622e498e" />
+
+
+### 💬 문의 목록
+  - 입력: X
+  - 기대 결과: 문의 목록 조회 성공
+  - 실제 결과: ✅ 성공
+  <img width="100%" alt="문의 목록" src="https://github.com/user-attachments/assets/645cd71c-762f-402f-89f2-82dbc6cd65dc" />
+
+### 💬 문의 등록
+- 입력: X
+- 기대 결과: 문의 목록 조회 성공
+- 실제 결과: ✅ 성공
+  <img width="100%" alt="문의 등록" src="https://github.com/user-attachments/assets/6b85de17-9b70-41f9-bb1f-7eee0e827032" />
 </details>
 
 
