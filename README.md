@@ -192,25 +192,25 @@
 <img width="1897" height="1002" alt="Image" src="https://github.com/user-attachments/assets/f1287850-c81e-453d-af4f-cfcf56b41091" />
 </details>
 </details>
-<details>
-  <summary>지현</summary>
 
-  ### 🔔 알림 목록
+<details>
+  <summary>알림</summary>
+### 🔔 알림 목록
   - 입력: 냉장고 ID
   - 기대 결과: 카테고리 별 알림 목록 조회
   - 실제 결과: ✅ 성공
 
-    <알림 목록 - 전체>
-    <img width="100%" alt="알림 목록(전체)" src="https://github.com/user-attachments/assets/f6e0ac80-c8f1-4eff-8c5f-ddf417aac565" /> 
+<알림 목록 - 전체>
+<img width="100%" alt="알림 목록(전체)" src="https://github.com/user-attachments/assets/f6e0ac80-c8f1-4eff-8c5f-ddf417aac565" /> 
 
-    <알림 목록 - 식품 등록>
-    <img width="100%" alt="알림 목록(식품 등록)" src="https://github.com/user-attachments/assets/e29efa8a-2055-41b1-bb56-bb364df5fb21" />
+<알림 목록 - 식품 등록>
+<img width="100%" alt="알림 목록(식품 등록)" src="https://github.com/user-attachments/assets/e29efa8a-2055-41b1-bb56-bb364df5fb21" />
 
-    <알림 목록 - 댓글>
-    <img width="100%" alt="알림 목록(댓글)" src="https://github.com/user-attachments/assets/3cdb92d8-df79-4ba9-841f-a1c3ce4b139c" />
+<알림 목록 - 댓글>
+<img width="100%" alt="알림 목록(댓글)" src="https://github.com/user-attachments/assets/3cdb92d8-df79-4ba9-841f-a1c3ce4b139c" />
 
-    <알림 목록 - 멤버 참여>
-    <img width="100%" alt="알림 목록(멤버참여)" src="https://github.com/user-attachments/assets/a33de027-31e2-4424-9c6d-6241b5c64087" />
+<알림 목록 - 멤버 참여>
+<img width="100%" alt="알림 목록(멤버참여)" src="https://github.com/user-attachments/assets/a33de027-31e2-4424-9c6d-6241b5c64087" />
 
 ### 🔔 실시간 알림
   - 입력: X
@@ -218,20 +218,22 @@
   - 실제 결과: ✅ 성공
 
     <실시간 알림 - 멤버 참여>
-    <img width="939" height="903" alt="Image" src="https://github.com/user-attachments/assets/b2a4e112-956f-4a19-8300-1307937a088c" />
+    <img width="100%" alt="Image" src="https://github.com/user-attachments/assets/b2a4e112-956f-4a19-8300-1307937a088c" />
     <실시간 알림 - 공지 사항>
-    <img width="1283" height="741" alt="Image" src="https://github.com/user-attachments/assets/9b144853-47ea-4fdd-afac-a3891f2a61e2" />
+    <img width="100%" alt="Image" src="https://github.com/user-attachments/assets/9b144853-47ea-4fdd-afac-a3891f2a61e2" />
     <실시간 알림 - 유통기한>
-    <img width="1903" height="902" alt="Image" src="https://github.com/user-attachments/assets/5251f06e-6a57-4ffa-bb63-01b9c0c9d50f" />
+    <img width="100%" alt="Image" src="https://github.com/user-attachments/assets/5251f06e-6a57-4ffa-bb63-01b9c0c9d50f" />
     <실시간 알림 - 식품 등록>
-    <img width="939" height="899" alt="Image" src="https://github.com/user-attachments/assets/66916728-3eaa-4022-8762-0b487cea1133" />
+    <img width="100%" alt="Image" src="https://github.com/user-attachments/assets/66916728-3eaa-4022-8762-0b487cea1133" />
+</details>
 
+<details>
+    <summary>문의</summary>
 ### 💬 문의 화면
 - 입력: X
 - 기대 결과: 기존 문의 목록이 없는 경우 첫 문의 등록 화면 표시
 - 실제 결과: ✅ 성공
   <img width="100%" alt="문의하기 화면" src="https://github.com/user-attachments/assets/6d42055c-e78c-495b-9cf4-8c97622e498e" />
-
 
 ### 💬 문의 목록
   - 입력: X
