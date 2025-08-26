@@ -186,17 +186,30 @@
 
 
 <details>
-  <summary>찬진</summary>
+  <summary>냉장고</summary>
 
-  ### ⚠️ 테스트 3: 비밀번호 재설정
-  - 입력: 이메일
-  - 기대 결과: 이메일로 재설정 링크 발송
-  - 실제 결과: ⚠️ 링크 발송 실패 (SMTP 설정 확인 필요)
+ ### 냉장고 생성
+<img width="1917" height="1015" alt="냉장고생성1" src="https://github.com/user-attachments/assets/cc1f5af3-0b8f-4300-9047-c087449b345b" />
+<img width="1898" height="1015" alt="냉장고생성2" src="https://github.com/user-attachments/assets/6fc53353-abaf-4eef-9e2a-9ef1e7332fb7" />
 
-  ### ✅ 테스트 4: 로그아웃 기능
-  - 입력: 로그아웃 버튼 클릭
-  - 기대 결과: 로그아웃 성공
-  - 실제 결과: ✅ 성공
+### 냉장고 수정
+<img width="1917" height="1020" alt="냉장고수정1" src="https://github.com/user-attachments/assets/42be1304-bf03-45d7-8c97-628c35820fe8" />
+<img width="1915" height="1015" alt="냉장고수정2" src="https://github.com/user-attachments/assets/fd34d7c9-78d1-4c21-ba59-286bce1f1687" />
+
+### 냉장고 삭제
+<img width="1918" height="1015" alt="냉장고삭제1" src="https://github.com/user-attachments/assets/dd31f5e6-905b-43a0-9d5d-4015969fd011" />
+<img width="1893" height="1015" alt="냉장고삭제2" src="https://github.com/user-attachments/assets/0ec11178-55a1-4c0c-91cc-00877f9f9e96" />
+
+### 냉장고 참여
+<img width="1918" height="1015" alt="냉장고참여1" src="https://github.com/user-attachments/assets/8846fb91-5082-4474-8b99-762e5fad327d" />
+<img width="1919" height="1015" alt="냉장고참여2" src="https://github.com/user-attachments/assets/9a3a3bd9-a079-46ac-9c14-bec2da216ebd" />
+
+### 냉장고 나가기
+<img width="1918" height="1014" alt="냉장고나가기1" src="https://github.com/user-attachments/assets/0d352088-53f3-4632-8d0a-8f4a50b5232a" />
+<img width="1916" height="1013" alt="냉장고나가기2" src="https://github.com/user-attachments/assets/065d36c0-ecb9-47ba-ab30-6f5697b8a7a7" />
+
+### 냉장고 입장
+<img width="1911" height="1014" alt="냉장고 대시보드" src="https://github.com/user-attachments/assets/2998b3ba-d011-4d42-9bbe-cafb667f47aa" />
 
 </details>
 
