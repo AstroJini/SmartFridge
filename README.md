@@ -176,8 +176,7 @@
   - 입력: 냉장고 ID
   - 기대 결과: 카테고리 별 알림 목록 조회
   - 실제 결과: ✅ 성공
-    ![알림목록(전체).png](../../../Downloads/%EC%95%8C%EB%A6%BC%EB%AA%A9%EB%A1%9D%28%EC%A0%84%EC%B2%B4%29.png)
-  
+  <img width="100%" alt="알림 목록(전체)" src="https://github.com/user-attachments/assets/f6e0ac80-c8f1-4eff-8c5f-ddf417aac565" /> 
 ### 💬 문의하기
   - 입력: 로그아웃 버튼 클릭
   - 기대 결과: 로그아웃 성공
