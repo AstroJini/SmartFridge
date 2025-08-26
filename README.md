@@ -189,6 +189,20 @@
     <알림 목록 - 멤버 참여>
     <img width="100%" alt="알림 목록(멤버참여)" src="https://github.com/user-attachments/assets/a33de027-31e2-4424-9c6d-6241b5c64087" />
 
+### 🔔 실시간 알림
+  - 입력: X
+  - 기대 결과: 이벤트 별 실시간 알림 전송 후 알림 배지에 카운트
+  - 실제 결과: ✅ 성공
+
+    <실시간 알림 - 멤버 참여>
+    <img width="939" height="903" alt="Image" src="https://github.com/user-attachments/assets/b2a4e112-956f-4a19-8300-1307937a088c" />
+    <실시간 알림 - 공지 사항>
+    <img width="1283" height="741" alt="Image" src="https://github.com/user-attachments/assets/9b144853-47ea-4fdd-afac-a3891f2a61e2" />
+    <실시간 알림 - 유통기한>
+    <img width="1903" height="902" alt="Image" src="https://github.com/user-attachments/assets/5251f06e-6a57-4ffa-bb63-01b9c0c9d50f" />
+    <실시간 알림 - 식품 등록>
+    <img width="939" height="899" alt="Image" src="https://github.com/user-attachments/assets/66916728-3eaa-4022-8762-0b487cea1133" />
+
 ### 💬 문의 화면
 - 입력: X
 - 기대 결과: 기존 문의 목록이 없는 경우 첫 문의 등록 화면 표시
