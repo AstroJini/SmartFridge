@@ -169,7 +169,7 @@ public class FridgeService {
     }
 
     @Transactional
-    public void delegateManager(Long fridgeId, UUID memberId) {
+    public void delegateManager(Long fridgeId, String memberEmail) {
         FridgeAccessValidator.FridgeContext context = fridgeAccessValidator.validate(fridgeId);
         if (context.type() != Type.MANAGER) {
             throw new AccessDeniedException("오직 MANAGER만 권한을 위임할 수 있습니다.");
@@ -177,7 +177,7 @@ public class FridgeService {
         Fridge fridge = context.fridge();
         Member currentManager = context.member();
 
-        Member newManager = memberRepository.findById(memberId)
+        Member newManager = memberRepository.findByEmail(memberEmail)
                 .orElseThrow(() -> new EntityNotFoundException("새로운 매니저로 지정할 사용자를 찾을 수 없습니다."));
 
         FridgeMember currentFridgeManager = fridgeMemberRepository.findByFridgeAndMember(fridge, currentManager)

@@ -117,8 +117,8 @@ public class FridgeController {
     @PatchMapping("/{fridgeId}/delegateManager")
     public ResponseEntity<?> delegateManager(
             @PathVariable Long fridgeId,
-            @RequestParam("memberId") UUID memberId) {
-        fridgeService.delegateManager(fridgeId, memberId);
+            @RequestParam("memberEmail") String memberEmail) {
+        fridgeService.delegateManager(fridgeId, memberEmail);
         return new ResponseEntity<>(
                 CommonDto.builder()
                         .status_code(HttpStatus.OK.value())
