@@ -2,6 +2,7 @@ package com.be16_2nd.SmartFridge.fridge.service;
 
 import com.be16_2nd.SmartFridge.Post.repository.PostRepository;
 import com.be16_2nd.SmartFridge.chat.repository.ManagerChatRoomRepository;
+import com.be16_2nd.SmartFridge.chat.service.ChatService;
 import com.be16_2nd.SmartFridge.common.service.FridgeAccessValidator;
 import com.be16_2nd.SmartFridge.chat.service.ManagerChatRoomLifecycle;
 import com.be16_2nd.SmartFridge.food.repository.FoodRepository;
@@ -42,6 +43,7 @@ public class FridgeService {
     private final FridgeAccessValidator fridgeAccessValidator;
     private final FoodRepository foodRepository;
     private final PostRepository postRepository;
+    private final ChatService chatService;
 
     public FridgeCreateResDto create(FridgeCreateDto fridgeCreateDto){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -212,5 +214,6 @@ public class FridgeService {
 
         fridgeMemberRepository.delete(fridgeMemberToDelete);
         managerChatRoomLifecycle.deleteManagerChatRoom(memberToDelete, fridge);
+        chatService.leaveForcePurchaseChatRoom(fridgeId, memberEmail);
     }
 }

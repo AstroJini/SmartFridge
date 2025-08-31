@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -424,12 +425,42 @@ public class ChatService {
         ChatParticipant chatParticipant = chatParticipantRepository.findByPurchaseChatRoomAndMember(chatRoom, member).orElseThrow(()->new EntityNotFoundException("채팅방 참여자가 아닙니다"));
         chatParticipantRepository.delete(chatParticipant);
         chatRoom.updateCurrentParticipants(chatRoom.getCurrentParticipants()-1);
-        
+
         // 방장이 나갈 시 채팅방 삭제(소프트)
         if(chatRoom.getCreator().equals(member)){
             chatRoom.updateIsActive(false);
         }
     }
+
+    // 냉장고 나갈 시
+    public void leaveForcePurchaseChatRoom(Long fridgeId, String memberEmail){
+        Fridge fridge = fridgeRepository.findById(fridgeId).orElseThrow(()->new EntityNotFoundException("fridge not found"));
+
+        // 권한 체크
+        Member manager = memberRepository.findByEmail(SecurityContextHolder.getContext().getAuthentication().getName()).orElseThrow(()->new EntityNotFoundException("member not found"));
+        if(!fridgeMemberRepository.findByFridgeAndMember(fridge, manager).orElseThrow(()->new EntityNotFoundException("")).getType().equals(Type.MANAGER)){
+            throw new AccessDeniedException("MANAGER만 가능합니다");
+        }
+        
+        List<PurchaseChatRoom> chatRooms = purchaseChatRoomRepository.findByFridge(fridge);
+        Member member = memberRepository.findByEmail(memberEmail).orElseThrow(() -> new EntityNotFoundException("member not found"));
+        
+
+        for(PurchaseChatRoom purchaseChatRoom : chatRooms){
+            if(chatParticipantRepository.findByPurchaseChatRoomAndMember(purchaseChatRoom, member).isPresent()){
+                ChatParticipant chatParticipant = chatParticipantRepository.findByPurchaseChatRoomAndMember(purchaseChatRoom, member).get();
+                chatParticipantRepository.delete(chatParticipant);
+                purchaseChatRoom.updateCurrentParticipants(purchaseChatRoom.getCurrentParticipants()-1);
+            }
+
+            // 방장이 나갈 시 채팅방 삭제(소프트)
+            if(purchaseChatRoom.getCreator().equals(member)){
+                purchaseChatRoom.updateIsActive(false);
+            }
+        }
+    }
+
+
     
     // 채팅 메시지 사진 저장
     public List<String> uploadImages(Long roomId, ChatRoomType chatRoomType, List<MultipartFile> files){
