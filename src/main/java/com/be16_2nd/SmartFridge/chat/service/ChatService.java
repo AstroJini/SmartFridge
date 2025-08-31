@@ -267,7 +267,7 @@ public class ChatService {
                     .imageUrls(imageUrls)
                     .senderEmail(chatMessage.getSender().getEmail())
                     .senderName(chatMessage.getSender().getName())
-                    .timestamp(chatMessage.getCreatedTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH시 mm분")))
+                    .timestamp(chatMessage.getCreatedTime().toString())
                     .build();
             chatMessageDtos.add(chatMessageDto);
         }
@@ -300,7 +300,7 @@ public class ChatService {
                     .imageUrls(imageUrls)
                     .senderEmail(chatMessage.getSender().getEmail())
                     .senderName(chatMessage.getSender().getName())
-                    .timestamp(chatMessage.getCreatedTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH시 mm분")))
+                    .timestamp(chatMessage.getCreatedTime().toString())
                     .build();
             chatMessageDtos.add(chatMessageDto);
         }
