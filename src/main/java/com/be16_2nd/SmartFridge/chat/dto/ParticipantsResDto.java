@@ -9,12 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PurchaseChatRoomListResDto {
-    private Long roomId;
-    private String userName;
-    private String roomName;
-    private Integer currentParticipants;
-    private Integer maxParticipants;
+public class ParticipantsResDto {
+    private String memberName;
+    private String memberEmail;
+    private String profileImage;
+    private Boolean isOnline;
     private Boolean isCreator;
-    private String joinStatus;
 }
