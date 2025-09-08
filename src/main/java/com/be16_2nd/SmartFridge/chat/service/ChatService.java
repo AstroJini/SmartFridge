@@ -14,7 +14,7 @@ import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.member.repository.MemberRepository;
 import com.be16_2nd.SmartFridge.notification.domain.NotificationType;
 import com.be16_2nd.SmartFridge.notification.service.NotificationPublisher;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.be16_2nd.SmartFridge.notification.service.NotificationService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -55,6 +54,7 @@ public class ChatService {
     private final FridgeAccessValidator fridgeAccessValidator;
     private final NotificationPublisher notificationPublisher;
     private final ManagerChatRoomLifecycle managerChatRoomLifecycle;
+    private final NotificationService notificationService;
 
     public ChatMessage saveMessage(Long roomId, ChatMessageDto chatMessageDto) {
 
@@ -172,7 +172,10 @@ public class ChatService {
 
         } else if (chatMessage.getChatRoomType().equals(ChatRoomType.PURCHASE)) {
             // 공동구매 채팅
-            receiverEmails = chatMessage.getPurchaseChatRoom().getParticipants().stream()
+            PurchaseChatRoom chatRoom = purchaseChatRoomRepository.findById(chatMessage.getPurchaseChatRoom().getId())
+                    .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 채팅방입니다."));
+
+            receiverEmails = chatRoom.getParticipants().stream()
                     .map(ChatParticipant::getMember)
                     .map(Member::getEmail)
                     .filter(email -> !email.equals(senderEmail))
@@ -409,12 +412,7 @@ public class ChatService {
             // 공동 구매 채팅방 개설자에게만 발송
             Member receiver = chatRoom.getCreator();
 
-            notificationPublisher.publish(
-                    chatRoom.getFridge().getId()
-                    , receiver.getEmail()
-                    , "공동 구매 채팅방이 가득 찼습니다"
-                    , "ROOM_FULL"
-            );
+            notificationService.create(receiver, NotificationType.ROOM_FULL, chatRoom);
         }
     }
 
@@ -511,7 +509,7 @@ public class ChatService {
         }
         return participantsResDtos;
     }
-    
+
     // 냉장고 구매 완료 버튼 누를 시 CLOSE상태로 전환
     public Long completePurchase(Long roomId){
         PurchaseChatRoom purchaseChatRoom = purchaseChatRoomRepository.findById(roomId).orElseThrow(()->new EntityNotFoundException("room cannot find"));
