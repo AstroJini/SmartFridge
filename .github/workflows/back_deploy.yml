@@ -45,4 +45,4 @@ jobs:
 
       - name: eks kubectl apply
         run: |
-          kubectl rollout restart deployment smartfridge-deployment -n 5team
+          kubectl rollout restart deployment smartfridge-depl -n 5team
