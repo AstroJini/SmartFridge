@@ -1,9 +1,9 @@
 package com.be16_2nd.SmartFridge.common.service;
 
-import com.be16_2nd.SmartFridge.Post.domain.Post;
-import com.be16_2nd.SmartFridge.Post.domain.PostLike;
-import com.be16_2nd.SmartFridge.Post.repository.PostLikeRepository;
-import com.be16_2nd.SmartFridge.Post.repository.PostRepository;
+import com.be16_2nd.SmartFridge.post.domain.Post;
+import com.be16_2nd.SmartFridge.post.domain.PostLike;
+import com.be16_2nd.SmartFridge.post.repository.PostLikeRepository;
+import com.be16_2nd.SmartFridge.post.repository.PostRepository;
 import com.be16_2nd.SmartFridge.common.dto.RabbitMqDto;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.member.repository.MemberRepository;

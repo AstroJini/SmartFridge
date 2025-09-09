@@ -1,6 +1,6 @@
 package com.be16_2nd.SmartFridge.fridge.service;
 
-import com.be16_2nd.SmartFridge.Post.repository.PostRepository;
+import com.be16_2nd.SmartFridge.post.repository.PostRepository;
 import com.be16_2nd.SmartFridge.chat.domain.ChatRoomType;
 import com.be16_2nd.SmartFridge.chat.domain.IsRead;
 import com.be16_2nd.SmartFridge.chat.domain.ManagerChatRoom;

@@ -1,9 +1,9 @@
 package com.be16_2nd.SmartFridge.member.service;
 
-import com.be16_2nd.SmartFridge.Post.domain.Post;
-import com.be16_2nd.SmartFridge.Post.repository.PostCommentRepository;
-import com.be16_2nd.SmartFridge.Post.repository.PostLikeRepository;
-import com.be16_2nd.SmartFridge.Post.repository.PostRepository;
+import com.be16_2nd.SmartFridge.post.domain.Post;
+import com.be16_2nd.SmartFridge.post.repository.PostCommentRepository;
+import com.be16_2nd.SmartFridge.post.repository.PostLikeRepository;
+import com.be16_2nd.SmartFridge.post.repository.PostRepository;
 import com.be16_2nd.SmartFridge.common.service.S3Uploader;
 import com.be16_2nd.SmartFridge.member.domain.Member;
 import com.be16_2nd.SmartFridge.member.domain.SocialType;
@@ -11,7 +11,6 @@ import com.be16_2nd.SmartFridge.member.dto.*;
 import com.be16_2nd.SmartFridge.member.repository.MemberRepository;
 import com.be16_2nd.SmartFridge.notification.domain.NotificationSetting;
 import com.be16_2nd.SmartFridge.notification.dto.NotificationSettingDto;
-import com.be16_2nd.SmartFridge.notification.repository.NotificationRepository;
 import com.be16_2nd.SmartFridge.notification.repository.NotificationSettingRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

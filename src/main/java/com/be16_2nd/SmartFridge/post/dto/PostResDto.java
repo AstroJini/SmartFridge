@@ -1,4 +1,4 @@
-package com.be16_2nd.SmartFridge.member.dto;
+package com.be16_2nd.SmartFridge.post.dto;
 
 import com.be16_2nd.SmartFridge.post.domain.Post;
 import lombok.AllArgsConstructor;
@@ -13,9 +13,7 @@ import java.time.temporal.ChronoUnit;
 @NoArgsConstructor
 @Data
 @Builder
-public class MyPostResDto {
-    private Long fridgeId;
-    private String fridgeName;
+public class PostResDto {
     private Long id;
     private String title;
     private String writer;
@@ -23,10 +21,8 @@ public class MyPostResDto {
     private Long viewCount;
     private String timeAgo;
 
-    public static MyPostResDto fromEntity(Post post, Long viewCount) {
-        return MyPostResDto.builder()
-                .fridgeId(post.getFridge().getId())
-                .fridgeName(post.getFridge().getFridgeName())
+    public static PostResDto fromEntity(Post post,Long viewCount) {
+        return PostResDto.builder()
                 .id(post.getId())
                 .title(post.getTitle())
                 .writer(post.getMember().getName())
