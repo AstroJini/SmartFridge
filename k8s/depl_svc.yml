@@ -16,6 +16,7 @@ spec:
       containers:
       - name: smartfridge-container
         image: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com/5team/smartfridge:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         resources:
