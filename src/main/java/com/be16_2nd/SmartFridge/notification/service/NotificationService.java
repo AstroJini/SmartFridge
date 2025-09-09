@@ -1,8 +1,7 @@
 package com.be16_2nd.SmartFridge.notification.service;
 
-import com.be16_2nd.SmartFridge.Post.domain.Post;
-import com.be16_2nd.SmartFridge.Post.domain.PostComment;
-import com.be16_2nd.SmartFridge.chat.domain.ManagerChatRoom;
+import com.be16_2nd.SmartFridge.post.domain.Post;
+import com.be16_2nd.SmartFridge.post.domain.PostComment;
 import com.be16_2nd.SmartFridge.chat.domain.PurchaseChatRoom;
 import com.be16_2nd.SmartFridge.common.service.FridgeAccessValidator;
 import com.be16_2nd.SmartFridge.food.domain.Food;
