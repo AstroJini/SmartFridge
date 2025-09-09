@@ -19,7 +19,7 @@ WORKDIR /app
 COPY --from=stage1 /app/build/libs/*.jar app.jar
 
 # 실행 : CMD 또는 ENTRYPOINT를 통해 컨테이너 실행
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
 
 # 도커이미지 생성
 # docker build -t ordersystem:v1.0 .
