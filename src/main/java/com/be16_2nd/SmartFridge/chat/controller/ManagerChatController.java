@@ -30,7 +30,7 @@ public class ManagerChatController {
             @PageableDefault(size = 40, sort = "createdTime", direction = Sort.Direction.DESC) Pageable pageable) {
 
         // 서비스 메서드에 pageable 객체를 전달합니다.
-        Page<ChatMessageDto> chatMessagePage = chatService.getChatHistory(ChatRoomType.PURCHASE, roomId, pageable);
+        Page<ChatMessageDto> chatMessagePage = chatService.getChatHistory(ChatRoomType.MANAGER, roomId, pageable);
 
         return new ResponseEntity<>(CommonDto.builder()
                 .result(chatMessagePage) // 결과를 Page 객체로 변경
