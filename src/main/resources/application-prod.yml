@@ -16,7 +16,7 @@ spring:
     virtual-host: /
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://${DB_HOST}:3306/smartfridge
+    url: jdbc:mariadb://${DB_HOST}:3306/smartfridge?serverTimezone=Asia/Seoul
     username: admin
     password: ${DB_PW}
   jpa:
