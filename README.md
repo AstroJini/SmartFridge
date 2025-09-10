@@ -213,14 +213,13 @@
 <p><strong>- Kakao</strong></p>
 <img width="100%" alt="카카오 로그인" src="https://github.com/user-attachments/assets/98c35f73-63f5-4154-af31-6dc5b45520d3" />
 <p><strong>- Naver</strong></p>
-![네이버로그인](https://github.com/user-attachments/assets/e8dcb627-8986-4e3b-a77f-69e074beb975)
-
+<img width="100%" alt="네이버로그인" src="https://github.com/user-attachments/assets/e8dcb627-8986-4e3b-a77f-69e074beb975" />
 </details>
 
 <details>
 <summary><strong>마이페이지</strong></summary>
 <br>
-![Image](https://github.com/user-attachments/assets/068477c8-a683-476f-adf9-d8525d8c1879)
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/068477c8-a683-476f-adf9-d8525d8c1879" />
 </details>
 
 </details>
@@ -233,17 +232,20 @@
 
 <details>
 <summary><strong>냉장고 생성</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/05f82e75-dd3d-49bf-879a-fe8d5f4c2843)
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/05f82e75-dd3d-49bf-879a-fe8d5f4c2843" />
 </details>
 
 <details>
 <summary><strong>냉장고 들어가기</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/5a9e24f6-de23-456f-bcd8-94a18183293e)
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/5a9e24f6-de23-456f-bcd8-94a18183293e" />
 </details>
 
 <details>
 <summary><strong>냉장고 수정</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/e30db0a5-5dbe-4ef9-be05-4eedf029ebc7)
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/e30db0a5-5dbe-4ef9-be05-4eedf029ebc7" />
 </details>
 
 <details>
@@ -255,12 +257,14 @@
 
 <details>
 <summary><strong>냉장고 참여</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/64f31049-f3db-49c0-a3d9-301aa21470ef)
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/64f31049-f3db-49c0-a3d9-301aa21470ef" />
 </details>
 
 <details>
 <summary><strong>냉장고 나가기</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/987189f1-30d2-4d20-ac6c-0ed5516b5838)
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/987189f1-30d2-4d20-ac6c-0ed5516b5838" />
 </details>
 
 <details>
@@ -279,23 +283,26 @@
 
 <details>
 <summary><strong>식품 등록</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/d5b8e011-b9e6-4079-b0e5-2c2547b3af9b)
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/d5b8e011-b9e6-4079-b0e5-2c2547b3af9b" />
 </details>
 
 <details>
 <summary><strong>공유 식품 등록</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/fe1b5d7d-7471-4fc3-91cd-90a1ed8cff15)
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/fe1b5d7d-7471-4fc3-91cd-90a1ed8cff15" />
 </details>
 
 <details>
 <summary><strong>식품 임시보관</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/ed3a62c5-c76d-4488-88d9-4600c74384ed)
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/ed3a62c5-c76d-4488-88d9-4600c74384ed" />
 </details>
-
 
 <details>
 <summary><strong>식품 수정 및 삭제</strong></summary>
-<br><br>![Image](https://github.com/user-attachments/assets/15086660-0d77-4f1f-99a2-09db64255131)
+<br><br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/15086660-0d77-4f1f-99a2-09db64255131" />
 </details>
 
 </details>
@@ -307,46 +314,14 @@
 <br>
 <details>
 <summary><strong>게시글 등록</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/93e1926a-f8b9-458d-bb8f-abe6f34c4d5f)
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/93e1926a-f8b9-458d-bb8f-abe6f34c4d5f" />
 </details>
-  
+  
 <details>
 <summary><strong>게시글 좋아요 및 댓글</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/eafff57c-b26f-4f3f-83f2-5ab7c484b764)
-</details>
-</details>
-
 <br>
-
-<details>
-<summary><strong>💬 채팅</strong></summary>
-<br>
-
-
-<details>
-<summary><strong>채팅방 생성</strong></summary>
-<br>
-![Image](https://github.com/user-attachments/assets/46bf72a1-eea3-4a51-b916-7e415602e1da)
-</details>
-<details>
-
-<details>
-<summary><strong>채팅방 참여 및 메시지 전송</strong></summary>
-<br>
-![Image](https://github.com/user-attachments/assets/8ab3fa10-7c1d-4978-9911-176e3ffc440a)
-</details>
-<details>
-<summary><strong>메시지 전송 (텍스트/이미지)</strong></summary>
-<br>
-<p><strong>- 텍스트 메시지</strong></p>
-<img width="100%" alt="텍스트 메시지 전송" src="https://github.com/user-attachments/assets/ae3cf813-e5fd-4154-9092-be776442e318" />
-<p><strong>- 이미지 메시지</strong></p>
-<img width="100%" alt="이미지 메시지 전송" src="https://github.com/user-attachments/assets/2fcae934-ebc8-4532-97e6-a917a2027343" />
-</details>
-<details>
-<summary><strong>채팅방 나가기</strong></summary>
-<br>
-![Image](https://github.com/user-attachments/assets/513ebd42-63a8-4e6d-9138-33067f38946a)
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/eafff57c-b26f-4f3f-83f2-5ab7c484b764" />
 </details>
 </details>
 
@@ -363,7 +338,6 @@
 <details>
 <summary><strong>문의 등록 및 admin문의 답변</strong></summary>
 <br>
-  ![Image](https://github.com/user-attachments/assets/11e64123-4495-4549-b415-fba1a0032703)
 </details>
 </details>
 
@@ -372,41 +346,62 @@
 <details>
 <summary><strong>🔔 알림</strong></summary>
 <br>
-
 <details>
 <summary><strong>알림 목록 조회</strong></summary>
 <br>
 <img width="100%" alt="알림 목록(전체)" src="https://github.com/user-attachments/assets/f6e0ac80-c8f1-4eff-8c5f-ddf417aac565" />
 <img width="100%" alt="알림 목록(카테고리별)" src="https://github.com/user-attachments/assets/e29efa8a-2055-41b1-bb56-bb364df5fb21" />
 </details>
-
 <details>
 <summary><strong>실시간 알림</strong></summary>
 <br>
 <p><strong>- 멤버 참여 알림</strong></p>
-  ![Image](https://github.com/user-attachments/assets/40300cbc-4f58-4ef3-9bd1-f176e006f9d3)
+ 
 <p><strong>- 유통기한 임박 알림</strong></p>
 <img width="100%" alt="실시간 알림(유통기한)" src="https://github.com/user-attachments/assets/5251f06e-6a57-4ffa-bb63-01b9c0c9d50f" />
 </details>
-
 <details>
 <summary><strong>admin 알림 처리</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/940a4905-d0b8-43c6-9d4f-5d1dd5cbfe88)
+<br>
 </details>
-
 <details>
 <summary><strong>공동구매채팅방 알림</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/8d5f37ed-15c5-4dac-9134-f123ff2e2562)
+<br>
 </details>
+<details>
+<summary><strong>식품 등록 알림</strong></summary>
+<br>
+<br>
+</details>
+</details>
+
+<br>
 
 <details>
-<summary><strong>식품 등록 알림 알림</strong></summary>
-<br>![Image](https://github.com/user-attachments/assets/13669fc9-ae0f-47b3-b21f-4c1d3eaabc0f)
-
-<br>![Image](https://github.com/user-attachments/assets/74541c76-901a-4d70-af3b-f4a3eda3e30d)
+<summary><strong>💬 채팅</strong></summary>
+<br>
+<details>
+<summary><strong>채팅방 생성</strong></summary>
+<br>
 </details>
-
+<details>
+<summary><strong>채팅방 참여 및 메시지 전송</strong></summary>
+<br>
 </details>
+<details>
+<summary><strong>메시지 전송 (텍스트/이미지)</strong></summary>
+<br>
+<p><strong>- 텍스트 메시지</strong></p>
+<img width="100%" alt="텍스트 메시지 전송" src="https://github.com/user-attachments/assets/ae3cf813-e5fd-4154-9092-be776442e318" />
+<p><strong>- 이미지 메시지</strong></p>
+<img width="100%" alt="이미지 메시지 전송" src="https://github.com/user-attachments/assets/2fcae934-ebc8-4532-97e6-a917a2027343" />
+</details>
+<details>
+<summary><strong>채팅방 나가기</strong></summary>
+<br>
+</details>
+</details>
+<br>
 
 ---
 
