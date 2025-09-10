@@ -10,7 +10,7 @@
 
 | **김영관** | **김지현** | **윤세진** | **김찬진** |
 | :---: | :---: | :---: | :---: |
-| [<img src="https://avatars.githubusercontent.com/u/102599602?v=4" height=150 width=150> <br/> @YoungKwanK](https://github.com/YoungKwanK) | [<img src="https://avatars.githubusercontent.com/u/97399433?v=4" height=150 width=150> <br/> @Jihyeon0804](https://github.com/Jihyeon0804) | [<img src="https://avatars.githubusercontent.com/u/163013233?v=4" height=150 width=150> <br/> @AstroJini](https://github.com/AstroJini) | [<img src="https://avatars.githubusercontent.com/u/151761821?v=4" height=150 width=150> <br/> @Chanjin629](https://github.com/Chanjin629) |
+| [<img src="https://avatars.githubusercontent.com/u/154659797?v=4" height=150 width=150> <br/> @YoungKwanK](https://github.com/YoungKwanK) | [<img src="https://avatars.githubusercontent.com/u/80299604?v=4" height=150 width=150> <br/> @Jihyeon0804](https://github.com/Jihyeon0804) | [<img src="https://avatars.githubusercontent.com/u/208623826?v=4" height=150 width=150> <br/> @AstroJini](https://github.com/AstroJini) | [<img src="https://avatars.githubusercontent.com/u/113010788?v=4" height=150 width=150> <br/> @Chanjin629](https://github.com/Chanjin629) |
 
 <br/>
 
