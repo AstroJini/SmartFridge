@@ -96,28 +96,48 @@
 
 ---
 
-## 🛠️ 기술 스택
+### **💻 Tech Stacks**
 
-### **데이터베이스**
-![MariaDB](https://img.shields.io/badge/mariadb-003545?style=for-the-badge&logo=mariadb&logoColor=white)
-![Redis](https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
-![Amazon S3](https://img.shields.io/badge/amazons3-569A31?style-for-the-badge&logo=amazons3&logoColor=white)
-
-### **백엔드**
+#### **Backend**
 ![Java](https://img.shields.io/badge/java-007396?style=for-the-badge&logo=openjdk&logoColor=white)
-![Spring](https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-![WebSocket](https://img.shields.io/badge/WebSocket-010101?style=for-the-badge&logo=websocket&logoColor=white)
-![STOMP](https://img.shields.io/badge/STOMP-000000?style=for-the-badge)
+![Spring Boot](https://img.shields.io/badge/spring_boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![JWT](https://img.shields.io/badge/jwt-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)
 
-### **프론트엔드**
+#### **Frontend**
 ![Vue.js](https://img.shields.io/badge/vue.js-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
 ![Vuetify](https://img.shields.io/badge/vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=white)
+![Vuex](https://img.shields.io/badge/vuex-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
+![Vue Router](https://img.shields.io/badge/vue_router-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
+![Axios](https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![CSS3](https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-### **도구**
-![Notion](https://img.shields.io/badge/notion-181717?style=for-the-badge&logo=notion&logoColor=white)
+#### **Database & Storage**
+![MariaDB](https://img.shields.io/badge/mariadb-003545?style=for-the-badge&logo=mariadb&logoColor=white)
+![Redis](https://img.shields.io/badge/redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
+![Amazon S3](https://img.shields.io/badge/amazon_s3-569A31?style=for-the-badge&logo=amazon-s3&logoColor=white)
+
+#### **Real-time Communication**
+![WebSocket](https://img.shields.io/badge/WebSocket-019533?style=for-the-badge&logo=websocket&logoColor=white)
+![StompJS](https://img.shields.io/badge/StompJS-F05032?style=for-the-badge)
+![RabbitMQ](https://img.shields.io/badge/rabbitmq-FF6600?style=for-the-badge&logo=rabbitmq&logoColor=white)
+![SSE](https://img.shields.io/badge/SSE-000000?style=for-the-badge)
+
+#### **DevOps & Infrastructure**
+![Amazon EC2](https://img.shields.io/badge/amazon_ec2-FF9900?style=for-the-badge&logo=amazon-ec2&logoColor=white)
+![Amazon EKS](https://img.shields.io/badge/amazon_eks-FF9900?style=for-the-badge&logo=amazon-eks&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Nginx](https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github_actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+
+#### **Tools & Collaboration**
+![Gradle](https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)
 ![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)
+![Notion](https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+![Discord](https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)
+![ERDCloud](https://img.shields.io/badge/ERDCloud-1E90FF?style=for-the-badge)
 
 ---
 
