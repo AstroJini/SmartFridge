@@ -184,7 +184,7 @@
 <p><strong>- Kakao</strong></p>
 <img width="100%" alt="카카오 로그인" src="https://github.com/user-attachments/assets/98c35f73-63f5-4154-af31-6dc5b45520d3" />
 <p><strong>- Naver</strong></p>
-<img width="100%" alt="네이버 로그인" src="https://github.com/user-attachments/assets/e522d2e7-39ff-4e02-b2f8-bded27100ef6" />
+![ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/4de68047-9ba8-4a96-a91f-df67e185dd29)
 </details>
 
 <details>
