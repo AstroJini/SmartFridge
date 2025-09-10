@@ -170,6 +170,15 @@
 ## 💾 ERD
 <img width="100%" alt="SmartFridge ERD" src="https://github.com/user-attachments/assets/e36c9e41-28f6-4ea1-8cc4-a41287fa6f27" />
 
+<br/>
+
+---
+
+## 🔗 시스템 아키텍쳐
+<img width="817" height="722" alt="Image" src="https://github.com/user-attachments/assets/401415e4-c0ea-46bf-94e8-cb9d449274aa" />
+
+<br/>
+
 ---
 
 ## 테스트 결과물
