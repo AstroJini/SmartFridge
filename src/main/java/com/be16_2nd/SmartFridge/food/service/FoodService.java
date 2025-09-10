@@ -90,9 +90,6 @@ public class FoodService {
         if (!food.getFridge().getId().equals(fridgeId)) {
             throw new IllegalArgumentException("해당 냉장고에 존재하지 않는 식품입니다.");
         }
-        if (context.type() != Type.MANAGER && !food.getMember().getId().equals(context.member().getId())) {
-            throw new IllegalArgumentException("본인이 등록한 식품만 삭제할 수 있습니다.");
-        }
         foodRepository.delete(food);
     }
 
