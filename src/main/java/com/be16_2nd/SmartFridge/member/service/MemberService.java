@@ -1,5 +1,8 @@
 package com.be16_2nd.SmartFridge.member.service;
 
+import com.be16_2nd.SmartFridge.fridge.domain.FridgeMember;
+import com.be16_2nd.SmartFridge.fridge.domain.Type;
+import com.be16_2nd.SmartFridge.fridge.repository.FridgeMemberRepository;
 import com.be16_2nd.SmartFridge.post.domain.Post;
 import com.be16_2nd.SmartFridge.post.repository.PostCommentRepository;
 import com.be16_2nd.SmartFridge.post.repository.PostLikeRepository;
@@ -39,6 +42,7 @@ public class MemberService {
     private final PostLikeRepository postLikeRepository;
     private final PostCommentRepository postCommentRepository;
     private final NotificationSettingRepository notificationSettingRepository;
+    private final FridgeMemberRepository fridgeMemberRepository;
 
     public Member save(MemberCreateDto memberCreateDto){
         if (memberRepository.findByEmail(memberCreateDto.getEmail()).isPresent()){
@@ -98,6 +102,12 @@ public class MemberService {
     public void delete(){
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Member member = memberRepository.findByEmail(email).orElseThrow(()->new EntityNotFoundException("존재하지 않는 회원입니다."));
+        List<FridgeMember> fridgeMembers = fridgeMemberRepository.findAllByMember(member);
+        for(FridgeMember fridgeMember : fridgeMembers){
+            if (fridgeMember.getType().equals(Type.MANAGER)){
+                throw new IllegalArgumentException("관리자인 냉장고가 있습니다. 먼저 권한을 이전해주세요");
+            }
+        }
         memberRepository.delete(member);
     }
 
