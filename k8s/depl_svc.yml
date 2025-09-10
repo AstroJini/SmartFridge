@@ -97,6 +97,21 @@ spec:
             secretKeyRef:
               name: smartfridge-secrets
               key: NAVER_PW
+        - name: ADMIN_NAME
+          valueFrom:
+            secretKeyRef:
+              name: smartfridge-secrets
+              key: ADMIN_NAME
+        - name: ADMIN_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: smartfridge-secrets
+              key: ADMIN_EMAIL
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: smartfridge-secrets
+              key: ADMIN_PASSWORD
         readinessProbe:
           httpGet:
             path: /health
