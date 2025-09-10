@@ -1,5 +1,6 @@
 package com.be16_2nd.SmartFridge.member.domain;
 
+import com.be16_2nd.SmartFridge.chat.domain.ChatMessage;
 import com.be16_2nd.SmartFridge.chat.domain.ChatParticipant;
 import com.be16_2nd.SmartFridge.chat.domain.IsRead;
 import com.be16_2nd.SmartFridge.chat.domain.ManagerChatRoom;
@@ -91,6 +92,10 @@ public class Member extends BaseTimeEntity {
     @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Notification> notifications = new ArrayList<>();
+
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<ChatMessage> chatMessages = new ArrayList<>();
 
 
     public void updatePw(String password) {
