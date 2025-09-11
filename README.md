@@ -175,7 +175,7 @@
 ---
 
 ## 🔗 시스템 아키텍쳐
-<img width="817" height="722" alt="Image" src="https://github.com/user-attachments/assets/401415e4-c0ea-46bf-94e8-cb9d449274aa" />
+<img width="817" height="722" alt="시스템아키텍쳐" src="https://github.com/user-attachments/assets/37b60786-0708-40b4-b481-06656dfbd169" />
 
 <br/>
 
@@ -348,7 +348,8 @@
 <p><strong>- 멤버 참여 알림</strong></p>
  
 <p><strong>- 유통기한 임박 알림</strong></p>
-<img width="100%" alt="실시간 알림(유통기한)" src="https://github.com/user-attachments/assets/5251f06e-6a57-4ffa-bb63-01b9c0c9d50f" />
+<img width="1898" height="911" alt="유통기한 알림 목록" src="https://github.com/user-attachments/assets/e9f98c87-0ea0-4179-86da-bab4ac8bc9ee" />
+<img width="1896" height="902" alt="유통기한 알림 배지" src="https://github.com/user-attachments/assets/d2f16b85-c3e9-48ac-9cf6-45bc235fdabe" />
 </details>
 <details>
 <summary><strong>admin 알림 처리</strong></summary>
