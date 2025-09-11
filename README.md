@@ -355,10 +355,8 @@
 <img width="100%" alt="알림 목록(카테고리별)" src="https://github.com/user-attachments/assets/e29efa8a-2055-41b1-bb56-bb364df5fb21" />
 </details>
 <details>
-<summary><strong>실시간 알림</strong></summary>
+<summary><strong>유통기한알림</strong></summary>
 <br>
-<p><strong>- 멤버 참여 알림</strong></p>
- 
 <p><strong>- 유통기한 임박 알림</strong></p>
 <img width="1898" height="911" alt="유통기한 알림 목록" src="https://github.com/user-attachments/assets/e9f98c87-0ea0-4179-86da-bab4ac8bc9ee" />
 <img width="1896" height="902" alt="유통기한 알림 배지" src="https://github.com/user-attachments/assets/d2f16b85-c3e9-48ac-9cf6-45bc235fdabe" />
