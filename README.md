@@ -190,36 +190,31 @@
 <details>
 <summary><strong>회원가입 (이메일 인증)</strong></summary>
 <br>
-<p><strong>- 회원가입 정보 입력 및 인증코드 발송</strong></p>
-<img width="100%" alt="회원가입 정보 입력" src="https://github.com/user-attachments/assets/d2717090-b9b8-4be7-8c62-0e3e9c15cb8d" />
-<p><strong>- 이메일로 수신된 인증코드 확인</strong></p>
-<img width="100%" alt="인증코드 이메일" src="https://github.com/user-attachments/assets/9ea0b99f-a803-432d-9042-948d78493003" />
-<p><strong>- 인증코드 입력 및 검증 완료</strong></p>
-<img width="100%" alt="이메일 인증 완료" src="https://github.com/user-attachments/assets/c30bb937-4d71-4771-b390-08ad4e9f4bc0" />
-</details>
-
-<details>
-<summary><strong>로그인</strong></summary>
-<br>
-<img width="100%" alt="로그인 전" src="https://github.com/user-attachments/assets/4019ee07-2849-41ec-87c6-332a3700fc6b" />
-<img width="100%" alt="로그인 후" src="https://github.com/user-attachments/assets/93eb1c1a-4c1a-43b0-b28c-c899bf597f39" />
+<p><strong>- 일반 회원가입 이메일 인증 및 로그인</strong></p>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/c92b42e4-1e46-45fa-830f-04cd8b02af5d" />
 </details>
 
 <details>
 <summary><strong>소셜 로그인 (Google, Kakao, Naver)</strong></summary>
 <br>
 <p><strong>- Google</strong></p>
-<img width="100%" alt="구글 로그인" src="https://github.com/user-attachments/assets/d7763fd0-e508-4864-9157-28488cf35a79" />
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/90cd9b44-f898-4955-acb3-7eb48010d5e5" />
 <p><strong>- Kakao</strong></p>
-<img width="100%" alt="카카오 로그인" src="https://github.com/user-attachments/assets/98c35f73-63f5-4154-af31-6dc5b45520d3" />
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/684a3f9b-2d47-4817-ac50-e948383af451" />
 <p><strong>- Naver</strong></p>
-<img width="100%" alt="네이버로그인" src="https://github.com/user-attachments/assets/e8dcb627-8986-4e3b-a77f-69e074beb975" />
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/167b62d6-468d-4a33-9552-0c8f0895ead2" />
 </details>
 
 <details>
 <summary><strong>마이페이지</strong></summary>
 <br>
 <img width="100%" alt="Image" src="https://github.com/user-attachments/assets/068477c8-a683-476f-adf9-d8525d8c1879" />
+</details>
+
+<details>
+<summary><strong>ADMIN의 회원 삭제</strong></summary>
+<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/c09a50c3-0960-465b-b366-d02da84131c3" />
 </details>
 
 </details>
