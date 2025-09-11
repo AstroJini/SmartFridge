@@ -246,8 +246,7 @@
 <details>
 <summary><strong>냉장고 삭제</strong></summary>
 <br>
-<img width="100%" alt="냉장고 삭제 1" src="https://github.com/user-attachments/assets/dd31f5e6-905b-43a0-9d5d-4015969fd011" />
-<img width="100%" alt="냉장고 삭제 2" src="https://github.com/user-attachments/assets/0ec11178-55a1-4c0c-91cc-00877f9f9e96" />
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/19da3cfc-8880-47b1-b106-07a5a683e43b" />
 </details>
 
 <details>
@@ -265,7 +264,7 @@
 <details>
 <summary><strong>대시보드</strong></summary>
 <br>
-<img width="100%" alt="냉장고 대시보드" src="https://github.com/user-attachments/assets/2998b3ba-d011-4d42-9bbe-cafb667f47aa" />
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/21947cf0-3725-4be2-9c66-f3317524f385" />
 </details>
 
 </details>
@@ -325,14 +324,10 @@
 <details>
 <summary><strong>❓ 문의</strong></summary>
 <br>
-<details>
-<summary><strong>문의 목록 조회</strong></summary>
-<br>
-<img width="100%" alt="문의 목록" src="https://github.com/user-attachments/assets/645cd71c-762f-402f-89f2-82dbc6cd65dc" />
-</details>
+
 <details>
 <summary><strong>문의 등록 및 admin문의 답변</strong></summary>
-<br>
+<br><img width="100%" alt="Image" src="https://github.com/user-attachments/assets/1858e722-0ea8-46b2-8385-2a300c84bda5" />
 </details>
 </details>
 
@@ -358,15 +353,27 @@
 <details>
 <summary><strong>admin 알림 처리</strong></summary>
 <br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/e62de591-c3c5-4b72-bcaf-aa61f13ad8e0" />
+
 </details>
 <details>
 <summary><strong>공동구매채팅방 알림</strong></summary>
 <br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/66895cc8-c99d-4c41-a747-203df2c0d83c" />
 </details>
+
 <details>
 <summary><strong>식품 등록 알림</strong></summary>
+<br><img width="100%" alt="Image" src="https://github.com/user-attachments/assets/bedec70f-32c7-45d6-9f09-8dd8f991dbb1" />
+<summary><strong>식품 실시간 알림</strong></summary>
+<br><img width="100%" alt="Image" src="https://github.com/user-attachments/assets/852a2c75-7198-4026-91b8-afe5cb158080" />
+
+</details>
+
+<details>
+<summary><strong>냉장고 멤버 참여 알림</strong></summary>
 <br>
-<br>
+<img width="100%" alt="Image" src="https://github.com/user-attachments/assets/9ba7f300-d13d-4c4e-855e-9e309967c676" />
 </details>
 </details>
 
